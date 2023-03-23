@@ -1,7 +1,5 @@
 <template >
     <div class="head">
-
-
       <el-menu
     :default-active="activeIndex"
     class="head_"
@@ -169,9 +167,8 @@ function deLogin(){
   float: left;
   height: 60px;
   margin-top: 24px;
-  padding: 30px 18.5px;
+  padding: 30px 18px;
   margin-right: 100px;
-
   font-family: 'Microsoft YaHei';
   font-style: normal;
   font-weight: 400;
@@ -179,7 +176,7 @@ function deLogin(){
   line-height: 39px;
   /* identical to box height */
   color: #000000;
-  background: white !important;
+  background: #FFFFFF;
 
 }
 
@@ -292,7 +289,7 @@ function deLogin(){
 }
 
 .dropdown_item{
-  padding: 7.5px 3px;
+  padding: 7px 3px;
   text-align: center;
   font-family: 'Microsoft YaHei';
   font-style: normal;
@@ -310,6 +307,23 @@ function deLogin(){
 }
 
 @media (prefers-color-scheme: dark) {
+  .head_ {
+    background-color: #121212;
+  }
+  .outside_menu_item {
+    background-color: #121212;
+  }
+
+  .el-menu-item {
+    background-color: #121212;
+    color: white;
+  }
+  h1 {
+    color: white;
+  }
+  span {
+    color: #5B93FF;
+  }
 
 }
   </style>

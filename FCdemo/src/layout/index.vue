@@ -34,6 +34,11 @@ import Headd from "./header.vue"
   height: auto;
   padding:0;
   overflow: hidden;
-  
+
+}
+@media (prefers-color-scheme: dark) {
+  * {
+    background-color: #212121;
+  }
 }
 </style>

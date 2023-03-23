@@ -89,7 +89,7 @@
         placeholder="选择时间范围"
         :disabled-date="disabledDate"
         :shortcuts="shortcuts"
-        popper-class="date_picker"
+        popper-class="dataPicker"
         style="height:42px"
       />
 
@@ -672,10 +672,10 @@ function cancel_delete(){
 
 .search_box{
   position: absolute;
-  width: 1638px;
-  height: 86px;
-  left: 283px;
-  top: 88px;
+  width: 1648px;
+  height: 92px;
+  left: 279px;
+  top: 87px;
   background: #FFFFFF;
 
 }
@@ -706,6 +706,8 @@ border-radius: 6px;
   outline: none;
   overflow: hidden;
   z-index: 3;
+  font-size: 26px;
+  background-color: transparent;
 }
 
 .search_icon{
@@ -728,7 +730,6 @@ border-radius: 6px;
   height: 55px;
   left: 1285px;
   top: 106px;
-
   border-radius: 6px;
   z-index: 3;
 }
@@ -2058,6 +2059,19 @@ border-radius: 6px;
 
 
 @media (prefers-color-scheme: dark) {
+  .input_text {
+    color: white;
+  }
+  el-date-picker {
+    background-color: #121212;
+  }
+  .search_box {
+    background-color: #121212;
+  }
+  .all_records {
+    color: white;
+  }
+
   .left_box {
     background: #121212;
   }
