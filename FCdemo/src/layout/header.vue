@@ -1,7 +1,7 @@
 <template >
     <div class="head">
-      
-      
+
+
       <el-menu
     :default-active="activeIndex"
     class="head_"
@@ -9,11 +9,11 @@
     :ellipsis="true"
     @select="handleSelect"
     router
-  
+
   >
-    
+
     <div>
-        <div class="logo">  
+        <div class="logo">
       </div>
       <div class="title"><h1><span>文</span>易通</h1></div>
     </div>
@@ -33,7 +33,7 @@
     <div class="isLogin2" v-else><div class="person_image">
       <img src="#" alt="">
     </div>
-      
+
     <div class="dropdown_column">
         <el-dropdown :hide-on-click="false">
     <span class="el-dropdown-link">
@@ -41,7 +41,7 @@
     </span>
     <template #dropdown>
       <el-dropdown-menu
-     
+
       >
       <div class="dropdown_item" @click="toPerson()">个人中心</div>
       <div class="dropdown_item" @click="toFeedBack()">我要反馈</div>
@@ -54,13 +54,13 @@
     </div>
    </div>
   </el-menu>
-        
+
 
     </div>
   </template>
-  
+
 <script  lang="ts" setup>
-  
+
 import { useRoute, useRouter } from "vue-router";
 import { ref,onMounted } from "vue";
 import axios from "axios";
@@ -88,7 +88,7 @@ onMounted(()=>{
 function intoLogin(){
   router.push('/login')
 }
-  
+
 function toPerson(){
   router.push('/person')
 }
@@ -102,7 +102,7 @@ function deLogin(){
   router.push('/login')
 }
 </script>
-  
+
 <style>
 
 .head{
@@ -120,7 +120,7 @@ function deLogin(){
   background: #FFFFFF;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
   z-index: 5;
-  
+
 }
 .logo {
   width: 57px;
@@ -171,7 +171,7 @@ function deLogin(){
   margin-top: 24px;
   padding: 30px 18.5px;
   margin-right: 100px;
-  
+
   font-family: 'Microsoft YaHei';
   font-style: normal;
   font-weight: 400;
@@ -192,7 +192,7 @@ function deLogin(){
   text-align: center;
   width: 90px;
 
- 
+
 }
 
 .outside_menu_item span{
@@ -200,10 +200,10 @@ function deLogin(){
   padding-bottom: 26px;
 }
 
-.el-menu-item.is-active{  
+.el-menu-item.is-active{
   border-bottom: 5px solid #0066FF;
   /* background: white; */
-}  
+}
 
 .el-menu--horizontal .el-menu-item span:not(.is-disabled):hover{
   font-family: 'Inter';
@@ -212,7 +212,7 @@ function deLogin(){
   font-size:22px;
   line-height: 39px;
   /* color: #000000; */
-  background-color: transparent; 
+  background-color: transparent;
 
 }
 
@@ -255,12 +255,12 @@ function deLogin(){
   position: absolute;
   top: 67px;
   left: 905px;
- 
+
 }
 
 .example-showcase .el-dropdown + .el-dropdown {
   margin-left: 15px;
-  
+
 }
 .example-showcase .el-dropdown-link {
   cursor: pointer;
@@ -309,4 +309,7 @@ function deLogin(){
   background-color: rgb(199, 227, 238);
 }
 
+@media (prefers-color-scheme: dark) {
+
+}
   </style>

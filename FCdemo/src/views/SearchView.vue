@@ -1,11 +1,11 @@
 <template>
-  
+
   <body class="background">
 
     <el-row class="tac">
     <el-col >
-      
-  
+
+
         <div
         :class='now_search_method_index==1?"active_item":"nomal_item"'
         @click="change_search_method_index(1)"
@@ -13,8 +13,8 @@
           <!-- <el-icon><icon-menu /></el-icon> -->
           <span>文献文库</span>
         </div>
-      
-        <div 
+
+        <div
         :class='now_search_method_index==2?"active_item":"nomal_item"'
         @click="change_search_method_index(2)"
         >
@@ -22,7 +22,7 @@
           <span>批量导入</span>
         </div>
 
-        <div 
+        <div
         :class='now_search_method_index==3?"active_item":"nomal_item"'
         @click="change_search_method_index(3)"
         >
@@ -30,7 +30,7 @@
           <span>历史浏览</span>
         </div>
 
-        <div 
+        <div
         :class='now_search_method_index==4?"active_item":"nomal_item"'
         @click="change_search_method_index(4)"
         >
@@ -38,7 +38,7 @@
           <span>我的下载</span>
         </div>
 
-        <div 
+        <div
         :class='now_search_method_index==5?"active_item":"nomal_item"'
         @click="change_search_method_index(5)"
         >
@@ -46,7 +46,7 @@
           <span>我的关注</span>
         </div>
 
-        <div 
+        <div
         :class='now_search_method_index==6?"active_item":"nomal_item"'
         @click="change_search_method_index(6)"
         >
@@ -54,15 +54,15 @@
           <span>我的收藏</span>
         </div>
 
-        <div 
+        <div
         :class='now_search_method_index==7?"active_item":"nomal_item"'
         @click="change_search_method_index(7)"
         >
           <!-- <el-icon><setting /></el-icon> -->
           <span>我的订阅</span>
         </div>
- 
-        <div 
+
+        <div
         :class='now_search_method_index==8?"active_item":"nomal_item"'
         @click="change_search_method_index(8)"
         >
@@ -79,10 +79,10 @@
         <div class="search_icon" @click="Search()"></div>
       </div>
     </div>
-   
+
     <div class="choose_time_box" v-if="now_search_method_index!=2">
       <div class="calendar_icon"></div>
-      
+
       <el-date-picker
         v-model="value2"
         type="date"
@@ -104,7 +104,7 @@
     </div>
 
     <div class="advance_search" v-if="now_search_method_index==1">高级检索<span @click=""></span></div>
-    
+
 
      <!-- 第一个界面 -->
     <div class="content_box1" v-if="now_search_method_index==1">
@@ -143,7 +143,7 @@
         <div class="commend_teams_item_box" >
           <div class="commend_teams_item" v-for="(index,item) in 3" :key="item">
             <div class="user_image"></div>
-          
+
           </div>
         </div>
         <div class="exchange">
@@ -161,7 +161,7 @@
       <div class="submit_title">上传文件</div>
       <!-- <div class="submit_file_box">
         <div class="submit_file_image"></div>
-        
+
       </div> -->
 
       <el-upload
@@ -181,7 +181,7 @@
 
     <template #tip>
 		<div class="el-upload__tip">请上传格式为PDF文件</div>
-		   
+
 	  </template>
 
   </el-upload>
@@ -198,7 +198,7 @@
           <div class="title">上传列表</div>
           <div class="submit_list_box">
             <div class="submit_list_item">
-            
+
             </div>
           </div>
       </div>
@@ -223,7 +223,7 @@
       <div class="each_item" v-for="(item,index) in history_array" >
         <input type="checkbox" name="" id=""  class="each_checkbox" @click="history_choose_item(item)" >
         <div class="title">{{ item }}</div>
-        
+
         <div class="each_delete_button" @click="delete_history(item)"></div>
       </div>
      </div>
@@ -272,8 +272,8 @@
         <div class="each_delete_button" ></div>
       </div>
      </div>
-    
-    
+
+
     </div>
 
     <!-- 第六个界面 -->
@@ -294,8 +294,8 @@
         <div class="each_delete_button" ></div>
       </div>
      </div>
-    
-    
+
+
     </div>
 
     <!-- 第七个界面 -->
@@ -316,8 +316,8 @@
         <div class="each_delete_button" ></div>
       </div>
      </div>
-    
-    
+
+
     </div>
 
     <!-- 第八个界面 -->
@@ -338,8 +338,8 @@
         <div class="each_delete_button" ></div>
       </div>
      </div>
-    
-    
+
+
     </div>
   </body>
 
@@ -367,9 +367,9 @@
         <span class="el-dropdown-link">
           <div class="search_method_text">{{ now_search_method }}</div>
           <div class="line"></div>
-          
+
         </span>
-      
+
       </el-dropdown>
       <div class="arrow_down" @click="dropdown_display=!dropdown_display"></div>
     </el-col>
@@ -379,8 +379,8 @@
         </div>
        </div>
   </body1>
-  
-    
+
+
 </template>
 
 <script setup lang="ts">
@@ -400,15 +400,15 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 var uid=localStorage.getItem('uid')??""
 
 onMounted(()=>{
- 
+
   HistoryGetUser(uid).then((res)=>{
-    console.log(uid,'uid'); 
+    console.log(uid,'uid');
   }).catch(res2=>{
     console.log(res2);
     history_array.value=res2
     console.log(history_array.value);
   })
-}) 
+})
 const store=useStore();
 let now_search_method_index=ref(3)
 // let now_search_method=ref('主题')
@@ -426,8 +426,8 @@ function all_clear(){
     for(var i=0;i<history_array.value.length;i++){
       delete_history_list.value[i]=history_array.value[i]
     }
-    
-    mul_delete_history() 
+
+    mul_delete_history()
   }
 }
 
@@ -435,9 +435,9 @@ function all_clear(){
 
 //搜索
 function Search(){
-  
+
   searchWord(input_text.value,uid).then(res=>{
-    
+
     console.log('searchWord',res);
   })
   location.reload()
@@ -449,7 +449,7 @@ let commend_nav_item=ref(0)
 function commend_nav_items(index:number){
   commend_nav_item.value=index
   console.log(commend_nav_item.value);
-  
+
 }
 
 
@@ -514,7 +514,7 @@ const fileList = ref<UploadUserFile[]>([
     name: '文件2.pdf',
     url: 'https://element-plus.org/images/element-plus-logo.svg',
   },
- 
+
 ])
 
 const handleRemove: UploadProps['onRemove'] = (file, uploadFiles) => {
@@ -557,9 +557,9 @@ function history_choose_item(item:string){
     let index_pos=delete_history_list.value.indexOf(item);
     delete_history_list.value.splice(index_pos, 1);
   }
- 
+
   console.log(item,"item");
-  
+
 
 }
 let history_array=ref([])
@@ -573,20 +573,20 @@ function mul_delete_history(){
       index_pos--;
     }
   }
-  
+
   for (var i = 0; i < delete_history_list.value.length; i++){
     historyDel(delete_history_list.value[i],uid).then((res)=>{
-     
+
     })
-    
+
   }
 
- 
+
 }
 
 
 function delete_history(item:string){
-  
+
   for (var i = 0; i < history_array.value.length; i++) {
     if (history_array.value[i] === item) {
       history_array.value.splice(i, 1);
@@ -594,7 +594,7 @@ function delete_history(item:string){
     }
   }
   historyDel(item,uid).then((res)=>{
-    
+
   })
 }
 
@@ -650,10 +650,10 @@ function cancel_delete(){
 
   width: 282px;
   height: 113px;
-  
+
   background: #EBF5FF;
   cursor: pointer;
-  
+
 }
 
 .active_item span,.nomal_item span{
@@ -677,7 +677,7 @@ function cancel_delete(){
   left: 283px;
   top: 88px;
   background: #FFFFFF;
-  
+
 }
 
 .search_input_box{
@@ -766,20 +766,20 @@ border-radius: 6px;
   text-align: center;
   color: #FFFFFF;
   cursor: pointer;
-  
+
 }
 
 
 
  ::v-deep .el-date-editor .el-input__icon:nth-child(1){
   display: none;
- 
+
 }
 ::v-deep .el-date-editor.el-input.el-input--prefix.el-input--suffix.el-date-editor--date input{
-		
+
     padding-left: 43px;
     background-color: transparent !important;
-    height: 42px;	
+    height: 42px;
     border: none;
     outline: none;
 }
@@ -800,7 +800,7 @@ border-radius: 6px;
   position: absolute;
   top: 0px;
   left: -100px;
- 
+
 }
 
 .search_method_text{
@@ -856,7 +856,7 @@ border-radius: 6px;
 .each_search_item{
   width: 171px;
   height: 43px;
-  
+
   text-align: center;
   font-family: 'Microsoft YaHei';
   font-style: normal;
@@ -866,7 +866,7 @@ border-radius: 6px;
   color: #9B9595;
   line-height: 43px;
   cursor: pointer;
- 
+
 }
 
 .each_search_item:hover{
@@ -952,7 +952,7 @@ border-radius: 6px;
   width: 902px;
   height: 86px;
   border-bottom: 1px solid #F0F0F0;
-  
+
 }
 
 .commend_box .commend_nav .item1,
@@ -974,7 +974,7 @@ border-radius: 6px;
   /* identical to box height, or 39px */
   cursor: pointer;
 
- 
+
 }
 
 
@@ -1057,7 +1057,7 @@ border-radius: 6px;
   top: 382px;
   width: 342px;
   height: 55px;
-  
+
 }
 
 .commend_teams_box .exchange_title{
@@ -1159,7 +1159,7 @@ border-radius: 6px;
   top: 339px;
   width: 342px;
   height: 55px;
-  
+
 }
 
 .commend_teams_users_box .exchange_title{
@@ -1299,7 +1299,7 @@ border-radius: 6px;
   width: 1293px;
   height: 373px;
   border: 1px dashed #9B9595;
-  
+
 }
 ::v-deep .el-upload .el-upload-dragger{
   width: 100%;
@@ -1329,7 +1329,7 @@ border-radius: 6px;
     content: url(../../images/pdf1.png);
     /* background-size: contain; */
     /* border: #989494 3px solid; */
-    
+
 }
 
 
@@ -1349,14 +1349,14 @@ border-radius: 6px;
   /* identical to box height, or 23px */
 
   letter-spacing: 0.07em;
-  
+
   color: #000000;
 
 }
 
 /*界面2 页面2 */
 .content_box2_page2{
-  
+
 }
 
 .content_box2_page2 .return_image{
@@ -1373,7 +1373,7 @@ border-radius: 6px;
   float: left;
   width: 959px;
   height: 990px;
- 
+
   border-right: 1px solid #E6E6E6
 }
 
@@ -1398,8 +1398,8 @@ border-radius: 6px;
  float: left;
   width: 679px;
   height: 990px;
- 
-  
+
+
 }
 
 .content_box2_page2 .page2_right_box .title{
@@ -1642,7 +1642,7 @@ border-radius: 6px;
   font-size: 20px;
   line-height: 26px;
   letter-spacing: 0.045em;
-  
+
   color: #3C3C3C;
 }
 
@@ -1733,7 +1733,7 @@ border-radius: 6px;
   font-size: 20px;
   line-height: 26px;
   letter-spacing: 0.045em;
-  
+
   color: #3C3C3C;
 }
 
@@ -1825,7 +1825,7 @@ border-radius: 6px;
   font-size: 20px;
   line-height: 26px;
   letter-spacing: 0.045em;
-  
+
   color: #3C3C3C;
 }
 
@@ -1916,7 +1916,7 @@ border-radius: 6px;
   font-size: 20px;
   line-height: 26px;
   letter-spacing: 0.045em;
-  
+
   color: #3C3C3C;
 }
 
@@ -2006,7 +2006,7 @@ border-radius: 6px;
   font-size: 20px;
   line-height: 26px;
   letter-spacing: 0.045em;
-  
+
   color: #3C3C3C;
 }
 
@@ -2057,6 +2057,34 @@ border-radius: 6px;
 }
 
 
-
+@media (prefers-color-scheme: dark) {
+  .left_box {
+    background: #121212;
+  }
+  .tac {
+    background: #121212;
+  }
+  .active_item {
+    background: #003260;
+  }
+  .active_item span{
+    color: #5B93FF;
+  }
+  .nomal_item span {
+    color: #FFFFFF;
+  }
+  .content_box3 {
+    background: #121212;
+  }
+  .data_item_box3 .each_item {
+    border: 1px solid white;
+  }
+  .data_item_box3 .each_item .title {
+    color: #FFFFFF;
+  }
+  .data_item_box3 .each_item:hover{
+    background: #3c3c3c;
+  }
+}
 
 </style>
