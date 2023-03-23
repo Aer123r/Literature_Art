@@ -1610,7 +1610,7 @@ border-radius: 6px;
 .data_item_box4 .each_item{
   width: 1288px;
   height: 98px;
-  background: #ffffff;
+  background: transparent;
   border: 1px solid #EBF5FF;
   border-radius: 6px;
   margin-bottom: 18px;
@@ -2098,6 +2098,12 @@ border-radius: 6px;
   }
   .data_item_box3 .each_item:hover{
     background: #3c3c3c;
+  }
+  .content_box4 {
+    background-color: #121212;
+  }
+  .data_item_box4 .each_item:hover{
+    background: #003260;
   }
 }
 
