@@ -128,9 +128,9 @@
             <div class="commend_each_type">{{ item.type }}</div>
             <div class="commend_each_icon"></div>
             <div class="commend_each_title">{{ item.title }}</div>
-            <div class="commend_each_author">{{ item.author }}</div>
-            <div class="commend_each_name">{{ item.paper_name }}</div>
-            <div class="commend_each_year">{{ item.year }}</div>
+            <div class="commend_each_author">作者:{{ item.author }}</div>
+            <div class="commend_each_name">刊名:{{ item.paper_name }}</div>
+            <div class="commend_each_year">年份:{{ item.year }}</div>
             <div class="commend_each_content">{{ item.content }}</div>
           </div>
           </div>
@@ -224,53 +224,109 @@
 
    <!-- 文件归档界面 -->
     <div class="content_box2_page2" v-else>
+      <div class="line"></div>
       
-      <div class="page2_left_box">
           
           <div class="return_image" @click="to_box2_page1()"></div>
           <!-- 树形控件 -->
-          <p>Using scoped slot</p>
-    <el-tree
-      :data="dataSource"
-      show-checkbox
-      node-key="id"
-      default-expand-all
-      :expand-on-click-node="false"
-    >
-      <template #default="{ node, data }">
-        <span class="custom-tree-node">
-          <span>{{ node.label }}</span>
-          <span>
-            <a @click="append(data)"> Append </a>
-            <a style="margin-left: 8px" @click="remove(node, data)"> Delete </a>
-          </span>
-        </span>
-      </template>
-    </el-tree>
+          <!-- <p>Using scoped slot</p>
+        <el-tree
+          :data="dataSource"
+          show-checkbox
+          node-key="id"
+          default-expand-all
+          :expand-on-click-node="false"
+        >
+          <template #default="{ node, data }">
+            <span class="custom-tree-node">
+              <span>{{ node.label }}</span>
+              <span>
+                <div @click="append(data)" class="tree_node_append"> </div>
+                <div style="margin-left: 8px" @click="remove(node, data)" class="tree_node_delete"></div>
+              </span>
+            </span>
+          </template>
+        </el-tree> -->
 
+        <div class="left_menu">
+    <el-col >
+      <el-menu
+        
+        default-active="2"
+        class="el-menu-vertical-demo"
+        @open="handleOpen"
+        @close="handleClose"
+      >
+        <el-sub-menu index="1">
+          <template #title>
+            <div class="paper_image"></div>
+            <div class="paper_title">文献库</div>
+          </template>
+
+          <el-sub-menu index="1-1">
+            <template #title>
+              
+              分类1
+            </template>
+            <el-menu-item index="1-4-1">item one</el-menu-item>
+          </el-sub-menu>
+
+          <el-sub-menu index="1-2">
+            <template #title>分类2</template>
+            <el-menu-item index="1-4-1">item one</el-menu-item>
+          </el-sub-menu>
+
+          <el-sub-menu index="1-3">
+            <template #title>分类3</template>
+            <el-menu-item index="1-4-1">item one</el-menu-item>
+          </el-sub-menu>
+          
+          <el-sub-menu index="1-4">
+            <template #title>item four</template>
+            <el-menu-item index="1-4-1">item one</el-menu-item>
+          </el-sub-menu>
+        </el-sub-menu>
+      </el-menu>
+    </el-col>
     
-      </div>
-      <div class="page2_right_box">
+  </div>
+
+  <div class="page2_right_box">
+        <div class="head_title">标题</div>
+      <div class="head_modify_time">修改时间</div>
+      <div class="head_capacity">文件大小</div>
+      <div class="page2_left_box">
         <div class="title">文件归档</div>
         <div class="button_box">
-          <div class="button1">搜索添加</div>
-          <div class="button1">本地上传</div>
-          <div class="button2">导入库 </div>
+          <div class="button1" @click="filing_operation_index=1">搜索添加</div>
+          <div class="button1" @click="filing_operation_index=2">本地上传</div>
+          <div class="button2" @click="filing_operation_index=3">导入库 </div>
         </div>
         
         <!-- 待修改 -->
         <div class="item_box">
-      <div class="each_item" v-for="(item,index) in history_array" >
+        <div class="each_item" v-for="(item,index) in 10" >
+          <div class="each_item_inner">
         <input type="checkbox" name="" id=""  class="each_checkbox" @click="history_choose_item(item)" >
         <div class="each_item_title">{{ item }}</div>
-      
-        <div class="each_delete_button" @click="delete_history(item)"></div>
+        <div class="each_time">2023/3/8    13:18 </div>
+        </div>
       </div>
      </div>
       </div>
 
     </div>
+      </div>
+    
+     
     </div>
+
+    <!-- 文件归档子界面 -->
+    <!-- 检索添加界面 -->
+    <!-- <div class="filing_page1" v-if="filing_operation_index==1">
+      
+    </div> -->
+
 
     <!-- 第三个界面-历史记录 -->
     <div class="content_box3" v-if="now_search_method_index==3">
@@ -468,6 +524,7 @@ import {
   Location,
   Setting,
 } from '@element-plus/icons-vue'
+import type Node from 'element-plus/es/components/tree/src/model/node'
 import { UploadFilled } from '@element-plus/icons-vue'
 import { ref,onMounted,reactive} from 'vue';
 import {HistoryGetUser,searchWord,historyDel} from '../api/search_controller'
@@ -475,7 +532,9 @@ import { useStore } from 'vuex';
 import { UploadProps, UploadUserFile, useId } from 'element-plus'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import router from '@/router';
-import type Node from 'element-plus/es/components/tree/src/model/node'
+
+
+
 var uid=localStorage.getItem('uid')??""
 
 onMounted(()=>{
@@ -661,6 +720,10 @@ function to_box2_page1(){
   now_content_box2_page.value=1
 }
 
+/*文件归档操作 */
+let filing_operation_index=ref(0)
+
+
 // 树形控件
 interface Tree {
   id: number
@@ -729,11 +792,39 @@ const renderContent = (
 const dataSource = ref<Tree[]>([
   {
     id: 1,
-    label: 'Level one 1',
+    label: '文献库',
     children: [
       {
         id: 4,
-        label: 'Level two 1-1',
+        label: '分类1',
+        children: [
+          {
+            id: 9,
+            label: '1111',
+          },
+          {
+            id: 10,
+            label: '1111',
+          },
+        ],
+      },
+      {
+        id: 4,
+        label: '分类2',
+        children: [
+          {
+            id: 9,
+            label: '1111',
+          },
+          {
+            id: 10,
+            label: 'Level three 1-1-2',
+          },
+        ],
+      },
+      {
+        id: 4,
+        label: '分类3',
         children: [
           {
             id: 9,
@@ -745,36 +836,13 @@ const dataSource = ref<Tree[]>([
           },
         ],
       },
+
+
     ],
+
+
   },
-  {
-    id: 2,
-    label: 'Level one 2',
-    children: [
-      {
-        id: 5,
-        label: 'Level two 2-1',
-      },
-      {
-        id: 6,
-        label: 'Level two 2-2',
-      },
-    ],
-  },
-  {
-    id: 3,
-    label: 'Level one 3',
-    children: [
-      {
-        id: 7,
-        label: 'Level two 3-1',
-      },
-      {
-        id: 8,
-        label: 'Level two 3-2',
-      },
-    ],
-  },
+ 
 ])
 
 
@@ -854,8 +922,13 @@ const beforeRemove: UploadProps['beforeRemove'] = (uploadFile, uploadFiles) => {
   )
 }
 
-
-
+/*文献归档菜单*/
+const handleOpen = (key: string, keyPath: string[]) => {
+  console.log(key, keyPath)
+}
+const handleClose = (key: string, keyPath: string[]) => {
+  console.log(key, keyPath)
+}
 
 /*第三个界面——历史记录 */
 
@@ -1559,7 +1632,7 @@ border-radius: 6px;
 
 .commend_each_name{
   position: absolute;
-  width: 96px;
+  width: 106px;
   height: 21px;
   left: 184px;
   top: 70px;
@@ -2186,10 +2259,48 @@ border-radius: 6px;
   position: absolute;
   width: 1920px;
   height: 1080px;
-  top: -90px;
+  /* top: 100px; */
   left: -282px;
  
 }
+.content_box2_page2 .line{
+  position: absolute;
+  left: 283px;
+  top: 247px;
+  width: 1683px;
+
+  background-image: url(../../images/line.png);
+  background-size: contain;
+  transform: rotate(0deg);
+  z-index: 2;
+}
+
+.content_box2_page2 .head_title,
+.content_box2_page2 .head_modify_time,
+.content_box2_page2 .head_capacity
+{
+  position: absolute;
+ 
+  left: 215px;
+  top: 218px;
+
+  font-family: 'Microsoft YaHei';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 26px;
+
+  color: #9B9595;
+}
+
+.content_box2_page2 .head_modify_time{
+  left: 859px;
+}
+
+.content_box2_page2 .head_capacity{
+  left: 1227px;
+}
+
 .content_box2_page2 .page2_left_box{
   position: absolute;
   width: 282px;
@@ -2205,7 +2316,7 @@ border-radius: 6px;
   height: 30px;
   left: 30px;
   top: 21px;
-  background: url(../../images/return.png);
+  background: url(../../images/返回.png);
   background-size: contain;
   cursor: pointer;
 }
@@ -2229,13 +2340,66 @@ border-radius: 6px;
 
 }
 
+
+/* 下拉菜单 */
+
+.left_menu{
+  width: 282px;
+  position: absolute;
+  top: 90px;
+  left: 0px;
+}
+
+.el-sub-menu {
+  margin: 0;
+  padding: 0;
+ 
+}
+.el-sub-menu {
+  font-family: 'Microsoft YaHei';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  /* identical to box height */
+
+
+  color: #9B9595;
+}
+
+.el-sub-menu:hover{
+  font-weight: 700;
+  color: #000000;
+}
+.paper_image{
+  width: 27px;
+  height: 27px;
+  background-image: url(../../images/文献库.png);
+  background-size: contain;
+  margin-left: 46px;
+  margin-top: 18px;
+}
+
+.paper_title{
+  margin-left:24px;
+  margin-top: 18px;
+  font-family: 'Microsoft YaHei';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 29px;
+  /* identical to box height */
+
+
+  color: #013480;
+}
 .content_box2_page2 .page2_right_box{
   position: absolute;
   width: 1638px;
-  height: 1080px;
+  height: 990px;
   top: 0;
   left: 282px;
-
+ 
 
 }
 
@@ -2252,8 +2416,6 @@ border-radius: 6px;
   font-size: 36px;
   line-height: 48px;
   /* identical to box height */
-
-
   color: #000000;
 }
 
@@ -2303,23 +2465,28 @@ border-radius: 6px;
 }
 
 
+
 .content_box2 .page2_right_box .item_box{
   position: absolute;
   top: 257px;
-  left: 0;
   width: 1637px;
-  height: 733px;
-  
+  height: 990px;
+
 }
 
 
 .page2_right_box  .item_box .each_item{
-  width: 1288px;
-  height: 55px;
+  width: 1637px;
+  height: 61px;
   background: #ffffff;
-  border: 1px solid #EBF5FF;
-  border-radius: 6px;
-  margin-bottom: 16px;
+  border-bottom: 1px solid #F4F4F4;
+
+}
+
+.page2_right_box  .item_box .each_item_inner{
+  position: relative;
+  width: 1637px;
+  height: 61px;
 
 }
 
@@ -2328,20 +2495,21 @@ border-radius: 6px;
 }
 
 .page2_right_box  .item_box .each_checkbox{
-  float: left;
+  position: absolute;
   box-sizing: border-box;
   width: 30px;
   height: 30px;
-  margin-top: 12px;
-  margin-left: 18px;
+  left: 132px;
+  top: 13px;
   border: 1px solid #000000;
   border-radius: 6px;
 }
 
 
 .page2_right_box  .item_box .each_item .each_item_title{
-  margin-top: 14px;
-  margin-left: 101px;
+  position: absolute;
+  top: 15px;
+  left: 215px;
   font-family: 'Microsoft YaHei';
   font-style: normal;
   font-weight: 400;
@@ -2350,15 +2518,17 @@ border-radius: 6px;
   letter-spacing: 0.045em;
 
   color: #3C3C3C;
+
 }
 
 
-.page2_right_box  .item_box .each_item .date{
+.page2_right_box  .item_box .each_item .each_time{
+  position: absolute;
   width: 263px;
   height: 26px;
   /* float: left; */
-  margin-top: 14px;
-  margin-left: 745px;
+  top: 14px;
+  left: 859px;
   font-family: 'Microsoft YaHei';
   font-style: normal;
   font-weight: 400;
@@ -2368,15 +2538,15 @@ border-radius: 6px;
   color: #9B9595;
 }
 
-.page2_right_box  .item_box .each_item .each_delete_button{
-  float: right;
-  margin-top: 15px;
-  margin-right: 25px;
-  width: 23px;
-  height: 23px;
-  background-image: url(../../images/fork.png);
-  background-size: contain;
-  cursor:pointer;
+
+/* 文件归档子界面 */
+/* 检索添加界面 */
+.filing_page1{
+  width: 1920px;
+  height: 1080px;
+  /* background-color: #272626; */
+  /* opacity: 0.1; */
+  z-index: 3;
 }
 
 
@@ -3005,11 +3175,12 @@ border-radius: 6px;
   line-height: 22px;
   text-align: 22px;
   color: #013480;
+  cursor: pointer;
 }
 
 .data_item_box7 .notice_member{
   position: absolute;
-  width: 48px;
+  width: 100px;
   height: 13px;
   left: 385px;
   top: 128px;
