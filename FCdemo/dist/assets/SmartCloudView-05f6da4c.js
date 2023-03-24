@@ -1,0 +1,1 @@
+import{_ as a,o as c,c as o,p as t,j as s,b as _}from"./index-465e1cad.js";const d={},n=e=>(t("data-v-fdab8ac0"),e=e(),s(),e),p=n(()=>_("div",{class:"title"}," 我是智慧云端",-1)),r=[p];function l(e,i){return c(),o("body",null,r)}const u=a(d,[["render",l],["__scopeId","data-v-fdab8ac0"]]);export{u as default};
