@@ -225,6 +225,16 @@
           <div class="button1">本地上传</div>
           <div class="button2">导入库 </div>
         </div>
+        
+        <!-- 待修改 -->
+        <div class="item_box">
+      <div class="each_item" v-for="(item,index) in history_array" >
+        <input type="checkbox" name="" id=""  class="each_checkbox" @click="history_choose_item(item)" >
+        <div class="each_item_title">{{ item }}</div>
+      
+        <div class="each_delete_button" @click="delete_history(item)"></div>
+      </div>
+     </div>
       </div>
 
     </div>
@@ -288,12 +298,12 @@
       </div>
 
       <div class="data_item_box5">
-      <div class="each_item" v-for="(item,index) in 5" >
-        <input type="checkbox" name="" id=""  class="each_checkbox" @click="choose_item(index)" >
-        <div class="title">某医院血液科24种抗肿瘤药超说明书用药评价</div>
-        <a href="" class="display_in_file"><div>在文件夹中显示</div></a>
-        <div class="date">2023/11/15    13:15</div>
-        <div class="each_delete_button" ></div>
+      <div class="each_item" v-for="(item,index) in notice_persons_list" >
+        <div class="each_image"></div>
+        <div class="each_name">{{ item.name }}</div>
+        <div class="each_workplace">{{ item.workplace }}</div>
+        <div class="each_majority">{{ item.majority }}</div>
+        <div class="cancel_notice">取消关注</div>
       </div>
      </div>
 
@@ -435,7 +445,7 @@ onMounted(()=>{
   })
 })
 const store=useStore();
-let now_search_method_index=ref(3)
+let now_search_method_index=ref(2)
 // let now_search_method=ref('主题')
 // let search_methods=ref(['主题','关键字','篇关摘','篇名','作者','第一作者','通讯作者','作者单位','参考文献','全文','摘要'])
 
@@ -465,7 +475,7 @@ function Search(){
 
     console.log('searchWord',res);
   })
-  location.reload()
+
 }
 
 
@@ -754,6 +764,31 @@ function cancel_delete(){
     delete_history_list.value.length=0
     location.reload()
 }
+
+
+
+
+/*第五个界面——我的关注 */
+let notice_persons_list=ref([
+  {name:'吴高源',
+   workplace:'福州大学',
+   majority:'自动化'  
+  },
+  {name:'叶晓滨',
+   workplace:'厦门市思明区筼筜街道社区卫生服务中心',
+   majority:'中药学;中医学;药学'  
+  },
+  {name:'叶晓滨',
+   workplace:'厦门市思明区筼筜街道社区卫生服务中心',
+   majority:'中药学;中医学;药学'  
+  },
+  {name:'叶晓滨',
+   workplace:'厦门市思明区筼筜街道社区卫生服务中心',
+   majority:'中药学;中医学;药学'  
+  },
+
+])
+
 </script>
 
 <style scoped>
@@ -1584,7 +1619,7 @@ border-radius: 6px;
   height: 1080px;
   top: 0;
   left: 282px;
-  background-color:yellow;
+
 
 }
 
@@ -1652,10 +1687,81 @@ border-radius: 6px;
 }
 
 
+.content_box2 .page2_right_box .item_box{
+  position: absolute;
+  top: 257px;
+  left: 0;
+  width: 1637px;
+  height: 733px;
+  
+}
 
 
+.page2_right_box  .item_box .each_item{
+  width: 1288px;
+  height: 55px;
+  background: #ffffff;
+  border: 1px solid #EBF5FF;
+  border-radius: 6px;
+  margin-bottom: 16px;
+
+}
+
+.page2_right_box  .item_box .each_item:hover{
+  background: #EBF5FF;
+}
+
+.page2_right_box  .item_box .each_checkbox{
+  float: left;
+  box-sizing: border-box;
+  width: 30px;
+  height: 30px;
+  margin-top: 12px;
+  margin-left: 18px;
+  border: 1px solid #000000;
+  border-radius: 6px;
+}
 
 
+.page2_right_box  .item_box .each_item .each_item_title{
+  margin-top: 14px;
+  margin-left: 101px;
+  font-family: 'Microsoft YaHei';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 26px;
+  letter-spacing: 0.045em;
+
+  color: #3C3C3C;
+}
+
+
+.page2_right_box  .item_box .each_item .date{
+  width: 263px;
+  height: 26px;
+  /* float: left; */
+  margin-top: 14px;
+  margin-left: 745px;
+  font-family: 'Microsoft YaHei';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 26px;
+
+  color: #9B9595;
+}
+
+.page2_right_box  .item_box .each_item .each_delete_button{
+  float: right;
+  margin-top: 15px;
+  margin-right: 25px;
+  width: 23px;
+  height: 23px;
+  background-image: url(../../images/fork.png);
+  background-size: contain;
+  cursor:pointer;
+}
 
 
 /*第三个界面 */
@@ -1669,8 +1775,7 @@ border-radius: 6px;
 {
   position: absolute;
   width: 1643px;
-  height: 990px;
-  top: 178px;
+  height: 1080px;
   left: 282px;
   z-index: -1;
 }
@@ -1936,83 +2041,94 @@ border-radius: 6px;
 }
 
 .data_item_box5 .each_item{
-  width: 1288px;
-  height: 98px;
-  background: #ffffff;
-  border: 1px solid #EBF5FF;
+  float: left;
+  width: 631.55px;
+  height: 106.32px;
+ 
   border-radius: 6px;
   margin-bottom: 18px;
-
+  margin-right: 10px;
 }
 
 .data_item_box5 .each_item:hover{
   background: #EBF5FF;
 }
 
-.data_item_box5 .each_checkbox{
-  float: left;
-  box-sizing: border-box;
-  width: 30px;
-  height: 30px;
-  margin-top: 12px;
-  margin-left: 18px;
-  border: 1px solid #000000;
-  border-radius: 6px;
-}
+.data_item_box5 .each_item .each_image{
+  width: 106.32px;
+  height: 106.32px;
 
-
-.data_item_box5 .each_item .title{
-  float: left;
-  margin-left: 101px;
-  margin-top: 14px;
-  font-family: 'Microsoft YaHei';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 26px;
-  letter-spacing: 0.045em;
-
-  color: #3C3C3C;
-}
-
-.data_item_box5 .display_in_file{
-  float: left;
-  margin-left: -422px;
-  margin-top: 60px;
-
-  font-family: 'Microsoft YaHei';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 21px;
-  letter-spacing: 0.045em;
-
-}
-
-.data_item_box5 .each_item .date{
-  width: 263px;
-  height: 26px;
-  /* float: left; */
-  margin-top: 14px;
-  margin-left: 745px;
-  font-family: 'Microsoft YaHei';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 26px;
-
-  color: #9B9595;
-}
-
-.data_item_box5 .each_item .each_delete_button{
-  float: right;
-  margin-top: -25px;
-  margin-right: 16px;
-  width: 23px;
-  height: 23px;
-  background-image: url(../../images/fork.png);
+  background: url(../../images/头像.png);
   background-size: contain;
 }
+
+
+.data_item_box5 .each_item .each_name{
+  width: 80px;
+  height: 35px;
+  margin-top: -100px;
+  margin-left: 130px;
+  font-family: 'Microsoft YaHei';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 34px;
+
+  color: #000000;
+}
+
+.data_item_box5 .each_item .each_workplace{
+  margin-top: 12px;
+  margin-left: 130px;
+  width: 324px;
+  height: 24px;
+  font-family: 'Microsoft YaHei';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  /* identical to box height */
+
+
+  color: #000000;
+}
+
+.data_item_box5 .each_item .each_majority{
+  margin-top: 7px;
+  margin-left: 130px;
+  width: 153px;
+  height: 24px;
+  font-family: 'Microsoft YaHei';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  /* identical to box height */
+  color: #000000;
+}
+
+.data_item_box5 .cancel_notice{
+  width: 122px;
+  height: 42px;
+  margin-top: -70px;
+  margin-left: 480px;
+  font-family: 'Microsoft YaHei';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  text-align: center;
+  line-height: 42px;
+  /* identical to box height */
+
+
+  color: #013480;
+
+  background: #EBF5FF;
+  border-radius: 21px;
+  cursor: pointer;
+
+}
+
 
 
 /* 第六个界面-我的收藏 */
