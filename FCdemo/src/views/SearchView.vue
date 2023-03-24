@@ -2,7 +2,7 @@
 
   <body class="background">
 
-    <el-row class="tac">
+    <el-row class="tac" v-if="now_content_box2_page==1">
     <el-col >
 
 
@@ -110,7 +110,9 @@
     <div class="content_box1" v-if="now_search_method_index==1">
       <div class="classify">
         <div class="classify_title">分类导航</div>
-
+        <div class="classify_item_box">
+        <div class="classify_item" v-for="(item,index) in classify_item_array" :key="item">{{ item }}</div>
+        </div>
       </div>
 
       <div class="commend_box">
@@ -188,19 +190,41 @@
 
   </div>
 
-
+   <!-- 文件归档界面 -->
     <div class="content_box2_page2" v-else>
-      <div class="return_image"></div>
+      
       <div class="page2_left_box">
-          <div class="title">文件归档</div>
+          
+          <div class="return_image" @click="to_box2_page1()"></div>
+          <!-- 树形控件 -->
+          <p>Using scoped slot</p>
+    <el-tree
+      :data="dataSource"
+      show-checkbox
+      node-key="id"
+      default-expand-all
+      :expand-on-click-node="false"
+    >
+      <template #default="{ node, data }">
+        <span class="custom-tree-node">
+          <span>{{ node.label }}</span>
+          <span>
+            <a @click="append(data)"> Append </a>
+            <a style="margin-left: 8px" @click="remove(node, data)"> Delete </a>
+          </span>
+        </span>
+      </template>
+    </el-tree>
+
+    
       </div>
       <div class="page2_right_box">
-          <div class="title">上传列表</div>
-          <div class="submit_list_box">
-            <div class="submit_list_item">
-
-            </div>
-          </div>
+        <div class="title">文件归档</div>
+        <div class="button_box">
+          <div class="button1">搜索添加</div>
+          <div class="button1">本地上传</div>
+          <div class="button2">导入库 </div>
+        </div>
       </div>
 
     </div>
@@ -396,7 +420,8 @@ import {HistoryGetUser,searchWord,historyDel} from '../api/search_controller'
 import { useStore } from 'vuex';
 import { UploadProps, UploadUserFile, useId } from 'element-plus'
 import { ElMessage, ElMessageBox } from 'element-plus'
-
+import router from '@/router';
+import type Node from 'element-plus/es/components/tree/src/model/node'
 var uid=localStorage.getItem('uid')??""
 
 onMounted(()=>{
@@ -452,6 +477,7 @@ function commend_nav_items(index:number){
 
 }
 
+let classify_item_array=ref(['基础医学','临床医学','法医学','检验医学','预防医学','保健医学','康复医学','其他'])
 
 //
 
@@ -466,6 +492,131 @@ function now_content_box2_pages(index:number){
 function change_search_method_index(index:number){
   now_search_method_index.value=index
 }
+
+
+//文件归档
+function to_box2_page1(){
+  now_content_box2_page.value=1
+}
+
+// 树形控件
+interface Tree {
+  id: number
+  label: string
+  children?: Tree[]
+}
+let id = 1000
+
+const append = (data: Tree) => {
+  const newChild = { id: id++, label: 'testtest', children: [] }
+  if (!data.children) {
+    data.children = []
+  }
+  data.children.push(newChild)
+  dataSource.value = [...dataSource.value]
+}
+
+const remove = (node: Node, data: Tree) => {
+  const parent = node.parent
+  const children: Tree[] = parent.data.children || parent.data
+  const index = children.findIndex((d) => d.id === data.id)
+  children.splice(index, 1)
+  dataSource.value = [...dataSource.value]
+}
+
+const renderContent = (
+  h,
+  {
+    node,
+    data,
+    store,
+  }: {
+    node: Node
+    data: Tree
+    store: Node['store']
+  }
+) => {
+  return h(
+    'span',
+    {
+      class: 'custom-tree-node',
+    },
+    h('span', null, node.label),
+    h(
+      'span',
+      null,
+      h(
+        'a',
+        {
+          onClick: () => append(data),
+        },
+        'Append '
+      ),
+      h(
+        'a',
+        {
+          style: 'margin-left: 8px',
+          onClick: () => remove(node, data),
+        },
+        'Delete'
+      )
+    )
+  )
+}
+
+const dataSource = ref<Tree[]>([
+  {
+    id: 1,
+    label: 'Level one 1',
+    children: [
+      {
+        id: 4,
+        label: 'Level two 1-1',
+        children: [
+          {
+            id: 9,
+            label: 'Level three 1-1-1',
+          },
+          {
+            id: 10,
+            label: 'Level three 1-1-2',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 2,
+    label: 'Level one 2',
+    children: [
+      {
+        id: 5,
+        label: 'Level two 2-1',
+      },
+      {
+        id: 6,
+        label: 'Level two 2-2',
+      },
+    ],
+  },
+  {
+    id: 3,
+    label: 'Level one 3',
+    children: [
+      {
+        id: 7,
+        label: 'Level two 3-1',
+      },
+      {
+        id: 8,
+        label: 'Level two 3-2',
+      },
+    ],
+  },
+])
+
+
+
 
 const value2 = ref('')
 
@@ -497,7 +648,6 @@ const disabledDate = (time: Date) => {
 }
 
 
-/*数据库 */
 
 
 
@@ -608,7 +758,7 @@ function cancel_delete(){
 
 <style scoped>
 
-
+/*侧边栏 */
 .left_box{
   position: absolute;
   width: 282px;
@@ -669,7 +819,7 @@ function cancel_delete(){
   margin-left: 89px;
 }
 
-
+/*搜索框 */
 .search_box{
   position: absolute;
   width: 1648px;
@@ -871,7 +1021,7 @@ border-radius: 6px;
 }
 
 .each_search_item:hover{
- background-color: #9AC1E4;;
+ background-color: #9AC1E4;
 }
 
 
@@ -914,6 +1064,7 @@ border-radius: 6px;
 
 .classify{
   position: absolute;
+  padding-top: 99px;
   width: 271px;
   height: 853px;
   left: 30px;
@@ -926,6 +1077,7 @@ border-radius: 6px;
   position: absolute;
   left: 78px;
   top: 20px;
+
   font-family: 'Microsoft YaHei';
   font-style: normal;
   font-weight: 400;
@@ -937,8 +1089,27 @@ border-radius: 6px;
   color: #000000;
 }
 
+.classify_item_box{
 
+}
+.classify_item{
+  float: left;
+  width: 271px;
+  height: 60px;
+  text-align: center;
+  vertical-align: center;
+  line-height: 60px;
+  font-family: 'Microsoft YaHei';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  color: #013480;
+  cursor: pointer;
+}
 
+.classify_item:hover{
+  background-color:  #67b5f5;
+}
 
 .commend_box{
   position: absolute;
@@ -1086,6 +1257,7 @@ border-radius: 6px;
   left: 122px;
   top: 15px;
   background: url(../../images/换一换.png);
+  background-size: contain;
   cursor: pointer;
 }
 
@@ -1188,8 +1360,11 @@ border-radius: 6px;
   left: 122px;
   top: 15px;
   background: url(../../images/换一换.png);
+  background-size: contain;
   cursor: pointer;
 }
+
+
 /*第二个界面 */
 
 
@@ -1355,28 +1530,36 @@ border-radius: 6px;
 
 }
 
-/*界面2 页面2 */
+/*界面2 页面2——文件归档 */
 .content_box2_page2{
+  position: absolute;
+  width: 1920px;
+  height: 1080px;
+  top: -90px;
+  left: -282px;
+ 
+}
+.content_box2_page2 .page2_left_box{
+  position: absolute;
+  width: 282px;
+  height: 990px;
+  left: 0px;
+  top: 0;
+  border-right: 1px solid #E6E6E6;
 
 }
-
 .content_box2_page2 .return_image{
   position: absolute;
   width: 30px;
   height: 30px;
-  left: 39px;
-  top: 18px;
-
+  left: 30px;
+  top: 21px;
   background: url(../../images/return.png);
+  background-size: contain;
+  cursor: pointer;
 }
 
-.content_box2_page2 .page2_left_box{
-  float: left;
-  width: 959px;
-  height: 990px;
 
-  border-right: 1px solid #E6E6E6
-}
 
 .content_box2_page2 .page2_left_box .title{
   position: absolute;
@@ -1396,10 +1579,12 @@ border-radius: 6px;
 }
 
 .content_box2_page2 .page2_right_box{
- float: left;
-  width: 679px;
-  height: 990px;
-
+  position: absolute;
+  width: 1638px;
+  height: 1080px;
+  top: 0;
+  left: 282px;
+  background-color:yellow;
 
 }
 
@@ -1407,8 +1592,8 @@ border-radius: 6px;
   position: absolute;
   width: 144px;
   height: 48px;
-  left: 999px;
-  top: 81px;
+  left:114px;
+  top: 45px;
 
   font-family: 'Microsoft YaHei';
   font-style: normal;
@@ -1420,6 +1605,58 @@ border-radius: 6px;
 
   color: #000000;
 }
+
+.content_box2 .page2_right_box .button_box{
+  position: absolute;
+  top: 112px;
+  left: 114px;
+  width: 800px;
+  height: 200px;
+  
+}
+.content_box2 .page2_right_box .button1{
+  float: left;
+  box-sizing: border-box;
+  width: 117px;
+  height: 44px;
+  margin-right: 14px;
+  border: 1px solid #1559DD;
+  border-radius: 8px;
+  font-family: 'Microsoft YaHei';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 44px;
+  text-align: center;
+
+  color: #1559DD;
+  cursor: pointer;
+}
+
+.content_box2 .page2_right_box .button2{
+  float: left;
+  box-sizing: border-box;
+  width: 117px;
+  height: 44px;
+  background: #1559DD;
+  border-radius: 8px;
+
+  font-family: 'Microsoft YaHei';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 44px;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+}
+
+
+
+
+
+
+
 
 /*第三个界面 */
 
