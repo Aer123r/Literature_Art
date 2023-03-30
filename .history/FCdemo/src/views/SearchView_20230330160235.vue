@@ -631,7 +631,7 @@ function Search(){
 
     searchWord(input_text.value,uid).then(res=>{
     console.log('searchWord',res);
-    })
+  })
   
   
   localStorage.setItem('now_search_method_index','3')
@@ -1094,7 +1094,7 @@ function cancel_delete_history(){
 
 // 清除全部历史记录
 function history_all_clear(){
-  all_delete_index.value=0
+  all_delete_index.value=true
   for(var i=0;i<history_array.value.length;i++){
     delete_history_list.value[i]=history_array.value[i]
   }

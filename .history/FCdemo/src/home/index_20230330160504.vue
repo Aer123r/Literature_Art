@@ -71,12 +71,6 @@ function intoLogin(){
 }
 
 function use_rightnow(){
-  if(localStorage.getItem('token')?.length!=0){
-    router.push('/2')
-  }
-  else{
-    router.push('/login')
-  }
   
 }
 function intoRegister(){

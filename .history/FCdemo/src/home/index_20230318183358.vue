@@ -8,7 +8,7 @@
           <div class="subhead">一个为医药行业开发的平台，<br>
 集文献管理、智慧云端、团队协作等功能于一体，<br>
 为您打造智能检索系统</div>
-            <div class="use_button" @click="use_rightnow()"><span>立即使用</span></div>
+            <div class="use_button"><span>立即使用</span></div>
             <div class="right_image1"></div>
             <div class="right_image3"></div>
             <div class="right_image2"></div>
@@ -70,15 +70,6 @@ function intoLogin(){
   router.push('/login')
 }
 
-function use_rightnow(){
-  if(localStorage.getItem('token')?.length!=0){
-    router.push('/2')
-  }
-  else{
-    router.push('/login')
-  }
-  
-}
 function intoRegister(){
   router.push('/register')
 }
