@@ -1,6 +1,6 @@
 <template>
     <div class="backimg">
-        <div class="title">加入文易通VIP，尊享账号等级配置权益</div>    
+        <div class="title">加入文易通VIP，尊享账号等级配置权益</div>
         <div class="subhead">-新会员·新服务-</div>
         <div class="under_title">海量论文、智慧分屏、超大容量...</div>
         <div class="left_line"></div>
@@ -28,7 +28,7 @@
 
 .title{
     position: absolute;
-    width: 1240px;
+    width: 30vw;
     height: 92px;
     left: 340px;
     top: 244px;
@@ -108,7 +108,7 @@
     line-height: 112px;
     text-align: center;
     color: #FFFFFF;
-    
+
     background: linear-gradient(90deg, #D8AA69 26.01%, #E6A03D 90.33%);
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
     border-radius: 65.5px;

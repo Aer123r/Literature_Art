@@ -11,7 +11,7 @@
         @click="change_search_method_index(1)"
         >
           <!-- <el-icon><icon-menu /></el-icon> -->
-          <span>文献文库</span>
+          <div>文献文库</div>
         </div>
 
         <div
@@ -19,7 +19,7 @@
         @click="change_search_method_index(2)"
         >
           <!-- <el-icon><icon-menu /></el-icon> -->
-          <span>批量导入</span>
+          <div>批量导入</div>
         </div>
 
         <div
@@ -27,7 +27,7 @@
         @click="change_search_method_index(3)"
         >
           <!-- <el-icon><document /></el-icon> -->
-          <span>历史浏览</span>
+          <div>历史浏览</div>
         </div>
 
         <div
@@ -35,7 +35,7 @@
         @click="change_search_method_index(4)"
         >
           <!-- <el-icon><setting /></el-icon> -->
-          <span>我的下载</span>
+          <div>我的下载</div>
         </div>
 
         <div
@@ -43,7 +43,7 @@
         @click="change_search_method_index(5)"
         >
           <!-- <el-icon><setting /></el-icon> -->
-          <span>我的关注</span>
+          <div>我的关注</div>
         </div>
 
         <div
@@ -51,7 +51,7 @@
         @click="change_search_method_index(6)"
         >
           <!-- <el-icon><setting /></el-icon> -->
-          <span>我的收藏</span>
+          <div>我的收藏</div>
         </div>
 
         <div
@@ -59,7 +59,7 @@
         @click="change_search_method_index(7)"
         >
           <!-- <el-icon><setting /></el-icon> -->
-          <span>我的订阅</span>
+          <div>我的订阅</div>
         </div>
 
         <div
@@ -67,7 +67,7 @@
         @click="change_search_method_index(8)"
         >
           <!-- <el-icon><setting /></el-icon> -->
-          <span>回收站</span>
+          <div>回收站</div>
         </div>
     </el-col>
 
@@ -82,7 +82,7 @@
         <input type="text" class="input_text" v-else-if="now_search_method_index==6" v-model="input_text" placeholder="搜索 我的收藏" >
         <input type="text" class="input_text" v-else-if="now_search_method_index==7" v-model="input_text" placeholder="搜索 我的订阅" >
         <input type="text" class="input_text" v-else-if="now_search_method_index==8" v-model="input_text" placeholder="搜索 回收站" >
-     
+
         <div class="search_icon" @click="Search()"></div>
       </div>
     </div>
@@ -104,14 +104,14 @@
 
     <div class="search_button" @click="Search()" v-if="now_search_method_index==1">
       查询
-      
+
     </div>
 
     <div class="search_button" v-if="now_search_method_index==3"  @click="all_delete_index=2">全部清空</div>
     <div class="search_button" v-else-if="now_search_method_index==4" @click="all_delete_index=1">全部删除</div>
     <div class="search_button" v-else-if="now_search_method_index==8" @click="all_delete_index=2">全部清空</div>
-    
-    <div class="advance_search" v-if="now_search_method_index==1">高级检索<span @click=""></span></div>
+
+    <div class="advance_search" v-if="now_search_method_index==1">高级检索<div @click=""></div></div>
 
     <!-- 通用-全部删除-遮罩层 -->
     <div class="container_gray_box" v-if="all_delete_index!=0">
@@ -125,9 +125,9 @@
         <div class="outside_fork">
           <div class="fork" @click="all_delete_index=0"></div>
         </div>
-      
+
       </div>
-      
+
       <div class="down_box">
         <div class="title1">确定要{{ all_delete_content[all_delete_index] }}吗</div>
 
@@ -136,7 +136,7 @@
       <div class="yes_delete" @click="yes_delete()">确认删除</div>
       <div class="cancel_delete" @click="all_delete_index=0">取消</div>
       </div>
-      
+
     </div>
 
      <!-- 第一个界面 -->
@@ -156,7 +156,7 @@
         </div>
         <!-- 推荐文献内容 -->
         <div class="commend_content" v-if="commend_nav_item==0">
-          
+
           <div class="commend_content_item" v-for="(item,index) in commend_paper_data_list" :key="item">
             <div class="commend_each_item_box">
             <div class="commend_each_type">{{ item.type }}</div>
@@ -173,8 +173,8 @@
 
         <div class="comment_content" v-if="commend_nav_item==1">
           <div> 我是关注框框</div>
-        
-        
+
+
         </div>
 
       </div>
@@ -231,7 +231,7 @@
     <!-- 第二个界面-批量导入-文件归档 -->
     <div class="content_box2" v-if="now_search_method_index==2">
       <div class="content_box2_page1" v-if="now_content_box2_page==1">
-      <div class="check_my_classify">查看我的<span @click="now_content_box2_pages(2)">文件归档</span></div>
+      <div class="check_my_classify">查看我的<div @click="now_content_box2_pages(2)">文件归档</div></div>
       <div class="submit_title">上传文件</div>
       <!-- <div class="submit_file_box">
         <div class="submit_file_image"></div>
@@ -250,7 +250,7 @@
       list-type="picture"
   >
     <el-icon class="submit_file_image"></el-icon>
-    <div class="submit_file_title">拖拽上传你的<span>浏览</span>文件</div>
+    <div class="submit_file_title">拖拽上传你的<div>浏览</div>文件</div>
 
 
     <template #tip>
@@ -265,8 +265,8 @@
    <!-- 文件归档界面 -->
     <div class="content_box2_page2" v-else>
       <div class="line"></div>
-      
-          
+
+
           <div class="return_image" @click="to_box2_page1()"></div>
           <!-- 树形控件 -->
           <!-- <p>Using scoped slot</p>
@@ -278,20 +278,20 @@
           :expand-on-click-node="false"
         >
           <template #default="{ node, data }">
-            <span class="custom-tree-node">
-              <span>{{ node.label }}</span>
-              <span>
+            <div class="custom-tree-node">
+              <div>{{ node.label }}</div>
+              <div>
                 <div @click="append(data)" class="tree_node_append"> </div>
                 <div style="margin-left: 8px" @click="remove(node, data)" class="tree_node_delete"></div>
-              </span>
-            </span>
+              </div>
+            </div>
           </template>
         </el-tree> -->
 
         <div class="left_menu">
     <el-col >
       <el-menu
-        
+
         default-active="2"
         class="el-menu-vertical-demo"
         @open="handleOpen"
@@ -305,7 +305,7 @@
 
           <el-sub-menu index="1-1">
             <template #title>
-              
+
               分类1
             </template>
             <el-menu-item index="1-4-1">item one</el-menu-item>
@@ -320,7 +320,7 @@
             <template #title>分类3</template>
             <el-menu-item index="1-4-1">item one</el-menu-item>
           </el-sub-menu>
-          
+
           <el-sub-menu index="1-4">
             <template #title>item four</template>
             <el-menu-item index="1-4-1">item one</el-menu-item>
@@ -328,7 +328,7 @@
         </el-sub-menu>
       </el-menu>
     </el-col>
-    
+
   </div>
 
   <div class="page2_right_box">
@@ -342,7 +342,7 @@
           <div class="button1" @click="filing_operation_index=2">本地上传</div>
           <div class="button2" @click="filing_operation_index=3">导入库 </div>
         </div>
-        
+
 
         <div class="item_box">
         <div class="each_item" v-for="(item,index) in filing_data_list" >
@@ -357,8 +357,8 @@
 
     </div>
       </div>
-    
-     
+
+
     </div>
 
     <!-- 文件归档子界面 -->
@@ -378,7 +378,7 @@
         </div>
        </div>
       </div>
-    </div> 
+    </div>
 
 
     <!-- 第三个界面-历史记录 -->
@@ -388,7 +388,7 @@
       <div class="all_records" >全部记录</div>
       <!-- 这里要修改参数的值 -->
       <div class="clear_cancel_block" v-if="delete_history_list.length!=0">
-      <div class="already_chosen" >已经选中 <span>{{ delete_history_list.length }}</span>  项</div>
+      <div class="already_chosen" >已经选中 <div>{{ delete_history_list.length }}</div>  项</div>
       <div class="delete_button" @click="mul_delete_history()">删除</div>
       <div class="cancel_button" @click="cancel_delete_history()">取消</div>
       </div>
@@ -410,23 +410,23 @@
     <div class="content_box4" v-if="now_search_method_index==4">
       <div class="all_records">全部记录</div>
       <div class="clear_cancel_block" v-if="download_delete_list.length!=0">
-        <div class="already_chosen" >已经选中 <span>{{download_delete_list.length}}</span>  项</div>
+        <div class="already_chosen" >已经选中 <div>{{download_delete_list.length}}</div>  项</div>
         <div class="delete_button" @click="mul_delete_download()">删除</div>
         <div class="cancel_button" @click="download_cancel_delete()">取消</div>
-      
+
       </div>
 
       <div class="data_item_box4">
-        
+
         <div class="each_item" v-for="(item,index) in download_data_list" >
           <div class="each_item_inner">
           <input type="checkbox" name="" id=""  class="each_checkbox" @click="download_choose_item(item)" >
           <div class="title">{{ item.title }}</div>
           <div class="date">{{ item.date }}</div>
-          
+
         </div>
         <div class="each_delete_button" @click="delete_download(item)"></div>
-      
+
         </div>
      </div>
 
@@ -457,7 +457,7 @@
     <div class="content_box6" v-if="now_search_method_index==6">
       <div class="all_records">我的收藏</div>
       <div class="clear_cancel_block" v-if="store.state.choose_items_array.length!=1">
-        <div class="already_chosen" >已经选中 <span>{{ store.state.choose_items_array.length-1 }}</span>  项</div>
+        <div class="already_chosen" >已经选中 <div>{{ store.state.choose_items_array.length-1 }}</div>  项</div>
         <div class="delete_button">删除</div>
         <div class="cancel_button">取消</div>
       </div>
@@ -471,7 +471,7 @@
           <div class="collect_name">{{ item.name }}</div>
           <div class="collect_subhead">{{ item.subhead }}</div>
           <div class="collect_content">{{ item.content }}</div>
-          
+
         </div>
       </div>
      </div>
@@ -483,7 +483,7 @@
     <div class="content_box7" v-if="now_search_method_index==7">
       <div class="all_records">我的订阅</div>
       <div class="clear_cancel_block" v-if="store.state.choose_items_array.length!=1">
-        <div class="already_chosen" >已经选中 <span>{{ store.state.choose_items_array.length-1 }}</span>  项</div>
+        <div class="already_chosen" >已经选中 <div>{{ store.state.choose_items_array.length-1 }}</div>  项</div>
         <div class="delete_button">删除</div>
         <div class="cancel_button">取消</div>
       </div>
@@ -492,7 +492,7 @@
       <div class="notice_each_item" v-for="(item,index) in subscribe_data_list" >
         <div class="notice_each_inner">
           <div class="notice_image"></div>
-     
+
           <div class="notice_name">{{ item.name }}</div>
           <div class="notice_content">{{ item.content }}</div>
           <div class="cancel_notice" @click="cancel_subscribe(item)">取消订阅</div>
@@ -509,7 +509,7 @@
       <div class="all_records">回收站</div>
       <!-- 这里要修改参数的值 -->
       <div class="clear_cancel_block" v-if="delete_history_list.length!=0">
-      <div class="already_chosen" >已经选中 <span>{{ delete_history_list.length }}</span>  项</div>
+      <div class="already_chosen" >已经选中 <div>{{ delete_history_list.length }}</div>  项</div>
       <div class="delete_button" @click="mul_delete_trash()">还原</div>
       <div class="cancel_button" @click="trash_cancel_delete()">取消</div>
       </div>
@@ -549,13 +549,13 @@
       <div class="search_icon" @click="Search()"></div>
     </div>
 
-    <el-col :span="8">
+    <el-col :div="8">
       <el-dropdown trigger="click">
-        <span class="el-dropdown-link">
+        <div class="el-dropdown-link">
           <div class="search_method_text">{{ now_search_method }}</div>
           <div class="line"></div>
 
-        </span>
+        </div>
 
       </el-dropdown>
       <div class="arrow_down" @click="dropdown_display=!dropdown_display"></div>
@@ -632,8 +632,8 @@ function Search(){
     searchWord(input_text.value,uid).then(res=>{
     console.log('searchWord',res);
     })
-  
-  
+
+
   localStorage.setItem('now_search_method_index','3')
   location.reload()
 }
@@ -872,13 +872,13 @@ const renderContent = (
   }
 ) => {
   return h(
-    'span',
+    'div',
     {
       class: 'custom-tree-node',
     },
-    h('span', null, node.label),
+    h('div', null, node.label),
     h(
-      'span',
+      'div',
       null,
       h(
         'a',
@@ -952,7 +952,7 @@ const dataSource = ref<Tree[]>([
 
 
   },
- 
+
 ])
 
 
@@ -1059,7 +1059,7 @@ let history_array=ref([])
 let delete_history_list=ref([])
 
 function mul_delete_history(){
-  
+
   for (var i = 0; i < delete_history_list.value.length; i++){
     historyDel(delete_history_list.value[i],uid).then((res)=>{
 
@@ -1067,7 +1067,7 @@ function mul_delete_history(){
 
   }
   cancel_delete_history()
-  
+
 }
 
 
@@ -1178,19 +1178,19 @@ function download_all_clear(){
 let notice_persons_list=ref([
   {name:'吴高源',
    workplace:'福州大学',
-   major:'自动化'  
+   major:'自动化'
   },
   {name:'叶晓滨',
    workplace:'厦门市思明区筼筜街道社区卫生服务中心',
-   major:'中药学;中医学;药学'  
+   major:'中药学;中医学;药学'
   },
   {name:'叶晓滨',
    workplace:'厦门市思明区筼筜街道社区卫生服务中心',
-   major:'中药学;中医学;药学'  
+   major:'中药学;中医学;药学'
   },
   {name:'叶晓滨',
    workplace:'厦门市思明区筼筜街道社区卫生服务中心',
-   major:'中药学;中医学;药学'  
+   major:'中药学;中医学;药学'
   },
 
 ])
@@ -1372,7 +1372,7 @@ function trash_all_clear(){
 }
 </script>
 
-<style scoped>
+<style scoped lang="less">
 
 /*侧边栏 */
 .left_box{
@@ -1397,44 +1397,57 @@ function trash_all_clear(){
 
 .tac{
   position: absolute;
-  width: 282px;
-  height: 1080px;
+  width: 25vw;
+  max-width: 350px;
+  height: 100vh;
   left: 0px;
-  top: 88px;
+  top: 86px;
   background: #FFFFFF;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
+  z-index: 3;
 }
 
 .nomal_item{
-
-  width: 282px;
-  height: 113px;
+  position: relative;
+  left: -6vw+4px;
+  width: 20vw;
+  max-width: 100%;
+  height: 7vh;
   cursor: pointer;
+  margin-top: 20px;
 }
 
 .active_item{
-
-  width: 282px;
-  height: 113px;
-
+  position: relative;
+  left: -6vw+4px;
+  width: 20vw;
+  max-width: 100%;
+  height: 7vh;
   background: #EBF5FF;
   cursor: pointer;
+  margin-top: 20px;
 
 }
 
-.active_item span,.nomal_item span{
+
+.active_item div,.nomal_item div{
+  position: relative;
+  top: 0;
+  left: 1vw;
   font-family: 'Microsoft YaHei';
-  width: 282px;
-  height: 113px;
   font-style: normal;
   font-weight: 400;
   font-size: 26px;
   color: #000000;
-
-  line-height: 113px;
-  margin-left: 89px;
+  height: 100%;
+  line-height: 7vh;
+  margin-left: 5vw;
 }
-
+@media (max-width:400px) {
+  .active_item div,.nomal_item div{
+    font-size: 50px;
+  }
+}
 /*搜索框 */
 .search_box{
   position: absolute;
@@ -1502,7 +1515,7 @@ border-radius: 6px;
 .choose_time_box{
   box-sizing: border-box;
   position: absolute;
-  width: 318px;
+  width: 418px;
   height: 55px;
   left: 1285px;
   top: 106px;
@@ -1555,7 +1568,7 @@ border-radius: 6px;
 ::v-deep .el-date-editor.el-input.el-input--prefix.el-input--suffix.el-date-editor--date input{
 
     padding-left: 43px;
-    background-color: transparent !important;
+    background-color: transparent ;
     height: 42px;
     border: none;
     outline: none;
@@ -1666,7 +1679,7 @@ border-radius: 6px;
   color: #000000;
 }
 
-.advance_search span{
+.advance_search div{
   position: absolute;
   width: 20px;
   height: 20px;
@@ -1677,24 +1690,24 @@ border-radius: 6px;
   cursor: pointer;
 }
 
-@keyframes fadeInAnimation { 
-    0% { 
-        opacity: 0; 
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
         position: absolute;;
         width: 744px;
         height: 581px;
         left: 726px;
         top: 500px;
-    } 
-    100% { 
-        opacity: 1; 
+    }
+    100% {
+        opacity: 1;
         position: absolute;
         width: 744px;
         height: 581px;
         left: 726px;
         top: 238px;
-    } 
-} 
+    }
+}
 
 
 /* 遮罩层 */
@@ -1710,8 +1723,8 @@ border-radius: 6px;
 
 /* 全部删除界面 */
 .all_delete_box{
-  animation: fadeInAnimation ease 0.8s; 
-  animation-iteration-count: 1; 
+  animation: fadeInAnimation ease 0.8s;
+  animation-iteration-count: 1;
   animation-fill-mode: forwards;
   position: absolute;
   width: 744px;
@@ -1990,7 +2003,7 @@ border-radius: 6px;
   position: absolute;
   width: 863px;
   height: 205px;
-  
+
 }
 
 .commend_each_type{
@@ -2164,7 +2177,7 @@ border-radius: 6px;
   width: 342px;
   height: 333px;
   overflow: hidden;
-  
+
 }
 
 .commend_teams_box .commend_teams_item{
@@ -2230,7 +2243,7 @@ border-radius: 6px;
 
 .commend_teams_box .team_subhead{
 
- 
+
   position: absolute;
   width: 200px;
   height: 15px;
@@ -2382,7 +2395,7 @@ border-radius: 6px;
   height: 90px;
   border-bottom: 1px solid #F0F0F0;
 
-  
+
 }
 
 .commend_users_box .commend_users_item .commend_users_item_inner{
@@ -2463,7 +2476,7 @@ border-radius: 6px;
   top: 36px;
 
   background: #EBF5FF;
- 
+
   border-radius: 9.5px;
 
   font-family: 'Microsoft YaHei';
@@ -2501,7 +2514,7 @@ border-radius: 6px;
   letter-spacing: 0.07em;
 
   color: #9B9595;
-  
+
 }
 
 .commend_users_box .exchange_image{
@@ -2527,7 +2540,7 @@ border-radius: 6px;
 }
 .submit_title{
   position: absolute;
-  width: 144px;
+  width: 20vw;
   height: 48px;
   left: 750px;
   top: 81px;
@@ -2562,7 +2575,7 @@ border-radius: 6px;
   color: #000000;
 }
 
-.content_box2_page1 .check_my_classify span{
+.content_box2_page1 .check_my_classify div{
   color: #1559DD;
   font-weight: 700;
   cursor: pointer;
@@ -2614,7 +2627,7 @@ border-radius: 6px;
   color: #000000;
 }
 
-.submit_file_title span{
+.submit_file_title div{
   color: #3a81ed;
   font-weight: 700;
   border-bottom: 3px solid;
@@ -2687,7 +2700,7 @@ border-radius: 6px;
   height: 1080px;
   /* top: 100px; */
   left: -282px;
- 
+
 }
 .content_box2_page2 .line{
   position: absolute;
@@ -2706,7 +2719,7 @@ border-radius: 6px;
 .content_box2_page2 .head_capacity
 {
   position: absolute;
- 
+
   left: 215px;
   top: 218px;
 
@@ -2834,7 +2847,7 @@ border-radius: 6px;
   height: 990px;
   top: 0;
   left: 282px;
- 
+
 
 }
 
@@ -2860,7 +2873,7 @@ border-radius: 6px;
   left: 114px;
   width: 800px;
   height: 200px;
-  
+
 }
 .content_box2 .page2_right_box .button1{
   float: left;
@@ -3164,7 +3177,7 @@ border-radius: 6px;
 }
 
 
-.already_chosen span{
+.already_chosen div{
   font-weight: 700;
   color: #1559DD;
 }
@@ -3392,7 +3405,7 @@ border-radius: 6px;
   float: left;
   width: 631.55px;
   height: 106.32px;
- 
+
   border-radius: 6px;
   margin-bottom: 18px;
   margin-right: 10px;
@@ -3402,7 +3415,7 @@ border-radius: 6px;
   position: relative;
   width: 631.55px;
   height: 106.32px;
- 
+
 }
 
 
@@ -3496,7 +3509,7 @@ border-radius: 6px;
   left: 128px;
   z-index: -1;
   overflow-x: scroll;
-  
+
 }
 
 .data_item_box6 .collect_each_item{
@@ -3539,7 +3552,7 @@ border-radius: 6px;
   left: 580px;
   top: 21px;
   background: url(../../images/收藏.png);
- 
+
   background-size: contain;
   cursor: pointer;
 }
@@ -3625,7 +3638,7 @@ border-radius: 6px;
   left: 128px;
   z-index: -1;
   overflow-x: scroll;
-  
+
 }
 
 .data_item_box7 .notice_each_item{
@@ -3633,7 +3646,7 @@ border-radius: 6px;
   width: 604px;
   height: 180px;
   margin-bottom: 41px;
- 
+
   border-radius: 10px;
 }
 .data_item_box7 .notice_each_item:nth-child(2n+1){
@@ -3933,10 +3946,11 @@ border-radius: 6px;
   .active_item {
     background: #003260;
   }
-  .active_item span{
+  .active_item div{
     color: #5B93FF;
   }
-  .nomal_item span {
+  .nomal_item div {
+
     color: #FFFFFF;
   }
   .content_box3 {
@@ -3957,6 +3971,11 @@ border-radius: 6px;
   .data_item_box4 .each_item:hover{
     background: #003260;
   }
+}
+
+.dataPicker .el-picker-panel__body-wrapper .el-picker-panel__body {
+  background-color: #54657e;
+  color: #eceff4;
 }
 
 </style>

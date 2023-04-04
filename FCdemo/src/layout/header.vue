@@ -101,7 +101,7 @@ function deLogin(){
 }
 </script>
 
-<style>
+<style lang="less">
 
 .head{
 
@@ -187,7 +187,7 @@ function deLogin(){
 .outside_menu_item
 {
   text-align: center;
-  width: 90px;
+  width: 5vw;
 
 
 }
@@ -306,6 +306,11 @@ function deLogin(){
   background-color: rgb(199, 227, 238);
 }
 
+.title {
+  h1 {
+    width: 20vw;
+  }
+}
 @media (prefers-color-scheme: dark) {
   .head_ {
     background-color: #121212;
@@ -323,6 +328,11 @@ function deLogin(){
   }
   span {
     color: #5B93FF;
+  }
+}
+@media (max-width:400px) {
+  * {
+    font-size: 50px !important;
   }
 
 }

@@ -16,6 +16,7 @@ export default defineConfig({
 	},
 
 	server:{
+		host:true,
 		port:4000,    //设置服务启动端口
 		open:true,    //设置服务启动时是否自动打开浏览器
 		cors:true,    //允许跨域
@@ -30,6 +31,6 @@ export default defineConfig({
 			}
 		}
 	},
-	
+
 })
 
