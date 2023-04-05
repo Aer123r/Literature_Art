@@ -97,7 +97,6 @@
         :disabled-date="disabledDate"
         :shortcuts="shortcuts"
         popper-class="dataPicker"
-        style="height:3vh;max-height: 40px;width: 16vw"
       />
 
     </div>
@@ -1371,9 +1370,9 @@ function trash_all_clear(){
 
 .tac{
   position: absolute;
-  width: 282px;
+  width: 17vw;
   max-width: 350px;
-  height: 100vh;
+  height: 86vh;
   left: 0px;
   top: 86px;
   background: #FFFFFF;
@@ -1434,23 +1433,24 @@ function trash_all_clear(){
 }
 
 .search_input_box{
-
-box-sizing: border-box;
-position: absolute;
-width: 40vw;
-height: 4vh;
-left: 133px;
-top: 1.5vh;
-border: 1px solid #D9D9D9;
-border-radius: 6px;
-z-index: 3;
+  box-sizing: border-box;
+  position: absolute;
+  width: 40vw;
+  height: 4vh;
+  left: 133px;
+  top: 1.3vh;
+  border: 1px solid #D9D9D9;
+  border-radius: 6px;
+  z-index: 3;
 }
-@media(max-width: 800){
+@media(max-width: 500px){
   .search_input_box{
-    top: 0px;
+    height: 3vh;
   }
 }
+
 .input_text{
+  display: block;
   box-sizing: border-box;
   position: absolute;
   width: 747px;
@@ -1462,14 +1462,10 @@ z-index: 3;
   outline: none;
   overflow: hidden;
   z-index: 3;
-  font-size: 26px;
+  font-size: 28px;
   background-color: transparent;
 }
-@media(max-width: 800px){
-  .input_text{
-    font-size: 60px;
-  }
-}
+
 .input_text::placeholder{
   font-family: 'Microsoft YaHei';
   font-style: normal;
@@ -1479,7 +1475,18 @@ z-index: 3;
 
   color: #9B9595;
 }
+@media(max-width: 500px){
+  .search_input_box{
+    .input_text{
+      font-size: 50px;
+    }
+    .input_text::placeholder {
+      font-size: 50px;
+    }
+  }
 
+
+}
 .search_icon{
   width: 31px;
   height: 31px;
@@ -1497,9 +1504,8 @@ z-index: 3;
   box-sizing: border-box;
   position: absolute;
   width: 418px;
-  height: 55px;
+  height: 3vh;
   left: 1285px;
-  top: 106px;
   border-radius: 6px;
   z-index: 3;
 }
@@ -1509,8 +1515,8 @@ z-index: 3;
   position: absolute;
   width: 30px;
   height: 30px;
-  left: 15px;
-  //top: 12px;
+  left: -20px;
+  top: -44px;
 
   background: url(../../images/calendar.png);
   background-size: contain;
@@ -1861,12 +1867,12 @@ z-index: 3;
 /*第一个界面 */
 
 .content_box1 {
-  position: absolute;
-  width: 1643px;
-  // height: 990px;
-  top: 176px;
-  left: 282px;
-  //background-color: #EBF5FF;
+  position: relative;
+  width: 80vw;
+  height: 80vh;
+  top: 4vh;
+  left: 6vw;
+  background-color: #EBF5FF;
 }
 
 .classify{
@@ -3916,12 +3922,6 @@ z-index: 3;
 
 
 
-
-
-
-
-
-
 ::-webkit-scrollbar {
   width: 0 !important;
 }
@@ -3929,14 +3929,25 @@ z-index: 3;
   width: 0 !important;height: 0;
 }
 
-
+::v-deep .el-input__wrapper {
+  font-size: 12px;
+  max-width: 100px;
+  position: relative;
+  top: -23px;
+  left: -19px;
+  background-color: #FFFFFF;
+  color:#9B9595;
+  height: 3.6vh;
+}
+::v-deep .el-input__inner {
+  //background-color: transparent !important;
+  height: 30px;
+}
 @media (prefers-color-scheme: dark) {
   .input_text {
     color: white;
   }
-  el-date-picker {
-    background-color: #121212;
-  }
+
   .search_box {
     background-color: #121212;
   }
@@ -3978,6 +3989,11 @@ z-index: 3;
   .data_item_box4 .each_item:hover{
     background: #003260;
   }
+  ::v-deep .el-input__wrapper {
+    background-color: #000000;
+  }
 }
+
+
 
 </style>

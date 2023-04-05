@@ -329,7 +329,7 @@ function deLogin(){
     color: #5B93FF;
   }
 }
-@media (max-width:400px) {
+@media (max-width:500px) {
   * {
     font-size: 50px !important;
   }

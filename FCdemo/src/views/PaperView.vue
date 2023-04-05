@@ -5,29 +5,30 @@
         <div class="collection_icon"></div>
         <div class="tag_icon"></div>
         <div class="title">{{ now_paper_unit.title }}</div>
-        <div class="authors"><span v-for="(item,index) in now_paper_unit.author_list">{{ item }}</span></div>
-        <div class="search_place">{{ now_paper_unit.search_place }}</div>
-        <div class="abstract list_title">
-            摘要：<span class="content1">{{ now_paper_unit.abstract_content }}</span>
+<!--        <div class="authors"><span v-for="(item,index) in now_paper_unit.author_list">{{ item }}</span></div>-->
+<!--        <div class="search_place">{{ now_paper_unit.search_place }}</div>-->
+<!--        <div class="abstract list_title">-->
+<!--            摘要：<span class="content1">{{ now_paper_unit.abstract_content }}</span>-->
+<!--        </div>-->
+<!--        <div class="keywords list_title">-->
+<!--            关键词：<span class="content1">{{ now_paper_unit.keywords }}</span>-->
+<!--        </div>-->
+<!--        <div class="album list_title">-->
+<!--            专辑：<span class="content1">{{ now_paper_unit.album}}</span>-->
+<!--        </div>-->
+<!--        <div class="topic list_title">-->
+<!--            专题：<span class="content1">{{ now_paper_unit.topic }}</span>-->
+<!--        </div>-->
+<!--        <div class="classify_number list_title">-->
+<!--            分类号：<span class="content1">{{ now_paper_unit.classify }}</span>-->
+<!--        </div>-->
+        <div style="display: flex;flex-direction: row;flex-basis: fit-content;width: 30vw">
+          <div class="read_online_button">在线阅读</div>
+          <div class="download_button">PDF下载</div>
+          <div class="file_classify_button">文献归档</div>
+          <div class="download_number">下载量：{{ now_paper_unit.download_number }}</div>
+          <div class="file_size">文件大小:{{ now_paper_unit.file_size }}</div>
         </div>
-        <div class="keywords list_title">
-            关键词：<span class="content1">{{ now_paper_unit.keywords }}</span>
-        </div>
-        <div class="album list_title">
-            专辑：<span class="content1">{{ now_paper_unit.album}}</span>
-        </div>
-        <div class="topic list_title">
-            专题：<span class="content1">{{ now_paper_unit.topic }}</span>
-        </div>
-        <div class="classify_number list_title">
-            分类号：<span class="content1">{{ now_paper_unit.classify }}</span>
-        </div>
-
-        <div class="read_online_button">在线阅读</div>
-        <div class="download_button">PDF下载</div>
-        <div class="file_classify_button">文献归档</div>
-        <div class="download_number">下载量：{{ now_paper_unit.download_number }}</div>
-        <div class="file_size">文件大小:{{ now_paper_unit.file_size }}</div>
     </div>
 </template>
 
@@ -39,7 +40,7 @@ import { onMounted } from 'vue';
 onMounted(()=>{
   search_paper_unit(now_paper_id.value)
   console.log(now_paper_unit.value);
-  
+
 })
 
 function search_paper_unit(paper_id:number){
@@ -86,15 +87,14 @@ let paper_data_list=ref([
 
 <style scoped>
 .paperView_body{
-    width: 1603px;
-    height: 869px;
-    background: #F5FAFF;
+    width: 100%;
+    /*background: #F5FAFF;*/
 }
 
 .title{
     position: absolute;
-    left: 502px;
-    top: 48px;
+    left: 24vw;
+    top: 5vh;
     font-family: 'Microsoft YaHei UI';
     font-style: normal;
     font-weight: 700;
@@ -152,7 +152,7 @@ let paper_data_list=ref([
     line-height: 37px;
     letter-spacing: 0.045em;
     color:  rgba(88, 88, 88, 1);
-   
+
 }
 
 .abstract,
@@ -173,7 +173,7 @@ let paper_data_list=ref([
 
 .album{
     top: 526px
-}   
+}
 .topic{
     top: 582px;
 }
@@ -218,7 +218,7 @@ let paper_data_list=ref([
 .share_icon{
     left: 1360px;
     background-image: url(../../images/share_icon.png);
-  
+
 }
 .collection_icon{
     left: 1412px;
@@ -234,11 +234,11 @@ let paper_data_list=ref([
 .read_online_button,
 .download_button,
 .file_classify_button{
-    position: absolute;
-    width: 132px;
-    height: 44px;
-    left: 95px;
-    top: 711px;
+    position: relative;
+    /*min-width: 132px;*/
+    /*height: 44px;*/
+    /*left: 95px;*/
+    /*top: 711px;*/
     background: #EBF5FF;
     border-radius: 6px;
     font-family: 'Microsoft YaHei UI';
@@ -253,12 +253,12 @@ let paper_data_list=ref([
 }
 .read_online_button{
     background: #BDDFFF;
-    left: 240px;
+    /*left: 240px;*/
 }
 
 .download_button{
     background: #CFF4FF;
-    left: 385px;
+    /*left: 385px;*/
 }
 
 .file_classify_button{
