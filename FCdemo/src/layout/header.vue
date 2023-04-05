@@ -124,10 +124,11 @@ function deLogin(){
   width: 57px;
   height: 57px;
   position: absolute;
-  left: 44px;
-  top: 15px;
+  left: 42px;
+  top: 16px;
   border-radius: 50%;
-  background-color: yellow;
+  background-image: url(../../images/logo.png);
+  background-size: contain;
 }
 
 

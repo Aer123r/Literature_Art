@@ -140,7 +140,7 @@
     </div>
 
      <!-- 第一个界面 -->
-    <div class="content_box1" v-if="now_search_method_index==1">
+    <div class="content_box1" v-if="now_search_method_index==1&&is_paperView_index==0">
       <div class="classify">
         <div class="classify_title">分类导航</div>
         <div class="classify_item_box">
@@ -226,7 +226,9 @@
         </div>
       </div>
     </div>
-
+    <div class="content_box1" v-if="now_search_method_index==1&&is_paperView_index==1">
+      <PaperView></PaperView>
+    </div>
 
     <!-- 第二个界面-批量导入-文件归档 -->
     <div class="content_box2" v-if="now_search_method_index==2">
@@ -538,36 +540,6 @@
   </body>
 
 
-
-
-
-  <body1 style="display: none;">
-    <div class="search_box">
-      <div class="search_input_box">
-        <input type="text" class="input_text" v-model="input_text">
-      </div>
-      <div class="search_icon" @click="Search()"></div>
-    </div>
-
-    <el-col :div="8">
-      <el-dropdown trigger="click">
-        <div class="el-dropdown-link">
-          <div class="search_method_text">{{ now_search_method }}</div>
-          <div class="line"></div>
-
-        </div>
-
-      </el-dropdown>
-      <div class="arrow_down" @click="dropdown_display=!dropdown_display"></div>
-    </el-col>
-    <div class="search_method_box" v-if="dropdown_display==true">
-        <div class="each_search_item" v-for="(item,index) in search_methods" :key="item" @click="now_search_method=item">
-          {{ item }}
-        </div>
-       </div>
-  </body1>
-
-
 </template>
 
 <script setup lang="ts">
@@ -585,13 +557,13 @@ import { useStore } from 'vuex';
 import { UploadProps, UploadUserFile, useId } from 'element-plus'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import router from '@/router';
-
+import PaperView from './PaperView.vue';
 
 
 var uid=localStorage.getItem('uid')??""
 
 onMounted(()=>{
-  localStorage.setItem('now_search_method_index','2')
+  localStorage.setItem('now_search_method_index','1')
   HistoryGetUser(uid).then((res)=>{
     console.log(uid,'uid');
   }).catch(res2=>{
@@ -600,8 +572,10 @@ onMounted(()=>{
     console.log(history_array.value);
   })
 })
+
 const store=useStore();
-let now_search_method_index=ref(parseInt(localStorage.getItem('now_search_method_index')))
+let now_search_method_index=ref(parseInt(localStorage.getItem('now_search_method_index')??'1'))
+
 // let now_search_method=ref('主题')
 // let search_methods=ref(['主题','关键字','篇关摘','篇名','作者','第一作者','通讯作者','作者单位','参考文献','全文','摘要'])
 
@@ -640,6 +614,7 @@ function Search(){
 
 
 /*界面1-文献文库*/
+let is_paperView_index=ref(1)
 let commend_nav_item=ref(0)
 function commend_nav_items(index:number){
   commend_nav_item.value=index
@@ -1373,7 +1348,6 @@ function trash_all_clear(){
 </script>
 
 <style scoped lang="less">
-
 /*侧边栏 */
 .left_box{
   position: absolute;
@@ -1397,7 +1371,7 @@ function trash_all_clear(){
 
 .tac{
   position: absolute;
-  width: 25vw;
+  width: 282px;
   max-width: 350px;
   height: 100vh;
   left: 0px;
@@ -1882,7 +1856,7 @@ border-radius: 6px;
 .content_box1 {
   position: absolute;
   width: 1643px;
-  height: 990px;
+  // height: 990px;
   top: 176px;
   left: 282px;
   background-color: #EBF5FF;
@@ -2535,7 +2509,7 @@ border-radius: 6px;
 .content_box2{
   position: absolute;
   width: 1643px;
-  height: 990px;
+  // height: 990px;
   left: 282px;
 }
 .submit_title{
@@ -3135,7 +3109,7 @@ border-radius: 6px;
 {
   position: absolute;
   width: 1643px;
-  height: 1080px;
+  // height: 1080px;
   left: 282px;
   top: 100px;
   z-index: -1;
