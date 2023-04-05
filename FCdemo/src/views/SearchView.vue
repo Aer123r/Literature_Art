@@ -89,7 +89,6 @@
 
     <div class="choose_time_box" v-if="now_search_method_index!=2">
       <div class="calendar_icon"></div>
-
       <el-date-picker
         v-model="value2"
         type="date"
@@ -97,6 +96,7 @@
         :disabled-date="disabledDate"
         :shortcuts="shortcuts"
         popper-class="dataPicker"
+        style="width: 17vw"
       />
 
     </div>
@@ -1424,9 +1424,9 @@ function trash_all_clear(){
 /*搜索框 */
 .search_box{
   position: absolute;
-  width: 90vw;
+  width: 84vw;
   height: 5vh;
-  left: 15vw;
+  left: 17vw;
   top: 87px;
   background: #FFFFFF;
 
@@ -1437,7 +1437,7 @@ function trash_all_clear(){
   position: absolute;
   width: 40vw;
   height: 4vh;
-  left: 133px;
+  left: 73px;
   top: 1.3vh;
   border: 1px solid #D9D9D9;
   border-radius: 6px;
@@ -1516,21 +1516,24 @@ function trash_all_clear(){
   width: 30px;
   height: 30px;
   left: -20px;
-  top: -44px;
+  top: -14px;
 
   background: url(../../images/calendar.png);
   background-size: contain;
   cursor: pointer;
   z-index: 2;
 }
-
+@media(max-width: 500px){
+  .calendar_icon{
+    top: -3vh;
+  }
+}
 .search_button{
   position: absolute;
-  width: 129px;
+  width: fit-content;
   height: 55px;
   left: 1604px;
-  top: 106px;
-
+  top: 8vh;
   background: #013480;
   border-radius: 6px;
   font-family: 'Microsoft YaHei';
@@ -1546,7 +1549,13 @@ function trash_all_clear(){
 
 }
 
-
+@media(max-width: 500px){
+  .search_button{
+    top:4vh;
+    height: 2.8vh;
+    line-height: 2.8vh;
+  }
+}
 
  ::v-deep .el-date-editor .el-input__icon:nth-child(1){
   display: none;
@@ -1653,10 +1662,10 @@ function trash_all_clear(){
 
 .advance_search{
   position: absolute;
-  width: 125px;
+  width: 5vw;
   height: 20px;
-  left: 1770px;
-  top: 119px;
+  left: 1740px;
+  top: 9vh;
   font-family: 'Microsoft YaHei';
   font-style: normal;
   font-weight: 400;
@@ -1665,7 +1674,12 @@ function trash_all_clear(){
   /* identical to box height */
   color: #000000;
 }
-
+@media(max-width: 500px){
+  .advance_search {
+    top: 5vh;
+    width: 200px;
+  }
+}
 .advance_search div{
   position: absolute;
   width: 20px;
@@ -3157,10 +3171,10 @@ function trash_all_clear(){
 
 .all_records{
   position: absolute;
-  width: 112px;
+  width: 200px;
   height: 37px;
   left: 133px;
-  top: 130px;
+  top: 8vh;
 
   font-family: 'Microsoft YaHei';
   font-style: normal;
@@ -3245,6 +3259,8 @@ function trash_all_clear(){
 }
 
 .data_item_box3 .each_item{
+  position: relative;
+  top: -1vh;
   width: 1288px;
   height: 55px;
   background: #ffffff;
@@ -3253,7 +3269,11 @@ function trash_all_clear(){
   margin-bottom: 16px;
 
 }
-
+@media(max-width: 500px){
+  .data_item_box3 .each_item{
+    top:6vh;
+  }
+}
 .data_item_box3 .each_item:hover{
   background: #EBF5FF;
 }
@@ -3928,12 +3948,15 @@ function trash_all_clear(){
 ::-webkit-scrollbar {
   width: 0 !important;height: 0;
 }
+::v-deep .el-input  {
+  position: absolute;
+}
 
 ::v-deep .el-input__wrapper {
   font-size: 12px;
   max-width: 100px;
   position: relative;
-  top: -23px;
+  top: -10px;
   left: -19px;
   background-color: #FFFFFF;
   color:#9B9595;
@@ -3942,6 +3965,12 @@ function trash_all_clear(){
 ::v-deep .el-input__inner {
   //background-color: transparent !important;
   height: 30px;
+}
+@media(max-width: 500px){
+  ::v-deep .el-input__wrapper {
+    top:-4.7vh;
+    left: -2vw;
+  }
 }
 @media (prefers-color-scheme: dark) {
   .input_text {

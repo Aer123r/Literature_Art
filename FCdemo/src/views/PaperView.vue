@@ -5,24 +5,24 @@
         <div class="collection_icon"></div>
         <div class="tag_icon"></div>
         <div class="title">{{ now_paper_unit.title }}</div>
-<!--        <div class="authors"><span v-for="(item,index) in now_paper_unit.author_list">{{ item }}</span></div>-->
-<!--        <div class="search_place">{{ now_paper_unit.search_place }}</div>-->
-<!--        <div class="abstract list_title">-->
-<!--            摘要：<span class="content1">{{ now_paper_unit.abstract_content }}</span>-->
-<!--        </div>-->
-<!--        <div class="keywords list_title">-->
-<!--            关键词：<span class="content1">{{ now_paper_unit.keywords }}</span>-->
-<!--        </div>-->
-<!--        <div class="album list_title">-->
-<!--            专辑：<span class="content1">{{ now_paper_unit.album}}</span>-->
-<!--        </div>-->
-<!--        <div class="topic list_title">-->
-<!--            专题：<span class="content1">{{ now_paper_unit.topic }}</span>-->
-<!--        </div>-->
-<!--        <div class="classify_number list_title">-->
-<!--            分类号：<span class="content1">{{ now_paper_unit.classify }}</span>-->
-<!--        </div>-->
-        <div style="display: flex;flex-direction: row;flex-basis: fit-content;width: 30vw">
+        <div class="authors"><span v-for="(item,index) in now_paper_unit.author_list">{{ item }}</span></div>
+        <div class="search_place">{{ now_paper_unit.search_place }}</div>
+        <div class="abstract list_title">
+            摘要：<span class="content1">{{ now_paper_unit.abstract_content }}</span>
+        </div>
+        <div class="keywords list_title">
+            关键词：<span class="content1">{{ now_paper_unit.keywords }}</span>
+        </div>
+        <div class="album list_title">
+            专辑：<span class="content1">{{ now_paper_unit.album}}</span>
+        </div>
+        <div class="topic list_title">
+            专题：<span class="content1">{{ now_paper_unit.topic }}</span>
+        </div>
+        <div class="classify_number list_title">
+            分类号：<span class="content1">{{ now_paper_unit.classify }}</span>
+        </div>
+        <div class="button_parent">
           <div class="read_online_button">在线阅读</div>
           <div class="download_button">PDF下载</div>
           <div class="file_classify_button">文献归档</div>
@@ -106,8 +106,8 @@ let paper_data_list=ref([
 
 .authors{
     position: absolute;
-    left: 567px;
-    top: 151px;
+    left: 517px;
+    top: 11vh;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
@@ -121,15 +121,13 @@ let paper_data_list=ref([
 }
 .search_place{
     position: absolute;
-
     left: 464px;
     top: 191px;
-
     font-family: 'Microsoft YaHei UI';
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
-    line-height: 25px;
+    /*line-height: 25px;*/
 
     color: #676363;
 }
@@ -139,7 +137,6 @@ let paper_data_list=ref([
     font-style: normal;
     font-weight: 700;
     font-size: 28px;
-    line-height: 37px;
     letter-spacing: 0.045em;
     color: #000000;
 }
@@ -180,7 +177,34 @@ let paper_data_list=ref([
 .classify_number{
     top: 638px;
 }
-
+@media(max-width: 500px){
+  .authors{
+    left: 19vw;
+    top: 8vh;
+  }
+  .search_place{
+    left: 9vw;
+    top: 11vh;
+    height: 4vh;
+  }
+  .abstract {
+    width: 80vw;
+    top: 16vh;
+    left: 5vw;
+  }
+  .keywords {
+    top: 40vh;
+  }
+  .album {
+    top: 42vh;
+  }
+  .topic {
+    top: 44vh;
+  }
+  .classify_number{
+    top: 46vh;
+  }
+}
 .download_number,
 .file_size{
     font-family: 'Microsoft YaHei';
@@ -228,17 +252,20 @@ let paper_data_list=ref([
     left: 1464px;
     background-image: url(../../images/tag_icon.png);
 }
-
+.button_parent {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  top: 65vh;
+  left: 4vw;
+}
 
 /*三个按钮 */
 .read_online_button,
 .download_button,
 .file_classify_button{
     position: relative;
-    /*min-width: 132px;*/
-    /*height: 44px;*/
-    /*left: 95px;*/
-    /*top: 711px;*/
+    margin-left: 2vw;
     background: #EBF5FF;
     border-radius: 6px;
     font-family: 'Microsoft YaHei UI';

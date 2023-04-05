@@ -1,8 +1,8 @@
 <template>
   <body>
-    
-    
-  
+
+
+
       <div class="home1" v-if="now_home_page==0">
           <div class="title">一站式智能检索系统</div>
           <div class="subhead">一个为医药行业开发的平台，<br>
@@ -13,7 +13,7 @@
             <div class="right_image3"></div>
             <div class="right_image2"></div>
 
-         
+
       </div>
 
 
@@ -26,11 +26,11 @@
             <p>· 智能提取文献关键信息，大大降低人力物力消耗</p>
             <br>
           </div>
-          
+
             <div class="right_image1"></div>
             <div class="right_image3"></div>
             <div class="right_image2"></div>
-         
+
       </div>
 
       <div class="home3" v-if="now_home_page==2">
@@ -42,18 +42,18 @@
             <p>· 分类归档，条理有序</p>
             <br>
           </div>
-          
+
             <div class="right_image1"></div>
             <div class="right_image3"></div>
             <div class="right_image2"></div>
-         
+
       </div>
 
       <div class="change_page" @click="change_page()"></div>
-      
-    
+
+
     </body>
-    
+
 </template>
 
 <script setup lang="ts">
@@ -77,7 +77,7 @@ function use_rightnow(){
   else{
     router.push('/login')
   }
-  
+
 }
 function intoRegister(){
   router.push('/register')
@@ -92,23 +92,23 @@ function change_page(){
 </script>
 
 <style scoped>
-@keyframes fadeInAnimation { 
-    0% { 
-        opacity: 0; 
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
         position: relative;
         top: 500px;
-    } 
-    100% { 
+    }
+    100% {
         opacity: 1; position: relative;top: 0;
-    } 
-} 
+    }
+}
 
 .home1,.home2,.home3{
-  animation: fadeInAnimation ease 1.5s; 
-  animation-iteration-count: 1; 
+  animation: fadeInAnimation ease 1.5s;
+  animation-iteration-count: 1;
   animation-fill-mode: forwards;
-  width: 1920px; 
-  height: 990px;
+  width: 100vw;
+  height: 79.4vh;
 }
 
 /*首页1*/
@@ -122,7 +122,7 @@ function change_page(){
   font-family: 'Microsoft YaHei';
   font-style: normal;
   font-weight: 700;
-  font-size: 80px;
+  font-size: 70px;
   line-height: 106px;
   /* identical to box height */
 
@@ -175,7 +175,14 @@ function change_page(){
   border-radius: 0px 0px 455px 455px;
   z-index: 1;
 }
-
+@media(max-width: 500px){
+  .home1 .right_image1{
+    width: 929px;
+    height: 1515px;
+    left: 1010px;
+    top: -135px;
+  }
+}
 .home1 .right_image3{
   position: absolute;
   width: 527px;
@@ -211,7 +218,7 @@ function change_page(){
 
   font-family: 'Microsoft YaHei';
   font-style: normal;
-  font-weight: 700;
+  font-weight: 900;
   font-size: 70px;
   line-height: 92px;
 
@@ -316,7 +323,7 @@ function change_page(){
   height: 299px;
   left: 142px;
   top: 511px;
-  
+
   font-family: 'Microsoft YaHei';
   font-style: normal;
   font-weight: 400;
@@ -375,4 +382,5 @@ function change_page(){
   opacity: 0.2;
   margin-left: 900px;
 }
+
 </style>

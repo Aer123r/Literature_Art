@@ -104,7 +104,7 @@ function deLogin(){
 .head{
 
   width: 1920px;
-  height: 88px;
+  height: 15vh;
 }
 
 .head_ {
