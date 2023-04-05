@@ -97,7 +97,7 @@
         :disabled-date="disabledDate"
         :shortcuts="shortcuts"
         popper-class="dataPicker"
-        style="height:42px"
+        style="height:3vh;max-height: 40px;width: 16vw"
       />
 
     </div>
@@ -186,16 +186,16 @@
           <div class="commend_teams_item" v-for="(item,index) in commend_teams_data_list" :key="item">
             <div class="commend_teams_item_inner">
               <div class="image_box">
-                <div class="image1"></div>
-                <div class="image2"></div>
-                <div class="image3"></div>
-                <div class="image4"></div>
+<!--                <div class="image1"></div>-->
+<!--                <div class="image2"></div>-->
+<!--                <div class="image3"></div>-->
+<!--                <div class="image4"></div>-->
 
               </div>
               <div class="team_name">{{ item.team_name }}</div>
               <div class="team_subhead">{{ item.subhead }}</div>
-              <div class="team_paper_number">{{ item.paper_number }}篇资料</div>
-              <div class="team_member_number">{{ item.team_member_number }}名成员</div>
+<!--              <div class="team_paper_number">{{ item.paper_number }}篇资料</div>-->
+<!--              <div class="team_member_number">{{ item.team_member_number }}名成员</div>-->
             </div>
           </div>
         </div>
@@ -247,7 +247,7 @@
       :on-preview="handlePreview"
       :on-remove="handleRemove"
       :before-remove="beforeRemove"
-      :limit="3"
+      :multiple="true"
       :on-exceed="handleExceed"
       list-type="picture"
   >
@@ -987,7 +987,7 @@ const handleRemove: UploadProps['onRemove'] = (file, uploadFiles) => {
 }
 
 const handlePreview: UploadProps['onPreview'] = (uploadFile) => {
-  console.log(uploadFile)
+  console.log(uploadFile);
 }
 
 const handleExceed: UploadProps['onExceed'] = (files, uploadFiles) => {
@@ -1425,33 +1425,36 @@ function trash_all_clear(){
 /*搜索框 */
 .search_box{
   position: absolute;
-  width: 1648px;
-  height: 92px;
-  left: 279px;
+  width: 90vw;
+  height: 5vh;
+  left: 15vw;
   top: 87px;
   background: #FFFFFF;
 
 }
 
 .search_input_box{
+
 box-sizing: border-box;
-
 position: absolute;
-width: 829px;
-height: 55px;
+width: 40vw;
+height: 4vh;
 left: 133px;
-top: 16px;
-
+top: 1.5vh;
 border: 1px solid #D9D9D9;
 border-radius: 6px;
-
+z-index: 3;
 }
-
+@media(max-width: 800){
+  .search_input_box{
+    top: 0px;
+  }
+}
 .input_text{
   box-sizing: border-box;
   position: absolute;
   width: 747px;
-  height: 53px;
+  height: 3.6vh;
   left: 80px;
   top: 0px;
   border-radius: 6px;
@@ -1462,7 +1465,11 @@ border-radius: 6px;
   font-size: 26px;
   background-color: transparent;
 }
-
+@media(max-width: 800px){
+  .input_text{
+    font-size: 60px;
+  }
+}
 .input_text::placeholder{
   font-family: 'Microsoft YaHei';
   font-style: normal;
@@ -1503,7 +1510,7 @@ border-radius: 6px;
   width: 30px;
   height: 30px;
   left: 15px;
-  top: 12px;
+  //top: 12px;
 
   background: url(../../images/calendar.png);
   background-size: contain;
@@ -1859,15 +1866,15 @@ border-radius: 6px;
   // height: 990px;
   top: 176px;
   left: 282px;
-  background-color: #EBF5FF;
+  //background-color: #EBF5FF;
 }
 
 .classify{
-  position: absolute;
+  position: relative;
   padding-top: 99px;
-  width: 271px;
-  height: 853px;
-  left: 30px;
+  width: 17vw;
+  height: 80vh;
+  left: 52px;
   top: 25px;
 
   background: #FFFFFF;
@@ -1875,9 +1882,10 @@ border-radius: 6px;
 
 .classify_title{
   position: absolute;
-  left: 78px;
+  left: 42%;
+  transform: translateX(-50%);
+  width: fit-content;
   top: 20px;
-
   font-family: 'Microsoft YaHei';
   font-style: normal;
   font-weight: 400;
@@ -1894,8 +1902,8 @@ border-radius: 6px;
 }
 .classify_item{
   float: left;
-  width: 271px;
-  height: 60px;
+  width: 14vw;
+  height: 5vh;
   text-align: center;
   vertical-align: center;
   line-height: 60px;
@@ -1932,7 +1940,7 @@ border-radius: 6px;
 .commend_nav_active_item
 {
   float: left;
-  width: 104px;
+  width: 13vw;
   height: 39px;
   margin-left: 39px;
   padding: 19px 0;
@@ -1958,15 +1966,15 @@ border-radius: 6px;
 /* 推荐文献盒子 */
 .commend_content{
   position: relative;
-  width: 902px;
-  height: 766px;
+  width: 50vw;
+  height: 70vh;
   padding: 18px;
   overflow: scroll;
 }
 .commend_content_item{
 
-  width: 863px;
-  height: 205px;
+  width: 50vw;
+  height: 24vh;
   background: #FAFAFA;
   margin-bottom: 16px;
   border-radius: 6px;
@@ -1982,7 +1990,7 @@ border-radius: 6px;
 
 .commend_each_type{
   position: absolute;
-  width: 88px;
+  width: 20vw;
   height: 29px;
   left: 39px;
   top: 27px;
@@ -2011,8 +2019,8 @@ border-radius: 6px;
 
 .commend_each_title{
   position: absolute;
-  width: 298px;
-  height: 29px;
+  width: 40vw;
+  height: 129px;
   left: 169px;
   top: 27px;
   font-family: 'Microsoft YaHei';
@@ -2024,13 +2032,18 @@ border-radius: 6px;
   color: #000000;
 
 }
-
+@media(max-width: 500px){
+  .commend_each_title{
+    top: 3vh;
+    left: 27px;
+  }
+}
 .commend_each_author{
   position: absolute;
-  width: 96px;
+  width: 15vw;
   height: 21px;
-  left: 54px;
-  top: 70px;
+  left: 45px;
+  top: 5.5vh;
 
   font-family: 'Microsoft YaHei';
   font-style: normal;
@@ -2045,10 +2058,10 @@ border-radius: 6px;
 
 .commend_each_name{
   position: absolute;
-  width: 106px;
+  width: 20vw;
   height: 21px;
-  left: 184px;
-  top: 70px;
+  left: 20vw;
+  top: 5.5vh;
 
   font-family: 'Microsoft YaHei';
   font-style: normal;
@@ -2062,10 +2075,10 @@ border-radius: 6px;
 
 .commend_each_year{
   position: absolute;
-  width: 86px;
+  width: 20vw;
   height: 21px;
-  left: 330px;
-  top: 70px;
+  left: 20vw;
+  top: 7.9vh;
 
   font-family: 'Microsoft YaHei';
   font-style: normal;
@@ -2079,16 +2092,20 @@ border-radius: 6px;
 .commend_each_content{
   position: absolute;
   width: 747px;
-  height: 64px;
+  height: 13vh;
   left: 53px;
-  top: 100px;
+  top: 10vh;
 
   font-family: 'Microsoft YaHei';
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
-  line-height: 21px;
-
+  line-height: 2vh;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:5;
   color: #878686;
 
 }
@@ -2097,9 +2114,11 @@ border-radius: 6px;
 
 /* 推荐团队盒子 */
 .commend_teams_box{
+  display: flex;
+  flex-direction: column;
   position: absolute;
-  width: 342px;
-  height: 438px;
+  width: 20vw;
+  height: 35vh;
   left: 1253px;
   top: 25px;
 
@@ -2107,10 +2126,17 @@ border-radius: 6px;
   border-radius: 9px;
 
 }
-
+@media(max-width: 800px){
+  .commend_teams_box {
+    display: none;
+  }
+  .commend_users_box {
+    display: none;
+  }
+}
 .commend_teams_box .title{
   position: absolute;
-  width: 104px;
+  width: fit-content;
   height: 39px;
   left: 45px;
   top: 23px;
@@ -2139,12 +2165,13 @@ border-radius: 6px;
 
 
 .commend_teams_box .commend_teams_item{
-  width: 342px;
-  height: 110px;
+  width: 20vw;
+  height: 30vh;
   border-bottom: 1px solid #F0F0F0;
 
 }
 .commend_teams_box .commend_teams_item_box{
+
   position: absolute;
   left: 0;
   top: 55px;
@@ -2161,8 +2188,8 @@ border-radius: 6px;
 
 .commend_teams_box .commend_teams_item_inner{
   position: relative;
-  width: 342px;
-  height: 110px;
+  width: 20vw;
+  height: 4vh;
 }
 
 .commend_teams_box .image_box{
@@ -2199,10 +2226,10 @@ border-radius: 6px;
 
 .commend_teams_box .team_name{
   position: absolute;
-  width: 140px;
+  width: 22vw;
   height: 21px;
-  left: 121px;
-  top: 39px;
+  left: 2vw;
+  top: 1vh;
 
   font-family: 'Microsoft YaHei';
   font-style: normal;
@@ -2216,19 +2243,17 @@ border-radius: 6px;
 }
 
 .commend_teams_box .team_subhead{
-
-
   position: absolute;
   width: 200px;
-  height: 15px;
-
-  left: 121px;
-  top: 61px;
+  height: 5vh;
+  left: 2vw;
+  top: 4vh;
   font-family: 'Microsoft YaHei';
   font-style: normal;
   font-weight: 400;
   font-size: 10px;
   line-height: 149.98%;
+  overflow: hidden;
   /* identical to box height, or 15px */
 
 
@@ -2327,7 +2352,8 @@ border-radius: 6px;
 
 .commend_users_box .title{
   position: absolute;
-  width: 104px;
+  //width: 104px;
+  width: fit-content;
   height: 39px;
   left: 45px;
   top: 23px;
@@ -2532,23 +2558,24 @@ border-radius: 6px;
 
 .content_box2_page1 .check_my_classify{
   position: absolute;
-  width: 196px;
+  width: 30vw;
   height: 33px;
   left: 1275px;
-  top: 119px;
-
+  top: 109px;
   font-family: 'Microsoft YaHei';
   font-style: normal;
   font-weight: 400;
   font-size: 22px;
   line-height: 149.48%;
   /* identical to box height, or 33px */
-
   letter-spacing: 0.11em;
-
   color: #000000;
 }
-
+@media(max-width: 500px){
+  .content_box2_page1 .check_my_classify{
+    top: 19px;
+  }
+}
 .content_box2_page1 .check_my_classify div{
   color: #1559DD;
   font-weight: 700;
@@ -2584,7 +2611,7 @@ border-radius: 6px;
 
 .submit_file_title{
   position: absolute;
-  width: 300px;
+  width: 32vw;
   height: 39px;
   left: 504px;
   top: 256px;
@@ -2600,8 +2627,14 @@ border-radius: 6px;
 
   color: #000000;
 }
-
+@media(max-width: 500px){
+  .submit_file_title{
+    top: 224px;
+    left: 345px;
+  }
+}
 .submit_file_title div{
+  display: inline;
   color: #3a81ed;
   font-weight: 700;
   border-bottom: 3px solid;
@@ -2651,7 +2684,7 @@ border-radius: 6px;
 ::v-deep .el-upload-list__item-file-name{
   position: absolute;
   width: 388px;
-  height: 23px;
+  height: 2vh;
   top: 10px;
   left: 70px;
   font-family: 'Microsoft YaHei';
@@ -2660,7 +2693,7 @@ border-radius: 6px;
   font-size: 20px;
   line-height: 113.48%;
   /* identical to box height, or 23px */
-
+  z-index: -1;
   letter-spacing: 0.07em;
 
   color: #000000;
@@ -3945,11 +3978,6 @@ border-radius: 6px;
   .data_item_box4 .each_item:hover{
     background: #003260;
   }
-}
-
-.dataPicker .el-picker-panel__body-wrapper .el-picker-panel__body {
-  background-color: #54657e;
-  color: #eceff4;
 }
 
 </style>

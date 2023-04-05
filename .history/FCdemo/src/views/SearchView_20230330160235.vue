@@ -151,7 +151,7 @@
       <!-- 推荐盒子 -->
       <div class="commend_box">
         <div class="commend_nav">
-            <div :class="commend_nav_item==0?'commend_nav_active_item':'item1'" @click="commend_nav_items(0)">推荐文献</div>
+            <div :class="commend_nav_item==0?'commend_nav_active_item':'item1'" @click="commend_nav_items(0)">ss推荐文献</div>
             <div :class="commend_nav_item==1?'commend_nav_active_item':'item2'" @click="commend_nav_items(1)">关注</div>
         </div>
         <!-- 推荐文献内容 -->
@@ -580,7 +580,8 @@ import {
 import type Node from 'element-plus/es/components/tree/src/model/node'
 import { UploadFilled } from '@element-plus/icons-vue'
 import { ref,onMounted,reactive} from 'vue';
-import {HistoryGetUser,searchWord,historyDel} from '../api/search_controller'
+// import {HistoryGetUser,searchWord,historyDel} from '../api/search_controller.ts'
+import {HistoryGetUser,searchWord,historyDel} from "../../../../FCdemo/src/api/search_controller";
 import { useStore } from 'vuex';
 import { UploadProps, UploadUserFile, useId } from 'element-plus'
 import { ElMessage, ElMessageBox } from 'element-plus'
@@ -635,7 +636,7 @@ function Search(){
 
 
   localStorage.setItem('now_search_method_index','3')
-  location.reload()
+  // location.reload()
 }
 
 
@@ -1945,7 +1946,6 @@ border-radius: 6px;
 .commend_nav_active_item
 {
   float: left;
-  width: 104px;
   height: 39px;
   margin-left: 39px;
   padding: 19px 0;
@@ -1977,7 +1977,6 @@ border-radius: 6px;
   overflow: scroll;
 }
 .commend_content_item{
-
   width: 863px;
   height: 205px;
   background: #FAFAFA;
@@ -2027,17 +2026,20 @@ border-radius: 6px;
   width: 298px;
   height: 29px;
   left: 169px;
-  top: 27px;
+  top: 127px;
   font-family: 'Microsoft YaHei';
   font-style: normal;
   font-weight: 400;
-  font-size: 22px;
+  font-size: 122px;
   line-height: 29px;
   /* identical to box height */
   color: #000000;
-
 }
-
+/*@media (max-width:400px) {*/
+/*  .commend_each_title{*/
+/*    top: 127px;*/
+/*  }*/
+/*}*/
 .commend_each_author{
   position: absolute;
   width: 96px;

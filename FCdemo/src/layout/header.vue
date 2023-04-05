@@ -33,14 +33,12 @@
     </div>
 
     <div class="dropdown_column">
-        <el-dropdown :hide-on-click="false">
+      <el-dropdown :hide-on-click="false">
     <span class="el-dropdown-link">
       <el-icon class="el-icon--right"></el-icon>
     </span>
-    <template #dropdown>
-      <el-dropdown-menu
-
-      >
+        <template #dropdown>
+          <el-dropdown-menu>
       <div class="dropdown_item" @click="toPerson()">个人中心</div>
       <div class="dropdown_item" @click="toFeedBack()">我要反馈</div>
       <div class="dropdown_item" @click="deLogin()">切换账号</div>
@@ -261,6 +259,7 @@ function deLogin(){
 
 }
 .example-showcase .el-dropdown-link {
+  width: 8vw;
   cursor: pointer;
   color: var(--el-color-primary);
   display: flex;
@@ -297,11 +296,10 @@ function deLogin(){
   font-weight: 400;
   font-size: 13px;
   line-height: 17px;
-
+  width: 6vw;
   color: #013480;
   cursor: pointer;
 }
-
 
 .dropdown_item:hover{
   background-color: rgb(199, 227, 238);

@@ -20,6 +20,7 @@
     "vuex": "^4.1.0"
   },
   "devDependencies": {
+    "@element-plus/icons-vue": "^2.1.0",
     "@types/node": "^18.11.19",
     "@vitejs/plugin-vue": "^4.0.0",
     "amfe-flexible": "^2.2.1",
