@@ -6,7 +6,14 @@ const store =createStore({
           password: "",
           verification_code:""
         },
-        choose_items_array:[-1]
+        choose_items_array:[-1],
+        //文献文库界面中的paper_index值，用于切换界面
+        now_paper_index:1,
+        //批量导入界面中的paper_index值，用于切换界面
+        now_content_box2_page:1,
+        //当前搜索方式
+        now_search_method_index:1,
+
     },
     mutations:{
       change_choose_items_array(state,index){
@@ -25,12 +32,31 @@ const store =createStore({
             return ;
         }
         
+      },
+      change_now_paper_index(state,index){
+        state.now_paper_index=index
+      },
+      change_now_content_box2_page(state,index){
+        state.now_content_box2_page=index
+      },
+      change_now_search_method_index(state,index){
+        state.now_search_method_index=index
       }
     },
     actions:{
       change_choose_items_array(temp,index){
         temp.commit("change_choose_items_array",index);
+      },
+      change_now_paper_index(temp,index){
+        temp.commit('change_now_paper_index',index)
+      },
+      change_now_content_box2_page(temp,index){
+        temp.commit('change_now_content_box2_page',index)
+      },
+      change_now_search_method_index(temp,index){
+        temp.commit('change_now_search_method_index',index)
       }
+
     }
 })
 export default store;

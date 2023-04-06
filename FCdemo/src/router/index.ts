@@ -27,6 +27,16 @@ const routes: RouteRecordRaw[] = [
                     title: "Search",
                 },
                 component: () => import("../views/SearchView.vue"),
+                children: [
+                    {
+                        path: "/OnlinePaperView",
+                        name: "OnlinePaperView",
+                        meta: {
+                            title: "OnlinePaperView",
+                        },
+                        component: () => import("../views/ReadOnlineView.vue"),
+                    }
+                ],
             },
             {
                 path: "/3",

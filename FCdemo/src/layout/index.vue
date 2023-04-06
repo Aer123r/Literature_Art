@@ -25,16 +25,20 @@ import Headd from "./header.vue"
   padding: 0;
   margin: 0;
   width: 100vw;
+  height: 90px;
 }
 .m {
-  display: flex;
+
+  padding: 0;
+  margin: 0;
+    /* display: flex; */
+  /* 
+  
   flex-direction: column;
-  align-items: center;
+  align-items: center; */
   width: 100vw;
   height: auto;
-  padding:0;
   overflow: hidden;
-
 }
 @media (prefers-color-scheme: dark) {
   * {

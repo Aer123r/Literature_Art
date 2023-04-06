@@ -1,13 +1,13 @@
 <template>
 
-  <body class="background">
+  <div class="background">
 
-    <el-row class="tac" v-if="now_content_box2_page==1">
+    <el-row class="tac" v-if="store.state.now_content_box2_page==1">
     <el-col >
 
 
         <div
-        :class='now_search_method_index==1?"active_item":"nomal_item"'
+        :class='store.state.now_search_method_index==1?"active_item":"nomal_item"'
         @click="change_search_method_index(1)"
         >
           <!-- <el-icon><icon-menu /></el-icon> -->
@@ -15,7 +15,7 @@
         </div>
 
         <div
-        :class='now_search_method_index==2?"active_item":"nomal_item"'
+        :class='store.state.now_search_method_index==2?"active_item":"nomal_item"'
         @click="change_search_method_index(2)"
         >
           <!-- <el-icon><icon-menu /></el-icon> -->
@@ -23,7 +23,7 @@
         </div>
 
         <div
-        :class='now_search_method_index==3?"active_item":"nomal_item"'
+        :class='store.state.now_search_method_index==3?"active_item":"nomal_item"'
         @click="change_search_method_index(3)"
         >
           <!-- <el-icon><document /></el-icon> -->
@@ -31,7 +31,7 @@
         </div>
 
         <div
-        :class='now_search_method_index==4?"active_item":"nomal_item"'
+        :class='store.state.now_search_method_index==4?"active_item":"nomal_item"'
         @click="change_search_method_index(4)"
         >
           <!-- <el-icon><setting /></el-icon> -->
@@ -39,7 +39,7 @@
         </div>
 
         <div
-        :class='now_search_method_index==5?"active_item":"nomal_item"'
+        :class='store.state.now_search_method_index==5?"active_item":"nomal_item"'
         @click="change_search_method_index(5)"
         >
           <!-- <el-icon><setting /></el-icon> -->
@@ -47,7 +47,7 @@
         </div>
 
         <div
-        :class='now_search_method_index==6?"active_item":"nomal_item"'
+        :class='store.state.now_search_method_index==6?"active_item":"nomal_item"'
         @click="change_search_method_index(6)"
         >
           <!-- <el-icon><setting /></el-icon> -->
@@ -55,7 +55,7 @@
         </div>
 
         <div
-        :class='now_search_method_index==7?"active_item":"nomal_item"'
+        :class='store.state.now_search_method_index==7?"active_item":"nomal_item"'
         @click="change_search_method_index(7)"
         >
           <!-- <el-icon><setting /></el-icon> -->
@@ -63,7 +63,7 @@
         </div>
 
         <div
-        :class='now_search_method_index==8?"active_item":"nomal_item"'
+        :class='store.state.now_search_method_index==8?"active_item":"nomal_item"'
         @click="change_search_method_index(8)"
         >
           <!-- <el-icon><setting /></el-icon> -->
@@ -73,7 +73,7 @@
 
   </el-row>
 
-    <div class="search_box" v-if="now_search_method_index!=2">
+    <div class="search_box" v-if="store.state.now_search_method_index!=2">
       <div class="search_input_box">
         <input type="text" class="input_text" v-if="now_search_method_index==1" v-model="input_text" placeholder="输入关键字搜索" >
         <input type="text" class="input_text" v-else-if="now_search_method_index==3" v-model="input_text" placeholder="搜索 历史记录" >
@@ -87,7 +87,7 @@
       </div>
     </div>
 
-    <div class="choose_time_box" v-if="now_search_method_index!=2">
+    <div class="choose_time_box" v-if="store.state.now_search_method_index!=2">
       <div class="calendar_icon"></div>
       <el-date-picker
         v-model="value2"
@@ -101,16 +101,16 @@
 
     </div>
 
-    <div class="search_button" @click="Search()" v-if="now_search_method_index==1">
+    <div class="search_button" @click="Search()" v-if="store.state.now_search_method_index==1">
       查询
 
     </div>
 
-    <div class="search_button" v-if="now_search_method_index==3"  @click="all_delete_index=2">全部清空</div>
-    <div class="search_button" v-else-if="now_search_method_index==4" @click="all_delete_index=1">全部删除</div>
-    <div class="search_button" v-else-if="now_search_method_index==8" @click="all_delete_index=2">全部清空</div>
+    <div class="search_button" v-if="store.state.now_search_method_index==3"  @click="all_delete_index=2">全部清空</div>
+    <div class="search_button" v-else-if="store.state.now_search_method_index==4" @click="all_delete_index=1">全部删除</div>
+    <div class="search_button" v-else-if="store.state.now_search_method_index==8" @click="all_delete_index=2">全部清空</div>
 
-    <div class="advance_search" v-if="now_search_method_index==1">高级检索<div @click=""></div></div>
+    <div class="advance_search" v-if="store.state.now_search_method_index==1">高级检索<div @click=""></div></div>
 
     <!-- 通用-全部删除-遮罩层 -->
     <div class="container_gray_box" v-if="all_delete_index!=0">
@@ -139,7 +139,7 @@
     </div>
 
      <!-- 第一个界面 -->
-    <div class="content_box1" v-if="now_search_method_index==1&&is_paperView_index==0">
+    <div class="content_box1" v-if="store.state.now_search_method_index==1&&store.state.now_paper_index==0">
       <div class="classify">
         <div class="classify_title">分类导航</div>
         <div class="classify_item_box">
@@ -225,13 +225,15 @@
         </div>
       </div>
     </div>
-    <div class="content_box1" v-if="now_search_method_index==1&&is_paperView_index==1">
-      <PaperView></PaperView>
+    <div class="content_box1" v-if="store.state.now_search_method_index==1&&store.state.now_paper_index!=0">
+      <div v-if="store.state.now_paper_index==1"> <PaperView></PaperView></div>
+      <div v-if="store.state.now_paper_index==2"> <ReadOnlineView></ReadOnlineView></div>
+
     </div>
 
     <!-- 第二个界面-批量导入-文件归档 -->
-    <div class="content_box2" v-if="now_search_method_index==2">
-      <div class="content_box2_page1" v-if="now_content_box2_page==1">
+    <div class="content_box2" v-if="store.state.now_search_method_index==2">
+      <div class="content_box2_page1" v-if="store.state.now_content_box2_page==1">
       <div class="check_my_classify">查看我的<div @click="now_content_box2_pages(2)">文件归档</div></div>
       <div class="submit_title">上传文件</div>
       <!-- <div class="submit_file_box">
@@ -383,7 +385,7 @@
 
 
     <!-- 第三个界面-历史记录 -->
-    <div class="content_box3" v-if="now_search_method_index==3">
+    <div class="content_box3" v-if="store.state.now_search_method_index==3">
 
 
       <div class="all_records" >全部记录</div>
@@ -408,7 +410,7 @@
 
 
     <!-- 第四个界面-我的下载-->
-    <div class="content_box4" v-if="now_search_method_index==4">
+    <div class="content_box4" v-if="store.state.now_search_method_index==4">
       <div class="all_records">全部记录</div>
       <div class="clear_cancel_block" v-if="download_delete_list.length!=0">
         <div class="already_chosen" >已经选中 <div>{{download_delete_list.length}}</div>  项</div>
@@ -436,7 +438,7 @@
 
 
     <!-- 第五个界面-我的关注-->
-    <div class="content_box5" v-if="now_search_method_index==5">
+    <div class="content_box5" v-if="store.state.now_search_method_index==5">
       <div class="all_records">我的关注</div>
 
       <div class="data_item_box5">
@@ -455,7 +457,7 @@
     </div>
 
     <!-- 第六个界面-我的收藏 -->
-    <div class="content_box6" v-if="now_search_method_index==6">
+    <div class="content_box6" v-if="store.state.now_search_method_index==6">
       <div class="all_records">我的收藏</div>
       <div class="clear_cancel_block" v-if="store.state.choose_items_array.length!=1">
         <div class="already_chosen" >已经选中 <div>{{ store.state.choose_items_array.length-1 }}</div>  项</div>
@@ -481,7 +483,7 @@
     </div>
 
     <!-- 第七个界面-我的订阅 -->
-    <div class="content_box7" v-if="now_search_method_index==7">
+    <div class="content_box7" v-if="store.state.now_search_method_index==7">
       <div class="all_records">我的订阅</div>
       <div class="clear_cancel_block" v-if="store.state.choose_items_array.length!=1">
         <div class="already_chosen" >已经选中 <div>{{ store.state.choose_items_array.length-1 }}</div>  项</div>
@@ -506,7 +508,7 @@
     </div>
 
     <!-- 第八个界面-回收站 -->
-    <div class="content_box8" v-if="now_search_method_index==8">
+    <div class="content_box8" v-if="store.state.now_search_method_index==8">
       <div class="all_records">回收站</div>
       <!-- 这里要修改参数的值 -->
       <div class="clear_cancel_block" v-if="delete_history_list.length!=0">
@@ -536,7 +538,7 @@
      </div>
 
     </div>
-  </body>
+  </div>
 
 
 </template>
@@ -550,19 +552,19 @@ import {
 } from '@element-plus/icons-vue'
 import type Node from 'element-plus/es/components/tree/src/model/node'
 import { UploadFilled } from '@element-plus/icons-vue'
-import { ref,onMounted,reactive} from 'vue';
+import { ref,onMounted,reactive,watch} from 'vue';
 import {HistoryGetUser,searchWord,historyDel} from '../api/search_controller'
 import { useStore } from 'vuex';
 import { UploadProps, UploadUserFile, useId } from 'element-plus'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import router from '@/router';
 import PaperView from './PaperView.vue';
-
+import ReadOnlineView from './ReadOnlineView.vue';
 
 var uid=localStorage.getItem('uid')??""
 
 onMounted(()=>{
-  localStorage.setItem('now_search_method_index','1')
+
   HistoryGetUser(uid).then((res)=>{
     console.log(uid,'uid');
   }).catch(res2=>{
@@ -573,8 +575,12 @@ onMounted(()=>{
 })
 
 const store=useStore();
-let now_search_method_index=ref(parseInt(localStorage.getItem('now_search_method_index')??'1'))
+let now_search_method_index=ref(store.state.now_search_method_index)
 
+watch(now_search_method_index, (newValue, oldValue) => {
+  console.log(newValue,'newValue');
+  
+})
 // let now_search_method=ref('主题')
 // let search_methods=ref(['主题','关键字','篇关摘','篇名','作者','第一作者','通讯作者','作者单位','参考文献','全文','摘要'])
 
@@ -598,6 +604,9 @@ function yes_delete(){
 }
 
 
+function change_search_method_index(index:number){
+  store.dispatch('change_now_search_method_index',index)
+}
 
 //搜索
 function Search(){
@@ -607,13 +616,14 @@ function Search(){
     })
 
 
-  localStorage.setItem('now_search_method_index','3')
+    store.dispatch('change_now_search_method_index',3)
   location.reload()
 }
 
 
 /*界面1-文献文库*/
-let is_paperView_index=ref(1)
+
+
 let commend_nav_item=ref(0)
 function commend_nav_items(index:number){
   commend_nav_item.value=index
@@ -747,21 +757,20 @@ function exchange_commend_users(){
 
 /*界面2 批量导入——文件归档 */
 
-let now_content_box2_page=ref(1)
+//导入文件界面or文件归档界面
+let now_content_box2_page=ref(store.state.now_content_box2_page)
 function now_content_box2_pages(index:number){
-  now_content_box2_page.value=index
+  store.dispatch("change_now_content_box2_page",index)
 }
 
 
 
-function change_search_method_index(index:number){
-  now_search_method_index.value=index
-}
 
 
 //文件归档
 function to_box2_page1(){
-  now_content_box2_page.value=1
+  
+  store.dispatch('change_now_content_box2_page',1)
 }
 
 /*文件归档操作 */
@@ -1350,6 +1359,7 @@ function trash_all_clear(){
 /*侧边栏 */
 .left_box{
   position: absolute;
+  overflow: hidden;
   width: 282px;
   height: 990px;
   left: 0px;
@@ -1370,9 +1380,9 @@ function trash_all_clear(){
 
 .tac{
   position: absolute;
-  width: 17vw;
+  width: 282px;
   max-width: 350px;
-  height: 86vh;
+  height: 89vh;
   left: 0px;
   top: 86px;
   background: #FFFFFF;
@@ -1424,12 +1434,12 @@ function trash_all_clear(){
 /*搜索框 */
 .search_box{
   position: absolute;
-  width: 84vw;
-  height: 5vh;
-  left: 17vw;
-  top: 87px;
+  width: 1638px;
+  height: 86px;
+  left: 282px;
+  top: 90px;
   background: #FFFFFF;
-
+  background-color: pink;
 }
 
 .search_input_box{
@@ -1882,11 +1892,11 @@ function trash_all_clear(){
 
 .content_box1 {
   position: relative;
-  width: 80vw;
-  height: 80vh;
-  top: 4vh;
-  left: 6vw;
-  background-color: #EBF5FF;
+  width: 1603px;
+  height: 869px;
+  top: 102px;
+  left: 301px;
+  background-color: #F5FAFF;
 }
 
 .classify{
@@ -1894,8 +1904,8 @@ function trash_all_clear(){
   padding-top: 99px;
   width: 17vw;
   height: 80vh;
-  left: 52px;
-  top: 25px;
+  // left: 52px;
+  // top: 25px;
 
   background: #FFFFFF;
 }
@@ -1941,7 +1951,8 @@ function trash_all_clear(){
 
 .commend_box{
   position: absolute;
-  top: 25px;
+  // top: 25px;
+  top: 0px;
   left: 326px;
   width: 902px;
   height: 853px;

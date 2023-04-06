@@ -6,7 +6,7 @@ let token=localStorage.getItem("token")??""
 /*)删除个人历史数据列表 */
 export const historyDel = (searchKey:string,userId:string) => {
     console.log("historyDel",searchKey);
-    let token=window.sessionStorage.getItem("token")??""
+    let token=window.localStorage.getItem("token")??""
     return request({
         url: "/history/del",
         method: "POST",
