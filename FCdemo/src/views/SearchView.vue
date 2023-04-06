@@ -3205,6 +3205,7 @@ function trash_all_clear(){
 
 
 .already_chosen div{
+  display: inline;
   font-weight: 700;
   color: #1559DD;
 }
@@ -3462,7 +3463,7 @@ function trash_all_clear(){
 
 
 .data_item_box5 .each_item .each_name{
-  width: 80px;
+  width: 10vw;
   height: 35px;
   position: absolute;
   top: 10px;
@@ -3486,7 +3487,6 @@ function trash_all_clear(){
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
-  line-height: 24px;
   /* identical to box height */
 
 
@@ -4023,6 +4023,59 @@ function trash_all_clear(){
   }
 }
 
+@media(max-width: 500px){
+  .data_item_box4 {
+    width: 78vw;
+    top: 11vh;
+    left: 6vw;
+    .each_checkbox {
+      //width: 100%;
+      padding: 36px;
+    }
+    .each_item {
+      padding-right: 4vw;
+      margin-bottom: 2vh;
+      height: 3.5vh;
+      .date {
+        width: fit-content;
+        position: relative;
+        top: 1vh;
+      }
+      .each_delete_button {
+        padding: 10px;
+        position: relative;
+        left: 4vw;
+      }
+    }
+  }
+  .data_item_box5 {
+    width: 78vw;
+    height: 60vh;
+    .each_item {
+      margin-top: 5vh;
+      width: 100%;
+      .each_workplace {
+        width: 180%;
+        top: 2vh;
+      }
+      .each_major {
+        width: 150%;
+        top: 5vh;
+      }
 
+    }
+    .cancel_notice {
+      left: 60vw;
+    }
+  }
+  .already_chosen {
+    top: 8vh;
+    width: fit-content;
+  }
+  .delete_button {
+    left: -10vw;
+    top: 200px;
+  }
+}
 
 </style>

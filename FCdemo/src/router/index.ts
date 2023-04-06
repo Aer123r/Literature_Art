@@ -1,5 +1,6 @@
 
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
+
 const routes: RouteRecordRaw[] = [
     {
         path: "/",
@@ -19,7 +20,7 @@ const routes: RouteRecordRaw[] = [
                 },
                 component: () => import("../home/index.vue"),
             },
-    
+
             {
                 path: "/2",
                 name: "Search",
@@ -71,7 +72,7 @@ const routes: RouteRecordRaw[] = [
         name:'Find',
         component:()=>import("@/views/FindView.vue")
     },
-    
+
 ];
 
 const router = createRouter({
