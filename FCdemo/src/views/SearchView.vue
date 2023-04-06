@@ -3510,6 +3510,7 @@ function trash_all_clear(){
 
 .data_item_box5 .cancel_notice{
   width: 122px;
+  //width: fit-content;
   height: 42px;
   position: absolute;
   left: 509px;
@@ -3655,7 +3656,6 @@ function trash_all_clear(){
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
-  line-height: 21px;
 
   color: #9B9595;
 
@@ -3770,8 +3770,9 @@ function trash_all_clear(){
 
 
 .data_item_box7 .cancel_notice{
-  position: absolute;
-  width: 64px;
+  position: relative;
+  //width: 64px;
+  width: fit-content;
   height: 22px;
   left: 536px;
   top: 124px;
@@ -4024,6 +4025,25 @@ function trash_all_clear(){
 }
 
 @media(max-width: 500px){
+  .data_item_box3 {
+    width: 79vw;
+    .each_item {
+      height: 3vh;
+      margin-bottom: 2vh;
+      width: 70vw;
+      .each_checkbox {
+        padding: 30px;
+      }
+      .title {
+        padding-top: 0.7vh;
+        height: 3vh;
+        //font-size: 60px;
+      }
+      .each_delete_button {
+        padding: 0.7vw;
+      }
+    }
+  }
   .data_item_box4 {
     width: 78vw;
     top: 11vh;
@@ -4065,7 +4085,69 @@ function trash_all_clear(){
 
     }
     .cancel_notice {
+      position: relative;
+      width: fit-content;
       left: 60vw;
+    }
+  }
+  .content_box6 {
+    .all_records {
+      width: fit-content;
+    }
+  }
+  .data_item_box6 {
+    width: 78vw;
+    height: 81vh;
+    .collect_name {
+      width: 30vw;
+    }
+    .collect_each_item {
+      height: 15vh;
+      width: 100%;
+      margin-top: 5vh;
+      margin-bottom: -2vh;
+    }
+    .collect_subhead {
+      width: 66vw;
+      top: 3vh;
+    }
+    .collect_content {
+      width: 66vw;
+      top: 5vh;
+    }
+  }
+  .content_box7 {
+    .all_records {
+      width: fit-content;
+    }
+  }
+  .data_item_box7 {
+    width: 70vw;
+    height: 81vh;
+    .notice_each_item {
+      height: 14vh;
+      width: 70vw;
+      margin-top: 5vh;
+      padding-top: 1vh;
+      margin-bottom: -4vh;
+      .notice_name {
+        width: 35vw;
+      }
+      .notice_content {
+        height: 8vh;
+        line-height: 2vh;
+        width: 57vw;
+      }
+      .notice_member {
+        left: 35vw;
+        top: 10vh;
+        width: fit-content;
+      }
+      .cancel_notice {
+        //max-width: 15vw;
+        top: 10vh;
+        left: 56vw;
+      }
     }
   }
   .already_chosen {
