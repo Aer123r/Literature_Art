@@ -85,7 +85,7 @@
 
         <div class="search_icon" @click="Search()"></div>
       </div>
-    </div>
+    
 
     <div class="choose_time_box" v-if="store.state.now_search_method_index!=2">
       <div class="calendar_icon"></div>
@@ -106,11 +106,12 @@
 
     </div>
 
-    <div class="search_button" v-if="store.state.now_search_method_index==3"  @click="all_delete_index=2">全部清空</div>
+    <div class="search_button" v-if="store.state.now_search_method_index==3"  @click="all_delete_index=2"><div>全部清空</div></div>
     <div class="search_button" v-else-if="store.state.now_search_method_index==4" @click="all_delete_index=1">全部删除</div>
     <div class="search_button" v-else-if="store.state.now_search_method_index==8" @click="all_delete_index=2">全部清空</div>
 
     <div class="advance_search" v-if="store.state.now_search_method_index==1">高级检索<div @click=""></div></div>
+  </div>
 
     <!-- 通用-全部删除-遮罩层 -->
     <div class="container_gray_box" v-if="all_delete_index!=0">
@@ -348,6 +349,7 @@
 
 
         <div class="item_box">
+
         <div class="each_item" v-for="(item,index) in filing_data_list" >
           <div class="each_item_inner">
         <input type="checkbox" name="" id=""  class="each_checkbox" @click="history_choose_item(item)" >
@@ -355,7 +357,8 @@
         <div class="each_time">{{ item.date }}</div>
         </div>
       </div>
-     </div>
+      
+      </div>
       </div>
 
     </div>
@@ -1356,6 +1359,10 @@ function trash_all_clear(){
 </script>
 
 <style scoped lang="less">
+
+.background{
+  overflow: hidden;
+}
 /*侧边栏 */
 .left_box{
   position: absolute;
@@ -1439,19 +1446,20 @@ function trash_all_clear(){
   left: 282px;
   top: 90px;
   background: #FFFFFF;
-  background-color: pink;
 }
 
 .search_input_box{
   box-sizing: border-box;
   position: absolute;
-  width: 40vw;
-  height: 4vh;
-  left: 73px;
-  top: 1.3vh;
+  width: 829px;
+  height: 55px;
+  left: 114px;
+  top: 16px;
   border: 1px solid #D9D9D9;
+  font-size: 20px;
   border-radius: 6px;
   z-index: 3;
+
 }
 @media(max-width: 500px){
   .search_input_box{
@@ -1466,14 +1474,15 @@ function trash_all_clear(){
   width: 747px;
   height: 3.6vh;
   left: 80px;
-  top: 0px;
+  top: 10px;
   border-radius: 6px;
   border: none;
   outline: none;
   overflow: hidden;
   z-index: 3;
-  font-size: 28px;
+  font-size: 20px;
   background-color: transparent;
+ 
 }
 
 .input_text::placeholder{
@@ -1513,11 +1522,14 @@ function trash_all_clear(){
 .choose_time_box{
   box-sizing: border-box;
   position: absolute;
-  width: 418px;
-  height: 3vh;
-  left: 1285px;
+  width: 318px;
+  height: 55px;
+  left: 959px;
+  top: 16px;
   border-radius: 6px;
+  border: 2px solid rgba(217, 217, 217, 1);
   z-index: 3;
+
 }
 
 
@@ -1525,13 +1537,14 @@ function trash_all_clear(){
   position: absolute;
   width: 30px;
   height: 30px;
-  left: -20px;
-  top: -14px;
+  left: 30px;
+  top: 12px;
 
   background: url(../../images/calendar.png);
   background-size: contain;
   cursor: pointer;
   z-index: 2;
+
 }
 @media(max-width: 500px){
   .calendar_icon{
@@ -1540,10 +1553,11 @@ function trash_all_clear(){
 }
 .search_button{
   position: absolute;
-  width: fit-content;
+  padding: auto 42px;
+  width: 129px;
   height: 55px;
-  left: 1604px;
-  top: 8vh;
+  left: 1308px;
+  top: 16px;
   background: #013480;
   border-radius: 6px;
   font-family: 'Microsoft YaHei';
@@ -1571,13 +1585,40 @@ function trash_all_clear(){
   display: none;
 
 }
+::v-deep .el-input__wrapper{
+
+  left: 37px !important;
+  top: 2px !important;
+  box-sizing: border-box;
+  position: absolute;
+  width: 235px !important;
+  height: 57px;
+  left: 83px !important; 
+  top: 8px !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
+
+  // background-color: yellow ;
+}
+
+::v-deep .el-date-editor.el-input.el-input--prefix{
+
+}
+
+::v-deep .el-date-editor.el-input.el-input--prefix.el-input--suffix{
+
+}
 ::v-deep .el-date-editor.el-input.el-input--prefix.el-input--suffix.el-date-editor--date input{
 
-    padding-left: 43px;
+    padding-left: 83px;
+    font-size: 20px;
     background-color: transparent ;
-    height: 42px;
-    border: none;
-    outline: none;
+    height: 55px;
+    width: 318px;
+    border: none !important;
+    outline: none !important;
 }
 
 
@@ -1618,7 +1659,7 @@ function trash_all_clear(){
 }
 .line{
   position: absolute;
-  width: 29px;
+  width: 10px;
   height: 0px;
   left: 171px;
   top: 35px;
@@ -2565,9 +2606,8 @@ function trash_all_clear(){
 
 .content_box2{
   position: absolute;
-  width: 1643px;
-  // height: 990px;
-  left: 282px;
+  width: 1920px;
+  height: 990px;
 }
 .submit_title{
   position: absolute;
@@ -2586,7 +2626,16 @@ function trash_all_clear(){
 
   color: #000000;
 }
+.content_box2_page1{
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  width: 1638px;
+  height: 990px;
+  /* top: 100px; */
+  left: 282px;
 
+}
 .content_box2_page1 .check_my_classify{
   position: absolute;
   width: 30vw;
@@ -2734,10 +2783,13 @@ function trash_all_clear(){
 /*界面2 页面2——文件归档 */
 .content_box2_page2{
   position: absolute;
+  margin: 0;
+  padding: 0;
   width: 1920px;
-  height: 1080px;
+  height: 990px;
   /* top: 100px; */
-  left: -282px;
+  left: 0px;
+  overflow: hidden;
 
 }
 .content_box2_page2 .line{
@@ -2953,13 +3005,12 @@ function trash_all_clear(){
 
 
 .content_box2 .page2_right_box .item_box{
-  position: absolute;
+  position: relative;
   top: 257px;
   width: 1637px;
-  height: 990px;
+  height: 733px;
 
 }
-
 
 .page2_right_box  .item_box .each_item{
   width: 1637px;
@@ -2970,7 +3021,7 @@ function trash_all_clear(){
 }
 
 .page2_right_box  .item_box .each_item_inner{
-  position: relative;
+  position: absolute;
   width: 1637px;
   height: 61px;
 

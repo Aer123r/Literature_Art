@@ -1,5 +1,5 @@
 <template>
-  <body>
+  <body class="body">
 
 
 
@@ -103,12 +103,16 @@ function change_page(){
     }
 }
 
+.body{
+  width: 100vw;
+  height:990px;
+}
 .home1,.home2,.home3{
   animation: fadeInAnimation ease 1.5s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
-  width: 100vw;
-  height: 79.4vh;
+  width:auto;
+  height: 990px;
 }
 
 /*首页1*/
@@ -117,7 +121,7 @@ function change_page(){
   width: 720px;
   height: 106px;
   left: 102px;
-  top: 291px;
+  top: 201px;
 
   font-family: 'Microsoft YaHei';
   font-style: normal;
@@ -135,7 +139,7 @@ function change_page(){
   width: 836px;
   height: 216px;
   left: 102px;
-  top: 483px;
+  top: 393px;
 
   font-family: 'Microsoft YaHei';
   font-style: normal;
@@ -151,7 +155,7 @@ function change_page(){
   width: 280px;
   height: 99px;
   left: 331px;
-  top: 783px;
+  top: 693px;
   text-align: center;
   font-family: 'Microsoft YaHei';
   font-style: normal;
@@ -170,17 +174,18 @@ function change_page(){
   width: 829px;
   height: 1215px;
   left: 1110px;
-  top: -135px;
+  top: -225px;
   background: linear-gradient(89.33deg, rgba(221, 237, 251, 0.8) 4.51%, rgba(177, 217, 254, 0.408333) 74.62%, rgba(30, 124, 210, 0) 147.72%);
   border-radius: 0px 0px 455px 455px;
   z-index: 1;
+
 }
 @media(max-width: 500px){
   .home1 .right_image1{
     width: 929px;
     height: 1515px;
     left: 1010px;
-    top: -135px;
+    top: -225px;
   }
 }
 .home1 .right_image3{
@@ -188,7 +193,7 @@ function change_page(){
   width: 527px;
   height: 1057px;
   left: 1261px;
-  top: -167px;
+  top: -257px;
   background: linear-gradient(88.72deg, #EBF5FF -7.97%, #B0D8FC 98.8%);
   border-radius: 0px 0px 345px 345px;
   z-index: 2;
@@ -199,7 +204,7 @@ function change_page(){
   width: 602px;
   height: 602px;
   left: 1224px;
-  top: 239px;
+  top: 149px;
 
   background: url(../../images/home1_right2.png);
   background-size: contain;
@@ -214,7 +219,7 @@ function change_page(){
   width: 630px;
   height: 92px;
   left: 984px;
-  top: 345px;
+  top: 255px;
 
   font-family: 'Microsoft YaHei';
   font-style: normal;
@@ -230,7 +235,7 @@ function change_page(){
   width: 819px;
   height: 299px;
   left: 984px;
-  top: 511px;
+  top: 421px;
 
   font-family: 'Microsoft YaHei';
   font-style: normal;
@@ -249,7 +254,7 @@ function change_page(){
   width: 280px;
   height: 99px;
   left: 331px;
-  top: 783px;
+  top: 693px;
   text-align: center;
   font-family: 'Microsoft YaHei';
   font-style: normal;
@@ -268,7 +273,7 @@ function change_page(){
   width: 829px;
   height: 1215px;
   left: 1px;
-  top: -135px;
+  top: -225px;
 
   background: linear-gradient(89.33deg, rgba(221, 237, 251, 0.8) 4.51%, rgba(177, 217, 254, 0.408333) 74.62%, rgba(30, 124, 210, 0) 147.72%);
   border-radius: 0px 0px 455px 455px;
@@ -280,7 +285,7 @@ function change_page(){
   width: 527px;
   height: 1057px;
   left: 152px;
-  top: -167px;
+  top: -257px;
 
   background: linear-gradient(88.72deg, #EBF5FF -7.97%, #B0D8FC 98.8%);
   border-radius: 0px 0px 345px 345px;
@@ -305,7 +310,7 @@ function change_page(){
   width: 700px;
   height: 92px;
   left: 142px;
-  top: 345px;
+  top: 255px;
 
   font-family: 'Microsoft YaHei';
   font-style: normal;
@@ -322,7 +327,7 @@ function change_page(){
   width: 895px;
   height: 299px;
   left: 142px;
-  top: 511px;
+  top: 421px;
 
   font-family: 'Microsoft YaHei';
   font-style: normal;
@@ -342,7 +347,7 @@ function change_page(){
   width: 829px;
   height: 1215px;
   left: 1110px;
-  top: -135px;
+  top: -225px;
   background: linear-gradient(89.33deg, rgba(221, 237, 251, 0.8) 4.51%, rgba(177, 217, 254, 0.408333) 74.62%, rgba(30, 124, 210, 0) 147.72%);
   border-radius: 0px 0px 455px 455px;
   z-index: 1;
@@ -353,7 +358,7 @@ function change_page(){
   width: 527px;
   height: 1057px;
   left: 1261px;
-  top: -167px;
+  top: -257px;
   background: linear-gradient(88.72deg, #EBF5FF -7.97%, #B0D8FC 98.8%);
   border-radius: 0px 0px 345px 345px;
   z-index: 2;
@@ -364,7 +369,7 @@ function change_page(){
   width: 602px;
   height: 602px;
   left: 1224px;
-  top: 239px;
+  top: 149px;
 
   background: url(../../images/home3_right.png);
   background-size: contain;
@@ -374,13 +379,15 @@ function change_page(){
 
 
 .change_page{
-  float: left;
+  position: relative;
+  left: 900px;
+  top: 900px;
   width: 60px;
   height: 60px;
   background-image: url(../../images/down_arrow.png);
   background-size: contain;
   opacity: 0.2;
-  margin-left: 900px;
+  /* margin-left: 900px; */
 }
 
 </style>

@@ -6,10 +6,15 @@
         <div class="tag_icon"></div>
         <div class="title">{{ now_paper_unit.title }}</div>
         <div class="authors">
-            <span v-for="(item,index) in now_paper_unit.author_list">{{ item }}</span>
-            <div class="author_index_box">
-            <span v-for="(item,index) in now_paper_unit.author_priority_list" class="index">{{ item }}</span>    
+            <div class="authors_each_box" v-for="(item,index) in now_paper_unit.author_list" :key="item">
+                <div class="authors_each_name">
+                    {{ item }}
+                </div>
+                <div class="authors_each_level" >
+                    {{ now_paper_unit.author_priority_list[index] }}
+                </div>
             </div>
+           
         </div>
         <div class="search_place">{{ now_paper_unit.search_place }}</div>
         <div class="abstract list_title">
@@ -123,7 +128,6 @@ function to_filing_page(){
 .paperView_body{
     width: 1603px;
     height: 869px;
-    background-color: yellow;
 }
 
 .title{
@@ -149,10 +153,35 @@ function to_filing_page(){
     font-size: 20px;
     line-height: 24px;
     color: #9B9595;
+  
 }
 
-.authors span{
-    margin-right: 75px;
+.authors .authors_each_box{
+    float: left;
+    position: relative;
+    width: 80px;
+    height: 75px;
+    margin-right: 60px;
+}
+
+.authors .authors_each_name{
+    position: absolute;
+    left: 0px;
+    top: 7px;
+  
+}
+
+.authors .authors_each_level{
+    position: absolute;
+    left: 60px;
+    top: 0;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    /* identical to box height */
+    color: #9B9595;
 }
 .search_place{
     position: absolute;
