@@ -1494,18 +1494,7 @@ function trash_all_clear(){
 
   color: #9B9595;
 }
-@media(max-width: 500px){
-  .search_input_box{
-    .input_text{
-      font-size: 50px;
-    }
-    .input_text::placeholder {
-      font-size: 50px;
-    }
-  }
 
-
-}
 .search_icon{
   width: 31px;
   height: 31px;
@@ -1517,7 +1506,25 @@ function trash_all_clear(){
   cursor: pointer;
   z-index: 3;
 }
+@media(max-width: 500px){
+  .search_input_box{
+    width: 60vw;
+    .input_text{
+      font-size: 10px;
+      left: 7vw;
+      top: -0.4vh;
+    }
+    .input_text::placeholder {
+      font-size: 50px;
 
+    }
+  }
+  .search_icon {
+    padding: 20px;
+  }
+
+
+}
 
 .choose_time_box{
   box-sizing: border-box;
@@ -1548,7 +1555,9 @@ function trash_all_clear(){
 }
 @media(max-width: 500px){
   .calendar_icon{
-    top: -3vh;
+    top: 0.5vh;
+    left: -45vw;
+    padding: 20px;
   }
 }
 .search_button{
@@ -1575,7 +1584,7 @@ function trash_all_clear(){
 
 @media(max-width: 500px){
   .search_button{
-    top:4vh;
+    top:3.7vh;
     height: 2.8vh;
     line-height: 2.8vh;
   }
@@ -1727,7 +1736,8 @@ function trash_all_clear(){
 }
 @media(max-width: 500px){
   .advance_search {
-    top: 5vh;
+    top: 8.5vh;
+    left: 1600px;
     width: 200px;
   }
 }
@@ -3267,6 +3277,7 @@ function trash_all_clear(){
 
 
 .already_chosen div{
+  display: inline;
   font-weight: 700;
   color: #1559DD;
 }
@@ -3524,7 +3535,7 @@ function trash_all_clear(){
 
 
 .data_item_box5 .each_item .each_name{
-  width: 80px;
+  width: 10vw;
   height: 35px;
   position: absolute;
   top: 10px;
@@ -3548,7 +3559,6 @@ function trash_all_clear(){
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
-  line-height: 24px;
   /* identical to box height */
 
 
@@ -3572,6 +3582,7 @@ function trash_all_clear(){
 
 .data_item_box5 .cancel_notice{
   width: 122px;
+  //width: fit-content;
   height: 42px;
   position: absolute;
   left: 509px;
@@ -3717,7 +3728,6 @@ function trash_all_clear(){
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
-  line-height: 21px;
 
   color: #9B9595;
 
@@ -3832,8 +3842,9 @@ function trash_all_clear(){
 
 
 .data_item_box7 .cancel_notice{
-  position: absolute;
-  width: 64px;
+  position: relative;
+  //width: 64px;
+  width: fit-content;
   height: 22px;
   left: 536px;
   top: 124px;
@@ -4030,8 +4041,9 @@ function trash_all_clear(){
 }
 @media(max-width: 500px){
   ::v-deep .el-input__wrapper {
-    top:-4.7vh;
-    left: -2vw;
+    width: 20vw;
+    top:-0.7vh;
+    left: -46vw;
   }
 }
 @media (prefers-color-scheme: dark) {
@@ -4085,6 +4097,207 @@ function trash_all_clear(){
   }
 }
 
+@media(max-width: 500px){
+  .content_box1 {
+    left: 8vw;
+    width: 85vw;
+  }
+  .content_box2 {
+    height: 60vh;
+  }
+  .data_item_box3 {
+    width: 79vw;
+    .each_item {
+      height: 3vh;
+      margin-bottom: 2vh;
+      width: 70vw;
+      .each_checkbox {
+        padding: 30px;
+      }
+      .title {
+        padding-top: 0.7vh;
+        height: 3vh;
+        //font-size: 60px;
+      }
+      .each_delete_button {
+        padding: 0.7vw;
+      }
+    }
+  }
+  .data_item_box4 {
+    width: 78vw;
+    top: 11vh;
+    left: 6vw;
+    .each_checkbox {
+      //width: 100%;
+      padding: 36px;
+    }
+    .each_item {
+      padding-right: 4vw;
+      margin-bottom: 2vh;
+      height: 3.5vh;
+      .date {
+        width: fit-content;
+        position: relative;
+        top: 1vh;
+      }
+      .each_delete_button {
+        padding: 10px;
+        position: relative;
+        left: 4vw;
+      }
+    }
+  }
+  .data_item_box5 {
+    width: 78vw;
+    height: 60vh;
+    .each_item {
+      margin-top: 5vh;
+      width: 100%;
+      .each_workplace {
+        width: 180%;
+        top: 2vh;
+      }
+      .each_major {
+        width: 150%;
+        top: 5vh;
+      }
 
+    }
+    .cancel_notice {
+      position: relative;
+      width: fit-content;
+      left: 60vw;
+    }
+  }
+  .content_box6 {
+    .all_records {
+      width: fit-content;
+    }
+  }
+  .data_item_box6 {
+    width: 78vw;
+    height: 81vh;
+    .collect_name {
+      width: 30vw;
+    }
+    .collect_each_item {
+      height: 15vh;
+      width: 100%;
+      margin-top: 5vh;
+      margin-bottom: -2vh;
+    }
+    .collect_subhead {
+      width: 66vw;
+      top: 3vh;
+    }
+    .collect_content {
+      width: 66vw;
+      top: 5vh;
+    }
+  }
+  .content_box7 {
+    .all_records {
+      width: fit-content;
+    }
+  }
+  .data_item_box7 {
+    width: 70vw;
+    height: 81vh;
+    .notice_each_item {
+      height: 14vh;
+      width: 70vw;
+      margin-top: 5vh;
+      padding-top: 1vh;
+      margin-bottom: -4vh;
+      .notice_name {
+        width: 35vw;
+      }
+      .notice_content {
+        height: 8vh;
+        line-height: 2vh;
+        width: 57vw;
+      }
+      .notice_member {
+        left: 35vw;
+        top: 10vh;
+        width: fit-content;
+      }
+      .cancel_notice {
+        //max-width: 15vw;
+        top: 10vh;
+        left: 56vw;
+      }
+    }
+  }
+  .already_chosen {
+    top: 8vh;
+    width: fit-content;
+  }
+  .delete_button {
+    left: -10vw;
+    top: 200px;
+  }
+  .all_delete_box {
+    width: 80vw;
+    .up_box {
+      left: -25vw;
+      height: 50vh;
+      width: 80vw;
+      .back_image {
+        left: 2vw;
+        width: 75vw;
+        height: 20vh;
+      }
+      .outside_fork {
+        //padding: 60px;
+        padding-top: 120px;
+        padding-right: 120px;
+        top:-0.02vh;
+        left: 69.6vw;
+        .fork {
+          padding: 20px;
+          left:5vw;
+          top: 0.7vh;
+        }
+      }
+    }
+    .down_box {
+      top: 35vh;
+      .title1 {
+        top: -4vh;
+        left: 6vw;
+        width: fit-content;
+      }
+      .title2 {
+        top: -2vh;
+        left: 3vw;
+        width: fit-content;
+      }
+      .tip {
+        top: 0vh;
+        left: 9vw;
+        width: fit-content;
+      }
+      .yes_delete {
+        top: 2vh;
+        left: -1vw;
+        height: 6vh;
+        line-height: 6vh;
+        width: 15vw;
+      }
+      .cancel_delete {
+        top: 2vh;
+        left: 19vw;
+        height: 6vh;
+        line-height: 6vh;
+        width: 15vw;
+        background: #DCEEFF;
+        border: 3px solid #1559DD;
+        border-radius: 28.5px;
+      }
+    }
+  }
+}
 
 </style>
