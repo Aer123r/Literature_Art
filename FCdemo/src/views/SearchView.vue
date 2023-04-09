@@ -1489,7 +1489,7 @@ function trash_all_clear(){
 }
 @media(max-width: 500px){
   .search_input_box{
-    width: 60vw;
+    width: 40vw;
     .input_text{
       font-size: 10px;
       left: 7vw;
@@ -1532,8 +1532,8 @@ function trash_all_clear(){
 }
 @media(max-width: 500px){
   .calendar_icon{
-    top: 0.5vh;
-    left: -45vw;
+    top: -3.8vh;
+    left: -3vw;
     padding: 20px;
   }
 }
@@ -1560,6 +1560,7 @@ function trash_all_clear(){
 
 @media(max-width: 500px){
   .search_button{
+    width: 12vw;
     top:3.7vh;
     height: 2.8vh;
     line-height: 2.8vh;
@@ -3979,9 +3980,10 @@ function trash_all_clear(){
 }
 @media(max-width: 500px){
   ::v-deep .el-input__wrapper {
+    height: 3vh;
     width: 20vw;
-    top:-0.7vh;
-    left: -46vw;
+    top:-4.6vh;
+    left: -4vw;
   }
 }
 @media (prefers-color-scheme: dark) {
@@ -4015,16 +4017,29 @@ function trash_all_clear(){
   .content_box3 {
     background: #121212;
   }
+  .data_item_box3 {
+    background-color: #121212;
+  }
   .data_item_box3 .each_item {
     border: 1px solid white;
+    background-color: transparent;
   }
   .data_item_box3 .each_item .title {
     color: #FFFFFF;
+  }
+  .data_item_box3 .each_item .each_delete_button {
+    background-image: url(../../images/fork2.png);
   }
   .data_item_box3 .each_item:hover{
     background: #3c3c3c;
   }
   .content_box4 {
+    background-color: #121212;
+  }
+  .data_item_box4 .each_item .each_item_inner .title{
+    color: #FFFFFF;
+  }
+  .data_item_box4 {
     background-color: #121212;
   }
   .data_item_box4 .each_item:hover{
@@ -4044,8 +4059,11 @@ function trash_all_clear(){
     height: 60vh;
   }
   .data_item_box3 {
-    width: 79vw;
+    left: 2vw;
+    width: 86vw;
+    height: 80vh;
     .each_item {
+      margin-left: 6vw;
       height: 3vh;
       margin-bottom: 2vh;
       width: 70vw;
@@ -4063,16 +4081,18 @@ function trash_all_clear(){
     }
   }
   .data_item_box4 {
-    width: 78vw;
-    top: 11vh;
-    left: 6vw;
+    width: 84vw;
+    height: 80.6vh;
+    top: 5vh;
+    left: 2vw;
     .each_checkbox {
       //width: 100%;
       padding: 36px;
     }
     .each_item {
-      padding-right: 4vw;
-      margin-bottom: 2vh;
+      margin-left: 6vw;
+      margin-top: 6vh;
+      margin-bottom: -2vh;
       height: 3.5vh;
       .date {
         width: fit-content;

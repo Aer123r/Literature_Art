@@ -39,5 +39,13 @@ import Headd from "./header.vue"
   .home1 {
     height: 76vh;
   }
+  .he {
+    background-color: #FFFFFF;
+  }
+}
+@media(prefers-color-scheme: dark){
+  .he {
+    background-color: #121212;
+  }
 }
 </style>
