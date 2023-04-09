@@ -187,13 +187,11 @@ function deLogin(){
 {
   text-align: center;
   width: 5vw;
-
-
 }
 
 .outside_menu_item span{
   display: inline-block;
-  padding-bottom: 26px;
+  padding-bottom: 20px;
 }
 
 .el-menu-item.is-active{
@@ -325,14 +323,41 @@ function deLogin(){
   h1 {
     color: white;
   }
-  span {
-    color: #5B93FF;
+  .nav {
+    background-color: #121212;
   }
+  span {
+    //color: #5B93FF;
+    //background-color: #121212;
+  }
+  .el-menu--horizontal .el-menu-item:not(.is-disabled):focus, .el-menu--horizontal .el-menu-item:not(.is-disabled):hover{
+    background-color: #121212;
+  }
+  .dropdown_item:hover{
+  }
+  .outside_menu_item {
+    background-color: #121212;
+  }
+
 }
 @media (max-width:500px) {
   * {
     font-size: 50px !important;
     //font-weight: bolder !important;
+  }
+  .head {
+    background-color: #fff;
+    height: 4vh;
+  }
+  .head_ {
+    height: 4vh;
+  }
+  .person_image {
+    padding: 25px;
+    top: 0.1vh;
+    left: 52vw;
+  }
+  .el-menu-item {
   }
 
 }
