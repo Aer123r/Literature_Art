@@ -8,7 +8,7 @@ const store =createStore({
         },
         choose_items_array:[-1],
         //文献文库界面中的paper_index值，用于切换界面
-        now_paper_index:1,
+        now_paper_index:0,
         //批量导入界面中的paper_index值，用于切换界面
         now_content_box2_page:1,
         //当前搜索方式

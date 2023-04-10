@@ -379,9 +379,9 @@ function change_page(){
 
 
 .change_page{
-  position: relative;
+  position: absolute;
   left: 900px;
-  top: 900px;
+  top: 990px;
   width: 60px;
   height: 60px;
   background-image: url(../../images/down_arrow.png);

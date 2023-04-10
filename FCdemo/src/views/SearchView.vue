@@ -3,7 +3,7 @@
   <div class="background">
 
     <el-row class="tac" v-if="store.state.now_content_box2_page==1">
-    <el-col >
+    <el-col class="row_class" >
 
 
         <div
@@ -75,13 +75,13 @@
 
     <div class="search_box" v-if="store.state.now_search_method_index!=2">
       <div class="search_input_box">
-        <input type="text" class="input_text" v-if="now_search_method_index==1" v-model="input_text" placeholder="输入关键字搜索" >
-        <input type="text" class="input_text" v-else-if="now_search_method_index==3" v-model="input_text" placeholder="搜索 历史记录" >
-        <input type="text" class="input_text" v-else-if="now_search_method_index==4" v-model="input_text" placeholder="搜索 我的下载" >
-        <input type="text" class="input_text" v-else-if="now_search_method_index==5" v-model="input_text" placeholder="搜索 我的关注" >
-        <input type="text" class="input_text" v-else-if="now_search_method_index==6" v-model="input_text" placeholder="搜索 我的收藏" >
-        <input type="text" class="input_text" v-else-if="now_search_method_index==7" v-model="input_text" placeholder="搜索 我的订阅" >
-        <input type="text" class="input_text" v-else-if="now_search_method_index==8" v-model="input_text" placeholder="搜索 回收站" >
+        <input type="text" class="input_text" v-if="store.state.now_search_method_index==1" v-model="input_text" placeholder="输入关键字搜索" >
+        <input type="text" class="input_text" v-else-if="store.state.now_search_method_index==3" v-model="input_text" placeholder="搜索 历史记录" >
+        <input type="text" class="input_text" v-else-if="store.state.now_search_method_index==4" v-model="input_text" placeholder="搜索 我的下载" >
+        <input type="text" class="input_text" v-else-if="store.state.now_search_method_index==5" v-model="input_text" placeholder="搜索 我的关注" >
+        <input type="text" class="input_text" v-else-if="store.state.now_search_method_index==6" v-model="input_text" placeholder="搜索 我的收藏" >
+        <input type="text" class="input_text" v-else-if="store.state.now_search_method_index==7" v-model="input_text" placeholder="搜索 我的订阅" >
+        <input type="text" class="input_text" v-else-if="store.state.now_search_method_index==8" v-model="input_text" placeholder="搜索 回收站" >
 
         <div class="search_icon" @click="Search()"></div>
       </div>
@@ -235,7 +235,7 @@
     <!-- 第二个界面-批量导入-文件归档 -->
     <div class="content_box2" v-if="store.state.now_search_method_index==2">
       <div class="content_box2_page1" v-if="store.state.now_content_box2_page==1">
-      <div class="check_my_classify">查看我的<div @click="now_content_box2_pages(2)">文件归档</div></div>
+      <div class="check_my_classify">查看我的<span @click="now_content_box2_pages(2)">文件归档</span></div>
       <div class="submit_title">上传文件</div>
       <!-- <div class="submit_file_box">
         <div class="submit_file_image"></div>
@@ -258,7 +258,7 @@
 
 
     <template #tip>
-		<div class="el-upload__tip">请上传格式为PDF文件</div>
+		<div class="el-upload__tip">  &nbsp;</div>
 
 	  </template>
 
@@ -309,7 +309,7 @@
 
           <el-sub-menu index="1-1">
             <template #title>
-
+              <span></span>
               分类1
             </template>
             <el-menu-item index="1-4-1">item one</el-menu-item>
@@ -326,7 +326,7 @@
           </el-sub-menu>
 
           <el-sub-menu index="1-4">
-            <template #title>item four</template>
+            <template #title>中医药</template>
             <el-menu-item index="1-4-1">item one</el-menu-item>
           </el-sub-menu>
         </el-sub-menu>
@@ -339,7 +339,7 @@
         <div class="head_title">标题</div>
       <div class="head_modify_time">修改时间</div>
       <div class="head_capacity">文件大小</div>
-      <div class="page2_left_box">
+      <!-- <div class="page2_left_box"> -->
         <div class="title">文件归档</div>
         <div class="button_box">
           <div class="button1" @click="filing_operation_index=1">搜索添加</div>
@@ -355,11 +355,12 @@
         <input type="checkbox" name="" id=""  class="each_checkbox" @click="history_choose_item(item)" >
         <div class="each_item_title">{{ item.title }}</div>
         <div class="each_time">{{ item.date }}</div>
+        <div class="each_file_size">{{ item.file_size }}</div>
         </div>
       </div>
       
       </div>
-      </div>
+      <!-- </div> -->
 
     </div>
       </div>
@@ -404,7 +405,7 @@
       <div class="each_item" v-for="(item,index) in history_array" >
         <input type="checkbox" name="" id=""  class="each_checkbox" @click="history_choose_item(item)" >
         <div class="title">{{ item }}</div>
-
+        <div class="history_date">{{ history_date[index] }}</div>
         <div class="each_delete_button" @click="delete_history(item)"></div>
       </div>
      </div>
@@ -414,7 +415,7 @@
 
     <!-- 第四个界面-我的下载-->
     <div class="content_box4" v-if="store.state.now_search_method_index==4">
-      <div class="all_records">全部记录</div>
+      <div class="all_records">全部下载</div>
       <div class="clear_cancel_block" v-if="download_delete_list.length!=0">
         <div class="already_chosen" >已经选中 <div>{{download_delete_list.length}}</div>  项</div>
         <div class="delete_button" @click="mul_delete_download()">删除</div>
@@ -429,7 +430,7 @@
           <input type="checkbox" name="" id=""  class="each_checkbox" @click="download_choose_item(item)" >
           <div class="title">{{ item.title }}</div>
           <div class="date">{{ item.date }}</div>
-
+          <div class="display_in_file">在文件夹中展示</div>
         </div>
         <div class="each_delete_button" @click="delete_download(item)"></div>
 
@@ -502,6 +503,12 @@
           <div class="notice_name">{{ item.name }}</div>
           <div class="notice_content">{{ item.content }}</div>
           <div class="cancel_notice" @click="cancel_subscribe(item)">取消订阅</div>
+          <div class="notice_users_box">
+            <div class="image1"></div>
+            <div class="image2"></div>
+            <div class="image3"></div>
+            <div class="image4"></div>
+          </div>
           <div class="notice_member">{{ item.subscribe_number }}人订阅</div>
         </div>
       </div>
@@ -514,14 +521,14 @@
     <div class="content_box8" v-if="store.state.now_search_method_index==8">
       <div class="all_records">回收站</div>
       <!-- 这里要修改参数的值 -->
-      <div class="clear_cancel_block" v-if="delete_history_list.length!=0">
-      <div class="already_chosen" >已经选中 <div>{{ delete_history_list.length }}</div>  项</div>
+      <div class="clear_cancel_block" v-if="delete_trash_list.length!=0">
+      <div class="already_chosen" >已经选中 <div>{{ delete_trash_list.length }}</div>  项</div>
       <div class="delete_button" @click="mul_delete_trash()">还原</div>
       <div class="cancel_button" @click="trash_cancel_delete()">取消</div>
       </div>
 
 
-      <div class="data_item_box8" v-if="trash_data_list.length==0">
+      <div class="data_item_box8" v-if="trash_data_list.length!=0">
         <div class="each_item" v-for="(item,index) in trash_data_list" >
           <div class="each_item_inner">
           <input type="checkbox" name="" id=""  class="each_checkbox" @click="trash_choose_item(item)" >
@@ -567,23 +574,24 @@ import ReadOnlineView from './ReadOnlineView.vue';
 var uid=localStorage.getItem('uid')??""
 
 onMounted(()=>{
-
+  let now_search_method_index=parseInt(localStorage.getItem('now_search_method_index')??'')
+  store.dispatch('change_now_search_method_index',now_search_method_index)
   HistoryGetUser(uid).then((res)=>{
     console.log(uid,'uid');
   }).catch(res2=>{
-    console.log(res2);
-    history_array.value=res2
+    console.log(res2,'res2');
+    history_array.value=res2;
     console.log(history_array.value);
   })
 })
 
 const store=useStore();
-let now_search_method_index=ref(store.state.now_search_method_index)
+// let now_search_method_index=ref(store.state.now_search_method_index)
 
-watch(now_search_method_index, (newValue, oldValue) => {
-  console.log(newValue,'newValue');
+// watch(now_search_method_index, (newValue, oldValue) => {
+//   console.log(newValue,'newValue');
   
-})
+// })
 // let now_search_method=ref('主题')
 // let search_methods=ref(['主题','关键字','篇关摘','篇名','作者','第一作者','通讯作者','作者单位','参考文献','全文','摘要'])
 
@@ -595,13 +603,13 @@ let input_text=ref('')
 let all_delete_index=ref(0)
 let all_delete_content=ref(['','删除文件','清空记录'])
 function yes_delete(){
-  if(now_search_method_index.value==3){
+  if(store.state.now_search_method_index==3){
     history_all_clear()
   }
-  else if(now_search_method_index.value==4){
+  else if(store.state.now_search_method_index==4){
     download_all_clear()
   }
-  else if(now_search_method_index.value==8){
+  else if(store.state.now_search_method_index==8){
     trash_all_clear()
   }
 }
@@ -609,6 +617,8 @@ function yes_delete(){
 
 function change_search_method_index(index:number){
   store.dispatch('change_now_search_method_index',index)
+  console.log(store.state.now_search_method_index,'now_search_method_index');
+  
 }
 
 //搜索
@@ -618,7 +628,7 @@ function Search(){
     console.log('searchWord',res);
     })
 
-
+    localStorage.setItem('now_search_method_index','3')
     store.dispatch('change_now_search_method_index',3)
   location.reload()
 }
@@ -781,32 +791,58 @@ let filing_operation_index=ref(0)
 
 let filing_data_input_list=ref([
 {
-    title:'某医院血液科24种抗肿瘤药超说明书用药评价11111',
-    date:'2023/11/15    13:15'
+    title:'全科医生在高血压领域研究的知识图谱分析',
+    date:'2023/3/8    13:11',
+    file_size:'15.2MB'
   },
   {
-    title:'某医院血液科24种抗肿瘤药超说明书用药评价22222',
-    date:'2023/11/15    13:15'
+    title:'中医药治疗老年性黄斑变性的研究进展',
+    date:'2023/3/8    12:57',
+    file_size:'14.6MB'
   },
   {
-    title:'某医院血液科24种抗肿瘤药超说明书用药评价33333',
-    date:'2023/11/15    13:15'
+    title:'基础与临床整合医学人工智能实训案例平台的开发与应用',
+    date:'2023/3/8    11:34',
+    file_size:'13.7MB'
   }
 ])
 
 let filing_data_list=ref([
 {
-    title:'某医院血液科24种抗肿瘤药超说明书用药评价1',
-    date:'2023/11/15    13:15'
+    title:'某医院血液科24种抗肿瘤药超说明书用药评价',
+    date:'2023/3/8    13:18',
+    file_size:'17.2MB'
   },
   {
-    title:'某医院血液科24种抗肿瘤药超说明书用药评价2',
-    date:'2023/11/15    13:15'
+    title:'新医科背景下的康复医学教育改革思考',
+    date:'2023/3/8    13:17',
+    file_size:'17.3MB'
   },
   {
-    title:'某医院血液科24种抗肿瘤药超说明书用药评价3',
-    date:'2023/11/15    13:15'
-  }
+    title:'实验动物智能化综合管理系统开发及应用',
+    date:'2023/3/8    13:15',
+    file_size:'13.3MB'
+  },
+  {
+    title:'医学人文视域下医学史的学科价值和发展路径探析',
+    date:'2023/3/8    13:14',
+    file_size:'12.3MB'
+  },
+  {
+    title:'医学生物化学与分子生物学实验教学的改革与实践',
+    date:'2023/3/8    13:14',
+    file_size:'14.3MB'
+  },
+  {
+    title:'SWOT视角下医学出版的数字化转型研究',
+    date:'2023/3/8    13:13',
+    file_size:'17.3MB'
+  },
+  {
+    title:'临床医学专业新发传染病防控课程设置的思考',
+    date:'2023/3/8    13:11',
+    file_size:'11.3MB'
+  },
 ])
 
 
@@ -932,6 +968,7 @@ const dataSource = ref<Tree[]>([
           },
         ],
       },
+    
 
 
     ],
@@ -983,11 +1020,11 @@ const disabledDate = (time: Date) => {
 
 const fileList = ref<UploadUserFile[]>([
   {
-    name: '文件1.pdf',
+    name: '关于医学免疫学教育模式的构建探析.pdf',
     url: 'https://element-plus.org/images/element-plus-logo.svg',
   },
   {
-    name: '文件2.pdf',
+    name: '临床医学检验中质量影响控制提高的因素及措施.pdf',
     url: 'https://element-plus.org/images/element-plus-logo.svg',
   },
 
@@ -1042,6 +1079,7 @@ function history_choose_item(item:string){
 
 }
 let history_array=ref([])
+let history_date=ref(['2023/3/8    13:18','2023/3/8    13:17','2023/3/8    13:13','2023/3/8    13:11','2023/3/8    13:09','2023/3/8    12:57','2023/3/8    12:53','2023/3/8    11:34','2023/3/8    11:18','2023/3/8    10:38','2023/3/8    10:19'])
 let delete_history_list=ref([])
 
 function mul_delete_history(){
@@ -1075,6 +1113,8 @@ function cancel_delete_history(){
     delete_history_list.value=[]
     delete_history_list.value.length=0
     localStorage.setItem('now_search_method_index','3')
+    store.dispatch('change_now_search_method_index',3)
+    // localStorage.setItem('now_search_method_index','3')
     location.reload()
 }
 
@@ -1091,17 +1131,45 @@ function history_all_clear(){
 /*第四个界面-我的下载 */
 let download_data_list=ref([
   {
-    title:'某医院血液科24种抗肿瘤药超说明书用药评价1',
+    title:'某医院血液科24种抗肿瘤药超说明书用药评价',
     date:'2023/11/15    13:15'
   },
   {
-    title:'某医院血液科24种抗肿瘤药超说明书用药评价2',
+    title:'新医科背景下的康复医学教育改革思考',
+    date:'2023/3/8    13:17'
+  },
+  {
+    title:'实验动物智能化综合管理系统开发及应用',
+    date:'2023/3/8    13:15'
+  },
+  {
+    title:'医学人文视域下医学史的学科价值和发展路径探析',
+    date:'2023/3/8    13:14'
+  },
+  {
+    title:'医学生物化学与分子生物学实验教学的改革与实践 ',
+    date:'2023/3/8    13:14'
+  },
+  {
+    title:'SWOT视角下医学出版的数字化转型研究',
+    date:'2023/3/8    13:13'
+  },
+  {
+    title:'临床医学专业新发传染病防控课程设置的思考 ',
+    date:'2023/3/8    13:11'
+  },
+  {
+    title:'某医院血液科24种抗肿瘤药超说明书用药评价',
     date:'2023/11/15    13:15'
   },
   {
-    title:'某医院血液科24种抗肿瘤药超说明书用药评价3',
-    date:'2023/11/15    13:15'
-  }
+    title:'新医科背景下的康复医学教育改革思考',
+    date:'2023/3/8    13:17'
+  },
+  {
+    title:'实验动物智能化综合管理系统开发及应用',
+    date:'2023/3/8    13:15'
+  },
 ])
 
 let download_delete_list=ref([])
@@ -1120,6 +1188,7 @@ function download_cancel_delete(){
   download_delete_list.value=[]
   download_delete_list.value.length=0
   localStorage.setItem('now_search_method_index','4')
+  store.dispatch('change_now_search_method_index',4)
   location.reload()
 }
 
@@ -1239,21 +1308,21 @@ function delete_collection(item){
 //第七个界面-我的订阅
 let subscribe_data_list=ref([
   {
-    name:"中医药学研究111",
+    name:"中医药学研究",
     content:'中药学是研究中药的基本理论和临床应用的学科，是中医药各专业的基础学科之一。内容包括中药、中药学的概念...',
-    subscribe_number:'111'
+    subscribe_number:'231'
 
   },
   {
-    name:"中医药学研究222",
+    name:"中药学的新变局",
     content:'中药学是研究中药的基本理论和临床应用的学科，是中医药各专业的基础学科之一。内容包括中药、中药学的概念...',
-    subscribe_number:'222'
+    subscribe_number:'252'
 
   },
   {
-    name:"中医药学研究333",
+    name:"中药学的实践研究",
     content:'中药学是研究中药的基本理论和临床应用的学科，是中医药各专业的基础学科之一。内容包括中药、中药学的概念...',
-    subscribe_number:'333'
+    subscribe_number:'362'
 
   },
 
@@ -1301,7 +1370,7 @@ let trash_data_list=ref([
 let delete_trash_list=ref([])
 
 function trash_choose_item(item){
-  if(trash_data_list.value.indexOf(item)==-1){
+  if(delete_trash_list.value.indexOf(item)==-1){
     delete_trash_list.value.unshift(item)
   }
   else{
@@ -1310,8 +1379,7 @@ function trash_choose_item(item){
   }
 
   console.log(item,"item");
-
-
+  
 }
 
 function mul_delete_trash(){
@@ -1345,34 +1413,43 @@ function trash_cancel_delete(){
   delete_trash_list.value=[]
   delete_trash_list.value.length=0
   localStorage.setItem('now_search_method_index','8')
+  store.dispatch('change_now_search_method_index',8)
   location.reload()
 }
 
 //清空全部-回收站
 function trash_all_clear(){
+  console.log('store.state.now_search_method_index',store.state.now_search_method_index);
+  
   all_delete_index.value=2
-  for(var i=0;i<trash_data_list.value.length;i++){
-    delete_trash_list.value[i]=trash_data_list.value[i]
-  }
-  mul_delete_trash()
+  // for(var i=0;i<trash_data_list.value.length;i++){
+  //   delete_trash_list.value[i]=trash_data_list.value[i]
+  // }
+  // mul_delete_trash()
+  trash_data_list.value=[]
+  all_delete_index.value=0
+
 }
 </script>
 
 <style scoped lang="less">
 
 .background{
-  overflow: hidden;
+  height: 990px;
+  height: auto;
+  z-index: -1;
 }
 /*侧边栏 */
 .left_box{
   position: absolute;
-  overflow: hidden;
+ 
   width: 282px;
   height: 990px;
   left: 0px;
   top: 0px;
   background: #FFFFFF;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
 }
 
 .left_each_item{
@@ -1389,12 +1466,19 @@ function trash_all_clear(){
   position: absolute;
   width: 282px;
   max-width: 350px;
-  height: 89vh;
+  height: 990px;
   left: 0px;
   top: 86px;
   background: #FFFFFF;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
   z-index: 3;
+  overflow: hidden;
+}
+
+.row_class{
+  position: absolute;
+  top: 51px;
+  left: 0px;
 }
 
 .nomal_item{
@@ -1493,6 +1577,7 @@ function trash_all_clear(){
   line-height: 26px;
 
   color: #9B9595;
+ 
 }
 
 .search_icon{
@@ -1723,9 +1808,9 @@ function trash_all_clear(){
 .advance_search{
   position: absolute;
   width: 5vw;
-  height: 20px;
-  left: 1740px;
-  top: 9vh;
+  height: 30px;
+  left: 1468px;
+  top: 29px;
   font-family: 'Microsoft YaHei';
   font-style: normal;
   font-weight: 400;
@@ -1733,6 +1818,7 @@ function trash_all_clear(){
   line-height: 29px;
   /* identical to box height */
   color: #000000;
+  cursor: pointer;
 }
 @media(max-width: 500px){
   .advance_search {
@@ -1758,7 +1844,7 @@ function trash_all_clear(){
         position: absolute;;
         width: 744px;
         height: 581px;
-        left: 726px;
+        left: 588px;
         top: 500px;
     }
     100% {
@@ -1766,7 +1852,7 @@ function trash_all_clear(){
         position: absolute;
         width: 744px;
         height: 581px;
-        left: 726px;
+        left: 588px;
         top: 238px;
     }
 }
@@ -1791,7 +1877,7 @@ function trash_all_clear(){
   position: absolute;
   width: 744px;
   height: 581px;
-  left: 726px;
+  left: 588px;
   top: 238px;
   background: #F2F9FF;
   z-index: 4;
@@ -1943,30 +2029,28 @@ function trash_all_clear(){
 
 .content_box1 {
   position: relative;
-  width: 1603px;
-  height: 869px;
-  top: 102px;
-  left: 301px;
-  background-color: #F5FAFF;
+  width: 1638px;
+  height: 904px;
+  top: 86px;
+  left: 281px;
+  background-color:#EBF5FF
 }
 
 .classify{
   position: relative;
   padding-top: 99px;
-  width: 17vw;
-  height: 80vh;
-  // left: 52px;
-  // top: 25px;
+  width: 271px;
+  height: 853px;
+  left: 30px;
+  top: 25px;
 
   background: #FFFFFF;
 }
 
 .classify_title{
   position: absolute;
-  left: 42%;
-  transform: translateX(-50%);
-  width: fit-content;
-  top: 20px;
+  left: 86px;
+  top: 22px;
   font-family: 'Microsoft YaHei';
   font-style: normal;
   font-weight: 400;
@@ -1993,7 +2077,9 @@ function trash_all_clear(){
   font-weight: 400;
   font-size: 20px;
   color: #013480;
+  margin-bottom: 7px;
   cursor: pointer;
+
 }
 
 .classify_item:hover{
@@ -2002,8 +2088,8 @@ function trash_all_clear(){
 
 .commend_box{
   position: absolute;
-  // top: 25px;
-  top: 0px;
+  top: 25px;
+  // top: 0px;
   left: 326px;
   width: 902px;
   height: 853px;
@@ -2022,9 +2108,9 @@ function trash_all_clear(){
 .commend_nav_active_item
 {
   float: left;
-  width: 13vw;
+  width: 120px;
   height: 39px;
-  margin-left: 39px;
+  margin-left: 45px;
   padding: 19px 0;
   margin-top: 4px;
   text-align: center;
@@ -2048,15 +2134,15 @@ function trash_all_clear(){
 /* 推荐文献盒子 */
 .commend_content{
   position: relative;
-  width: 50vw;
-  height: 70vh;
+  width: 863px;
+  height: 766px;
   padding: 18px;
   overflow: scroll;
 }
 .commend_content_item{
 
-  width: 50vw;
-  height: 24vh;
+  width: 863px;
+  height:205px;
   background: #FAFAFA;
   margin-bottom: 16px;
   border-radius: 6px;
@@ -2122,10 +2208,10 @@ function trash_all_clear(){
 }
 .commend_each_author{
   position: absolute;
-  width: 15vw;
+  width: 120px;
   height: 21px;
-  left: 45px;
-  top: 5.5vh;
+  left: 54px;
+  top: 70px;
 
   font-family: 'Microsoft YaHei';
   font-style: normal;
@@ -2140,10 +2226,10 @@ function trash_all_clear(){
 
 .commend_each_name{
   position: absolute;
-  width: 20vw;
+  width: 120px;
   height: 21px;
-  left: 20vw;
-  top: 5.5vh;
+  left: 184px;
+  top: 70px;
 
   font-family: 'Microsoft YaHei';
   font-style: normal;
@@ -2157,10 +2243,10 @@ function trash_all_clear(){
 
 .commend_each_year{
   position: absolute;
-  width: 20vw;
+  width: 120px;
   height: 21px;
-  left: 20vw;
-  top: 7.9vh;
+  left: 330px;
+  top: 70px;
 
   font-family: 'Microsoft YaHei';
   font-style: normal;
@@ -2648,7 +2734,7 @@ function trash_all_clear(){
 }
 .content_box2_page1 .check_my_classify{
   position: absolute;
-  width: 30vw;
+  width: 200px;
   height: 33px;
   left: 1275px;
   top: 109px;
@@ -2666,7 +2752,7 @@ function trash_all_clear(){
     top: 19px;
   }
 }
-.content_box2_page1 .check_my_classify div{
+.content_box2_page1 .check_my_classify span{
   color: #1559DD;
   font-weight: 700;
   cursor: pointer;
@@ -2712,7 +2798,6 @@ function trash_all_clear(){
   font-size: 26px;
   line-height: 149.48%;
   /* identical to box height, or 39px */
-
   letter-spacing: 0.11em;
 
   color: #000000;
@@ -2749,6 +2834,38 @@ function trash_all_clear(){
     /* //这里设置原有的缩略图视图影藏 */
 	}
 
+  ::v-deep .el-progress__text {
+    padding: 0;
+    margin: 0;
+    // position: absolute;
+    // top: 50px;
+    // left:500px ;
+    margin-top: -30px;
+    color: #808080;
+    margin-left: 15px;
+}
+::v-deep .el-progress {
+    margin-left: 0;
+}
+// 百进度条底色
+::v-deep .el-progress-bar__outer {
+    width: 802px;
+  height: 5px !important;
+    background-color: rgba(0, 0, 0, 0.15);
+    background-color:  #D9D9D9 ;
+    background: #1559DD !important;
+    border-radius: 2.5px 0px 0px 2.5px;
+    margin-top: -30px;
+}
+// 百进度条颜色
+::v-deep .el-progress-bar__inner {
+   
+    background: #1559DD !important;
+    width: 802px;
+  height: 5px;
+    margin-top: -30px;
+}
+
 
 
 ::v-deep  .el-upload-list--picture .el-upload-list__item{
@@ -2768,15 +2885,19 @@ function trash_all_clear(){
 
 }
 
-
+::v-deep .el-upload-list__item-name{
+  text-align: left !important;
+}
 
 
 ::v-deep .el-upload-list__item-file-name{
+  margin: 0;
+  padding: 0;
   position: absolute;
-  width: 388px;
-  height: 2vh;
+  width: 550px;
+  height: 23px;
   top: 10px;
-  left: 70px;
+
   font-family: 'Microsoft YaHei';
   font-style: normal;
   font-weight: 700;
@@ -2847,6 +2968,7 @@ function trash_all_clear(){
   left: 0px;
   top: 0;
   border-right: 1px solid #E6E6E6;
+  background-color: yellow;
 
 }
 .content_box2_page2 .return_image{
@@ -3084,7 +3206,18 @@ function trash_all_clear(){
 
   color: #9B9595;
 }
+.page2_right_box  .item_box .each_file_size{
+  position: absolute;
+  left: 1225px;
+  top: 15px;
+  font-family: 'Microsoft YaHei';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 26px;
 
+  color: #9B9595;
+}
 
 /* 文件归档子界面 */
 /* 检索添加界面 */
@@ -3226,18 +3359,19 @@ function trash_all_clear(){
 /*第三个界面 */
 
 .content_box3,
-.content_box4,
+
 .content_box5,
 .content_box6,
 .content_box7,
 .content_box8
 {
   position: absolute;
-  width: 1643px;
-  // height: 1080px;
+  width: 1638px;
+  height: 896px;
   left: 282px;
-  top: 100px;
+  top: 176px;
   z-index: -1;
+
 }
 
 
@@ -3246,7 +3380,7 @@ function trash_all_clear(){
   width: 200px;
   height: 37px;
   left: 133px;
-  top: 8vh;
+  top: 36px;
 
   font-family: 'Microsoft YaHei';
   font-style: normal;
@@ -3264,7 +3398,7 @@ function trash_all_clear(){
   width: 160px;
   height: 29px;
   left: 1088px;
-  top: 141px;
+  top: 47px;
 
   font-family: 'Microsoft YaHei';
   font-style: normal;
@@ -3287,7 +3421,7 @@ function trash_all_clear(){
   width: 69px;
   height: 44px;
   left: 1323px;
-  top: 134px;
+  top: 40px;
 
   background: #013480;
   border-radius: 6px;
@@ -3307,7 +3441,7 @@ function trash_all_clear(){
   width: 69px;
   height: 44px;
   left: 1397px;
-  top: 134px;
+  top: 40px;
   background: #D9D9D9;
   border-radius: 6px;
   font-family: 'Microsoft YaHei';
@@ -3324,20 +3458,21 @@ function trash_all_clear(){
 .data_item_box3{
   position: absolute;
   width: 1288px;
-  height: 832px;
-  top: 197px;
+  height: 790px;
+  top: 103px;
   left: 178px;
   z-index: -1;
   overflow-x: scroll;
+ 
 }
 
 .data_item_box3 .each_item{
   position: relative;
-  top: -1vh;
-  width: 1288px;
+  top: 0vh;
+  width: 1280px;
   height: 55px;
   background: #ffffff;
-  border: 1px solid #EBF5FF;
+  border: 1px solid rgba(1, 52, 128, 1);
   border-radius: 6px;
   margin-bottom: 16px;
 
@@ -3364,9 +3499,9 @@ function trash_all_clear(){
 
 
 .data_item_box3 .each_item .title{
-  float: left;
-  margin-left: 101px;
-  margin-top: 14px;
+  position: absolute;
+  left: 101px;
+  top: 14px;
   font-family: 'Microsoft YaHei';
   font-style: normal;
   font-weight: 400;
@@ -3378,12 +3513,13 @@ function trash_all_clear(){
 }
 
 
-.data_item_box3 .each_item .date{
+.data_item_box3 .each_item .history_date{
+  position: absolute;
   width: 263px;
   height: 26px;
   /* float: left; */
-  margin-top: 14px;
-  margin-left: 745px;
+  top: 14px;
+  left: 745px;
   font-family: 'Microsoft YaHei';
   font-style: normal;
   font-weight: 400;
@@ -3406,23 +3542,32 @@ function trash_all_clear(){
 
 
 /* 第四个界面 */
+.content_box4{
+  position: absolute;
+  width: 1638px;
+  height: 896px;
+  left: 282px;
+  top: 176px;
+  z-index: -1;
+}
 .data_item_box4{
   position: absolute;
   width: 1288px;
-  height: 832px;
-  top: 197px;
-  left: 178px;
+  height: 760px;
+  top: 100px;
+  left: 173px;
   z-index: -1;
-  overflow-x: scroll;
+  overflow: scroll;
 }
 
 .data_item_box4 .each_item{
+  position: relative;
   width: 1288px;
   height: 98px;
   background: transparent;
-  border: 1px solid #EBF5FF;
+  // border: 1px solid #EBF5FF;
   border-radius: 6px;
-  margin-bottom: 18px;
+  // margin-bottom: 18px;
 
 }
 
@@ -3431,21 +3576,21 @@ function trash_all_clear(){
 }
 
 .data_item_box4 .each_checkbox{
-  float: left;
+  position: absolute;
   box-sizing: border-box;
   width: 30px;
   height: 30px;
-  margin-top: 12px;
-  margin-left: 18px;
+  top: 12px;
+  left: 18px;
   border: 1px solid #000000;
   border-radius: 6px;
 }
 
 
 .data_item_box4 .each_item .title{
-  float: left;
-  margin-left: 101px;
-  margin-top: 14px;
+  position: absolute;
+  left: 101px;
+  top: 14px;
   font-family: 'Microsoft YaHei';
   font-style: normal;
   font-weight: 400;
@@ -3457,25 +3602,28 @@ function trash_all_clear(){
 }
 
 .data_item_box4 .display_in_file{
-  float: left;
-  margin-left: -422px;
-  margin-top: 60px;
+  position: absolute;
+  left: 101px;
+  top: 60px;
 
   font-family: 'Microsoft YaHei';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 21px;
-  letter-spacing: 0.045em;
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 21px;
+letter-spacing: 0.045em;
 
+color: #1559DD;
+cursor: pointer;
 }
 
 .data_item_box4 .each_item .date{
+  position: absolute;
   width: 263px;
   height: 26px;
   /* float: left; */
-  margin-top: 14px;
-  margin-left: 745px;
+  top: 14px;
+  left: 745px;
   font-family: 'Microsoft YaHei';
   font-style: normal;
   font-weight: 400;
@@ -3486,9 +3634,10 @@ function trash_all_clear(){
 }
 
 .data_item_box4 .each_item .each_delete_button{
-  float: right;
-  margin-top: -25px;
-  margin-right: 16px;
+
+  position: absolute;
+  top: 16px;
+  left: 1219px;
   width: 23px;
   height: 23px;
   background-image: url(../../images/fork.png);
@@ -3498,10 +3647,10 @@ function trash_all_clear(){
 /* 第五个界面 */
 .data_item_box5{
   position: absolute;
-  width: 1288px;
-  height: 832px;
-  top: 197px;
-  left: 178px;
+  width: 1446px;
+  height: 778px;
+  top: 107px;
+  left: 135px;
   z-index: -1;
   overflow-x: scroll;
 
@@ -3514,7 +3663,7 @@ function trash_all_clear(){
 
   border-radius: 6px;
   margin-bottom: 18px;
-  margin-right: 10px;
+  margin-right: 88px;
 }
 
 .data_item_box5 .each_inner{
@@ -3610,8 +3759,8 @@ function trash_all_clear(){
 .data_item_box6{
   position: absolute;
   width: 1387px;
-  height: 832px;
-  top: 191px;
+  height: 799px;
+  top: 97px;
   left: 128px;
   z-index: -1;
   overflow-x: scroll;
@@ -3738,8 +3887,8 @@ function trash_all_clear(){
 .data_item_box7{
   position: absolute;
   width: 1387px;
-  height: 832px;
-  top: 191px;
+  height: 808px;
+  top: 87px;
   left: 128px;
   z-index: -1;
   overflow-x: scroll;
@@ -3749,10 +3898,11 @@ function trash_all_clear(){
 .data_item_box7 .notice_each_item{
   float: left;
   width: 604px;
-  height: 180px;
+  height: 160px;
   margin-bottom: 41px;
 
   border-radius: 10px;
+  overflow: hidden;
 }
 .data_item_box7 .notice_each_item:nth-child(2n+1){
   margin-right: 166px;
@@ -3771,7 +3921,7 @@ function trash_all_clear(){
 .data_item_box7 .notice_image{
   position: absolute;
   width: 263px;
-  height: 171px;
+  height: 160px;
   border-radius: 10px;
   background-image: url(data:image/jpeg;base64,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);
   background-size: contain;
@@ -3813,12 +3963,14 @@ function trash_all_clear(){
   top: 0px;
 
   font-family: 'Microsoft YaHei';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 22px;
-  line-height: 29px;
+font-style: normal;
+font-weight: 400;
+font-size: 24px;
+line-height: 32px;
+/* identical to box height */
 
-  color: #000000;
+
+color: #000000;
 
 
 }
@@ -3833,9 +3985,9 @@ function trash_all_clear(){
   font-family: 'Microsoft YaHei';
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
-  line-height: 21px;
-  overflow: scroll;
+  font-size: 18px;
+  line-height: 24px;
+
   color: #9B9595;
 
 }
@@ -3843,10 +3995,10 @@ function trash_all_clear(){
 
 .data_item_box7 .cancel_notice{
   position: relative;
-  //width: 64px;
-  width: fit-content;
+  width: 80px;
+  // width: fit-content;
   height: 22px;
-  left: 536px;
+  left: 530px;
   top: 124px;
   background: #EBF5FF;
   border-radius: 11px;
@@ -3855,11 +4007,61 @@ function trash_all_clear(){
   font-weight: 400;
   font-size: 10px;
   line-height: 22px;
-  text-align: 22px;
+  text-align: center;
   color: #013480;
   cursor: pointer;
 }
 
+.data_item_box7 .notice_users_box{
+  position: absolute;
+  left: 294px;
+  top: 121px;
+  width: 69px;
+  height: 28px;
+
+}
+
+.data_item_box7 .notice_users_box .image1{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  background-color: pink;
+}
+
+.data_item_box7 .notice_users_box .image2{
+  position: absolute;
+  top: 0px;
+  left: 11px;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  background-color: rgb(118, 187, 137);
+}
+
+.data_item_box7 .notice_users_box .image3{
+  position: absolute;
+  width: 27px;
+  height: 27px;
+  top: 0px;
+  left: 22px;
+  border-radius: 50%;
+  background-color: rgb(158, 170, 124);
+}
+
+.data_item_box7 .notice_users_box .image4{
+  position: absolute;
+  width: 27px;
+  height: 27px;
+  top: 0px;
+  left: 33px;
+  border-radius: 50%;
+  background-color: #F3F2F2;
+  background-image: url(../../images/更多.png);
+  background-size: contain;
+}
 .data_item_box7 .notice_member{
   position: absolute;
   width: 100px;
@@ -3881,9 +4083,9 @@ function trash_all_clear(){
 .data_item_box8{
   position: absolute;
   width: 1288px;
-  height: 832px;
-  top: 197px;
-  left: 178px;
+  height: 800px;
+  top: 103px;
+  left: 173px;
   z-index: -1;
   overflow-x: scroll;
 }

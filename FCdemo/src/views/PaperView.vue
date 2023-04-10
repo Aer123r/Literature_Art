@@ -36,9 +36,10 @@
           <div class="read_online_button" @click="change_now_paper_index(2)">在线阅读</div>
           <div class="download_button" @click="DownloadPDF(now_paper_unit.paper_id)">PDF下载</div>
           <div class="file_classify_button" @click="to_filing_page()">文献归档</div>
-          <div class="download_number">下载量：{{ now_paper_unit.download_number }}</div>
-          <div class="file_size">文件大小:{{ now_paper_unit.file_size }}</div>
+      
         </div>
+        <div class="download_number">下载量：{{ now_paper_unit.download_number }}</div>
+          <div class="file_size">文件大小:{{ now_paper_unit.file_size }}</div>
     </div>
 </template>
 
@@ -128,6 +129,7 @@ function to_filing_page(){
 .paperView_body{
     width: 1603px;
     height: 869px;
+    background-color: #F5FAFF;
 }
 
 .title{
@@ -278,6 +280,7 @@ function to_filing_page(){
     line-height: 21px;
 
     color: #BDBDBD;
+  
 }
 .download_number{
     top: 778px;
@@ -305,8 +308,8 @@ function to_filing_page(){
 }
 .share_icon{
     left: 1360px;
-    background-image: url(../../images/share_icon.png);
-
+    background-image: url(../../images/分享.png);
+    
 }
 .collection_icon{
     left: 1412px;
@@ -331,8 +334,8 @@ function to_filing_page(){
 .file_classify_button{
     width: 132px;
     position: relative;
-    margin-left: 2vw;
-    background: #EBF5FF;
+    margin-right: 2vw;
+    background: #CFF4FF;
     border-radius: 6px;
     font-family: 'Microsoft YaHei UI';
     font-style: normal;
@@ -345,12 +348,14 @@ function to_filing_page(){
     cursor: pointer;
 }
 .read_online_button{
-    background: #BDDFFF;
+
+    background: #EBF5FF;
     /*left: 240px;*/
 }
 
 .download_button{
-    background: #CFF4FF;
+   
+    background: #BDDFFF;
     /*left: 385px;*/
 }
 

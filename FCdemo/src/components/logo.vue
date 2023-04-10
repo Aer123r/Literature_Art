@@ -12,13 +12,14 @@
 
 <style scoped>
 .logo {
-  width: 65px;
-  height: 65px;
+  width: 63px;
+  height: 61px;
   position: absolute;
-  left: 40px;
-  top: 27px;
+  left: 42px;
+  top: 31px;
   border-radius: 50%;
-  background-color: yellow;
+  background-image: url(../../images/logo.png);
+  background-size: contain;
 }
 
 
