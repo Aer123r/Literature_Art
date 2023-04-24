@@ -13,7 +13,7 @@
     <div>
         <div class="logo">
       </div>
-      <div class="title"><h1><span>文</span>易通</h1></div>
+      <div class="title"><h1><span>医</span>识库</h1></div>
     </div>
 
 
@@ -100,11 +100,12 @@ function deLogin(){
 </script>
 
 <style lang="less">
-
+// @import './common/font.css';
 .head{
 
   width: 1920px;
   height: 15vh;
+
 }
 
 .head_ {
@@ -150,10 +151,11 @@ function deLogin(){
 }
 
 .nav{
-  width: 1136px;
+  width: 1076px;
   height: 88px;
   position: absolute;
-  left: 784px;
+  left: 804px;
+
 }
 
 /* .nav .line{
@@ -178,9 +180,13 @@ function deLogin(){
   background: #FFFFFF;
 
 }
+.el-menu-item:hover{
+  background-color: transparent !important;
+}
 
 .el-menu-item.is-active {
     border-bottom: 2px blue;
+    background-color: transparent !important;
 }
 
 .outside_menu_item

@@ -108,7 +108,7 @@
 
     <div class="search_button" v-if="store.state.now_search_method_index==3"  @click="all_delete_index=2"><div>全部清空</div></div>
     <div class="search_button" v-else-if="store.state.now_search_method_index==4" @click="all_delete_index=1">全部删除</div>
-    <div class="search_button" v-else-if="store.state.now_search_method_index==8" @click="all_delete_index=2">全部清空</div>
+    <div class="search_button" v-else-if="store.state.now_search_method_index==8" @click="all_delete_index=3">全部还原</div>
 
     <div class="advance_search" v-if="store.state.now_search_method_index==1">高级检索<div @click=""></div></div>
   </div>
@@ -131,9 +131,9 @@
       <div class="down_box">
         <div class="title1">确定要{{ all_delete_content[all_delete_index] }}吗</div>
 
-      <div class="title2">之后你将无法恢复他们</div>
+      <div class="title2" >之后你将无法撤回</div>
       <div class="tip">-请谨慎选择-</div>
-      <div class="yes_delete" @click="yes_delete()">确认删除</div>
+      <div class="yes_delete" @click="yes_delete()">确认</div>
       <div class="cancel_delete" @click="all_delete_index=0">取消</div>
       </div>
 
@@ -251,6 +251,7 @@
       :before-remove="beforeRemove"
       :multiple="true"
       :on-exceed="handleExceed"
+      :on-errOR="handleError"
       list-type="picture"
   >
     <el-icon class="submit_file_image"></el-icon>
@@ -504,10 +505,10 @@
           <div class="notice_content">{{ item.content }}</div>
           <div class="cancel_notice" @click="cancel_subscribe(item)">取消订阅</div>
           <div class="notice_users_box">
-            <div class="image1"></div>
-            <div class="image2"></div>
-            <div class="image3"></div>
-            <div class="image4"></div>
+            <div :class="'image'+(index*4+1)"></div>
+            <div :class="'image'+(index*4+2)"></div>
+            <div :class="'image'+(index*4+3)"></div>
+            <div :class="'image'+(index*4+4)"></div>
           </div>
           <div class="notice_member">{{ item.subscribe_number }}人订阅</div>
         </div>
@@ -601,7 +602,7 @@ let input_text=ref('')
 
 /*通用 */
 let all_delete_index=ref(0)
-let all_delete_content=ref(['','删除文件','清空记录'])
+let all_delete_content=ref(['','删除文件','清空记录','全部还原'])
 function yes_delete(){
   if(store.state.now_search_method_index==3){
     history_all_clear()
@@ -610,6 +611,7 @@ function yes_delete(){
     download_all_clear()
   }
   else if(store.state.now_search_method_index==8){
+    all_delete_index.value=3
     trash_all_clear()
   }
 }
@@ -792,56 +794,125 @@ let filing_operation_index=ref(0)
 let filing_data_input_list=ref([
 {
     title:'全科医生在高血压领域研究的知识图谱分析',
-    date:'2023/3/8    13:11',
-    file_size:'15.2MB'
+    date:'2023/04/15 18:20',
+    file_size:'7.1MB'
   },
   {
     title:'中医药治疗老年性黄斑变性的研究进展',
-    date:'2023/3/8    12:57',
-    file_size:'14.6MB'
+    date:'2023/04/14 09:45',
+    file_size:'7.4MB'
   },
   {
     title:'基础与临床整合医学人工智能实训案例平台的开发与应用',
-    date:'2023/3/8    11:34',
-    file_size:'13.7MB'
-  }
+    date:'2023/04/12 15:30',
+    file_size:'3.7MB'
+  },
+  {title: '医学大数据分析的云计算平台研究',
+date: '2023/12/21 14:15',
+file_size: '4.0MB'},
+{
+  title: '人工智能在药物开发中的应用研究',
+date: '2023/05/02 13:40',
+file_size: '3.8MB'
+}
+  ,{
+  title: '医疗大数据的分析与应用',
+date: '2023/06/06 09:15',
+file_size: '4.0MB'
+},
+{
+  title: '生物医学工程学在康复治疗中的应用研究',
+date: '2023/08/03 09:30',
+file_size: '3.6MB'
+},
+{
+  title: '基于深度学习的医疗图像分割研究',
+date: '2023/11/09 13:50',
+file_size: '3.8MB'
+}
+  
 ])
 
 let filing_data_list=ref([
 {
     title:'某医院血液科24种抗肿瘤药超说明书用药评价',
-    date:'2023/3/8    13:18',
-    file_size:'17.2MB'
+    date:'2023/04/08 22:10',
+    file_size:'7.2MB'
   },
   {
     title:'新医科背景下的康复医学教育改革思考',
-    date:'2023/3/8    13:17',
-    file_size:'17.3MB'
+    date:'2023/04/03 16:55',
+    file_size:'7.0MB'
   },
   {
     title:'实验动物智能化综合管理系统开发及应用',
-    date:'2023/3/8    13:15',
+    date:'2023/04/02 10:20',
     file_size:'13.3MB'
   },
   {
     title:'医学人文视域下医学史的学科价值和发展路径探析',
-    date:'2023/3/8    13:14',
-    file_size:'12.3MB'
+    date:'2023/03/30 14:30',
+    file_size:'6.8MB'
   },
   {
     title:'医学生物化学与分子生物学实验教学的改革与实践',
     date:'2023/3/8    13:14',
-    file_size:'14.3MB'
+    file_size:'4.3MB'
   },
   {
     title:'SWOT视角下医学出版的数字化转型研究',
-    date:'2023/3/8    13:13',
-    file_size:'17.3MB'
+    date:'2023/03/24 17:50',
+    file_size:'7.7MB'
   },
   {
     title:'临床医学专业新发传染病防控课程设置的思考',
-    date:'2023/3/8    13:11',
+    date:'2023/03/26 08:40',
+    file_size:'6.8MB'
+  },
+  {
+    title:'儿童口腔急诊风险防控及行为管理策略',
+    date:'2023/03/28 11:15',
+    file_size:'5.4MB'
+  },
+  {
+    title:'单基因高血压相关致病基因与子痫前期的关联',
+    date:'2023/04/03 06:42',
+    file_size:'8.6MB'
+  },
+  {
+    title:'基于MRI影像组学构建新辅助放化疗后局部进展期直肠癌的预测模型',
+    date:'2023/04/14 15:16',
     file_size:'11.3MB'
+  },
+  {
+    title:'低共熔溶剂微乳液改善类胡萝卜素溶解度、稳定性和抗氧化活性的研究',
+    date:'2023/04/11 13:28',
+    file_size:'12.1MB'
+  },
+  {
+    title:'血维生素D、钙水平与2型糖尿病患者肥胖的相关性研究',
+    date:'2023/04/04 10:57',
+    file_size:'11.0MB'
+  },
+  {
+    title:'临床医学检验中质量控制提高的影响因素及措施',
+    date:'2023/04/06 23:29',
+    file_size:'8.2MB'
+  },
+  {
+    title:'中国人心脏钠离子通道病的病人特异性iPSCs来源心肌细胞的电生理学功能研究与SUNDS发病机制的新探索',
+    date:'2023/04/08 17:55',
+    file_size:'15.1MB'
+  },
+  {
+    title:'线立体SNP检测技术的法医学研究',
+    date:'2023/04/12 06:58',
+    file_size:'7.8MB'
+  },
+  {
+    title:'超声心动图在心血管疾病中的应用',
+    date:'2023/04/10 07:37',
+    file_size:'15.5MB'
   },
 ])
 
@@ -1045,7 +1116,10 @@ const handleExceed: UploadProps['onExceed'] = (files, uploadFiles) => {
     } totally`
   )
 }
-
+const handleError: UploadProps['onError'] = (err,file, uploadFiles) => {
+  console.log(err);
+  fileList.value.push(file);
+}
 const beforeRemove: UploadProps['beforeRemove'] = (uploadFile, uploadFiles) => {
   return ElMessageBox.confirm(
     `Cancel the transfert of ${uploadFile.name} ?`
@@ -1079,7 +1153,7 @@ function history_choose_item(item:string){
 
 }
 let history_array=ref([])
-let history_date=ref(['2023/3/8    13:18','2023/3/8    13:17','2023/3/8    13:13','2023/3/8    13:11','2023/3/8    13:09','2023/3/8    12:57','2023/3/8    12:53','2023/3/8    11:34','2023/3/8    11:18','2023/3/8    10:38','2023/3/8    10:19'])
+let history_date=ref(['2023/3/8    15:18','2023/3/8    15:17','2023/3/8    13:13','2023/3/8    13:11','2023/3/8    13:09','2023/3/8    12:57','2023/3/8    12:53','2023/3/8    11:34','2023/3/8    11:18','2023/3/8    10:38','2023/3/8    10:19'])
 let delete_history_list=ref([])
 
 function mul_delete_history(){
@@ -1132,7 +1206,7 @@ function history_all_clear(){
 let download_data_list=ref([
   {
     title:'某医院血液科24种抗肿瘤药超说明书用药评价',
-    date:'2023/11/15    13:15'
+    date:'2023/4/15    13:15'
   },
   {
     title:'新医科背景下的康复医学教育改革思考',
@@ -1231,21 +1305,65 @@ function download_all_clear(){
 
 /*第五个界面——我的关注 */
 let notice_persons_list=ref([
-  {name:'吴高源',
-   workplace:'福州大学',
-   major:'自动化'
+  {name:'蒋建东',
+   workplace:'中国医学科学院医药生物技术研究所',
+   major:'新降血脂信号通路、抗病毒机理、抗肿瘤药物...'
   },
   {name:'叶晓滨',
    workplace:'厦门市思明区筼筜街道社区卫生服务中心',
    major:'中药学;中医学;药学'
   },
-  {name:'叶晓滨',
-   workplace:'厦门市思明区筼筜街道社区卫生服务中心',
-   major:'中药学;中医学;药学'
+  {name:'田金洲',
+   workplace:'北京中医药大学神经病学中心',
+   major:'中医脑病'
   },
-  {name:'叶晓滨',
-   workplace:'厦门市思明区筼筜街道社区卫生服务中心',
-   major:'中药学;中医学;药学'
+  {name:'高鸿魁',
+   workplace:'中山大学眼科中心',
+   major:'眼科、视觉科学、眼底新生血管疾病'
+  },
+  {name:'朱兆云',
+   workplace:'云南白药集团股份有限公司',
+   major:'中药研发'
+  },
+  {name:'高峰',
+   workplace:'四川大学华西口腔医院',
+   major:'口腔颌面外科、口腔颌面肿瘤、口腔种植...'
+  },
+  {name:'肖伟',
+   workplace:'江苏康缘药业股份有限公司',
+   major:'中成药智能制造'
+  },
+  {name:'赵玉沛',
+   workplace:'天津医科大学总医院创伤骨科中心',
+   major:'创伤骨科、骨与软骨修复再生'
+  },
+  {name:'邬堂春',
+   workplace:'华中科技大学公共卫生学院',
+   major:'环境病因、防控策略'
+  },
+  {name:'陈万青',
+   workplace:'上海交通大学附属瑞金医院肿瘤研究所',
+   major:'肿瘤、肿瘤免疫、肿瘤转移'
+  },
+  {name:'郭毅',
+   workplace:'北京大学第一医院神经内科',
+   major:'神经内科、神经免疫、多发性硬化等领域的基础和临床研究'
+  },
+  {name:'李兰娟',
+   workplace:'浙江大学医学院附属第一医院感染科',
+   major:'感染科、抗感染药物、肝病等领域的基础和临床研究'
+  },
+  {name:'马建堂',
+   workplace:'四川大学华西医院器官移植中心',
+   major:'器官移植、移植免疫、移植耐受等领域的基础和临床研究'
+  },
+  {name:'钱静文',
+   workplace:'上海交通大学医学院附属仁济医院生殖医学中心',
+   major:'生殖医学、人造精子细胞、生殖干细胞等领域的基础和临床研究'
+  },
+  {name:'孙永强',
+   workplace:'中国医学科学院北京协和医学院附属北京协和医院泌尿外科',
+   major:'泌尿外科、泌尿系肿瘤、泌尿系结石等领域的基础和临床研究'
   },
 
 ])
@@ -1273,25 +1391,36 @@ let collect_data_list=ref([
     content:'共情能力是医学叙事能力的核心之一，相较于外感知与内感知，共情是理解陌生他者的关键方式，高层次共情能力可以借助后天的训练提升。文学除了可以提供共情资源外，审美移情与共情在对象的性质、主客间的关系、发......',
   },
   {
-    name:'徐光宪    冯春    马飞',
-    subhead:'基于UNet的医学图像分割综述',
-    content:'UNet作为卷积神经网络（CNN）中最重要的语义分割框架之一，广泛地应用于医学图像的分类、分割和目标检测等图像处理任务。本文对UNet的结构原理进行了阐述，并对基于UNet网络及变体模型进行了全面综述，从...',
+    name:'张家菁    黎可盈    魏振东',
+    subhead:'以人为对象的医学科学试验的伦理分析',
+    content:'随着医学技术的不断进步，以人为对象的科学试验研究中出现了一些违背伦理原则的现象。以人体试验研究的类型为切入点，通过对不同类型的人体试验研究进行伦理分析及评价，得出在人体试验研究中应坚持人道主义原则......',
   },
   {
-    name:'徐光宪    冯春    马飞',
-    subhead:'基于UNet的医学图像分割综述',
-    content:'UNet作为卷积神经网络（CNN）中最重要的语义分割框架之一，广泛地应用于医学图像的分类、分割和目标检测等图像处理任务。本文对UNet的结构原理进行了阐述，并对基于UNet网络及变体模型进行了全面综述，从...',
+    name:'黄鑫    朱健康    尹军祥',
+    subhead:'医学领域颠覆性技术发展现状、问题及展望',
+    content:'近年来，人工智能、基因编辑、生物3D打印、诱导多能干细胞、合成生物学等新兴技术备受关注，并逐步运用至临床医学领域，给许多疾病的诊治带来了新方法。这些技术因其独特的优势正在取代或者已经取代传统医疗技术......',
   },
   {
-    name:'徐光宪    冯春    马飞',
-    subhead:'基于UNet的医学图像分割综述',
-    content:'UNet作为卷积神经网络（CNN）中最重要的语义分割框架之一，广泛地应用于医学图像的分类、分割和目标检测等图像处理任务。本文对UNet的结构原理进行了阐述，并对基于UNet网络及变体模型进行了全面综述，从...',
+    name:'方德宇    张彬彬    张林',
+    subhead:'基于循证医学的补肾益髓法治疗AD疗效评价',
+    content:'目的 系统评价补肾益髓中药复方治疗阿尔茨海默病的疗效。方法 检索6个国内外常用数据库，收集补肾益髓中药复方治疗阿尔茨海默病的临床随机对照试验文献，进行Meta分析。结果 共纳入文献研究12篇，共计733例患者......',
   },
   {
-    name:'徐光宪    冯春    马飞',
-    subhead:'基于UNet的医学图像分割综述',
-    content:'UNet作为卷积神经网络（CNN）中最重要的语义分割框架之一，广泛地应用于医学图像的分类、分割和目标检测等图像处理任务。本文对UNet的结构原理进行了阐述，并对基于UNet网络及变体模型进行了全面综述，从...',
+    name:'李明',
+    subhead:'“医家学说与学术流派”课程群构建与思考',
+    content:'为培养符合时代需求、具有创新精神的复合型中医药人才，教学团队以培养学生的核心素养为目标，从深化教学内容、精研课程设计、丰富教学方法、完善教学评价等方面，开展“医家学说与学术流派”课程群改革。通过整......',
   },
+  {
+    name:'农泽宁',
+    subhead:'头疼脑热试试民间“滚蛋疗法”',
+    content:'<正>患了轻微的感冒发烧、关节肿痛、皮肤肿胀,一定要求助医生吗?非也。在民间,流传着用蛋(优选鸡蛋)在身体上来回滚动达到治疗或缓解疾病的做法，俗称"滚蛋疗法"。其操作简便,效果较显著。现介绍如下,以飨读者。...',
+  },
+  {
+    name:'李璐     焦楠      袁娜',
+    subhead:'近十年中医学课程教学方法研究热点与趋势分析',
+    content:'目的：分析近十年我国中医学课程教学方法研究现状与热点，明晰教学方法内涵，总结不同类型课程使用教学方法的规律，探索教学方法发展趋势，为后续发展提供参考。方法：以中国知网数据库为文献计量分析数据源，应...',
+  },
+
 ])
 
 function delete_collection(item){
@@ -1307,24 +1436,31 @@ function delete_collection(item){
 
 //第七个界面-我的订阅
 let subscribe_data_list=ref([
-  {
-    name:"中医药学研究",
-    content:'中药学是研究中药的基本理论和临床应用的学科，是中医药各专业的基础学科之一。内容包括中药、中药学的概念...',
-    subscribe_number:'231'
-
-  },
-  {
-    name:"中药学的新变局",
-    content:'中药学是研究中药的基本理论和临床应用的学科，是中医药各专业的基础学科之一。内容包括中药、中药学的概念...',
-    subscribe_number:'252'
-
-  },
-  {
-    name:"中药学的实践研究",
-    content:'中药学是研究中药的基本理论和临床应用的学科，是中医药各专业的基础学科之一。内容包括中药、中药学的概念...',
-    subscribe_number:'362'
-
-  },
+{
+name:"运动康复学研究",
+content:'运动康复学是以人体运动为基础，以康复治疗为手段，对运动障碍、运动功能障碍、心肺功能障碍等进行评估、训练和康复的学科...',
+subscribe_number:'126'
+},
+{
+name:"营养与健康",
+content:'营养与健康是研究食物和营养对人体健康影响的学科，旨在探讨营养素的摄入与代谢、膳食与健康之间的关系，以及营养干预在预防和治疗疾病中的作用...',
+subscribe_number:'378'
+},
+{
+name:"精神医学研究",
+content:'精神医学是研究心理和行为障碍的诊断、治疗和预防的学科，主要包括抑郁症、精神分裂症、焦虑症、强迫症等精神疾病的研究和治疗...',
+subscribe_number:'485'
+},
+{
+name:"眼科学研究",
+content:'眼科学是研究眼部疾病的预防、治疗和康复的学科，主要涉及眼科的基础理论、临床诊断、手术技术和康复治疗...',
+subscribe_number:'298'
+},
+{
+name:"中西医结合研究",
+content:'中西医结合研究是研究中西医学融合的理论和实践问题的学科，主要涉及中西医学的哲学基础、理论框架、诊疗技术和应用方法等方面...',
+subscribe_number:'593'
+}
 
 ])
 
@@ -1340,31 +1476,96 @@ function cancel_subscribe(item){
 
 // 第八个界面-回收站
 let trash_data_list=ref([
-  {
-    title:'新医科背景下的康复医学教育改革思考',
-    expire_time:'30',
-    date:'2023/3/8',
-    modified_time:'13:17',
-  },
-  {
-    title:'新医科背景下的康复医学教育改革思考2',
-    expire_time:'30',
-    date:'2023/3/8',
-    modified_time:'13:17',
-  },
-  {
-    title:'新医科背景下的康复医学教育改革思考3',
-    expire_time:'30',
-    date:'2023/3/8',
-    modified_time:'13:17',
-  },
-  {
-    title:'新医科背景下的康复医学教育改革思考4',
-    expire_time:'30',
-    date:'2023/3/8',
-    modified_time:'13:17',
-  },
-
+{
+title:'糖尿病的新药研发',
+expire_time:'30',
+date:'2023/04/14',
+modified_time:'16:20',
+},
+{
+title:'神经内分泌肿瘤的手术治疗',
+expire_time:'30',
+date:'2022/12/01',
+modified_time:'14:10',
+},
+{
+title:'肝胆胰外科手术的后期护理',
+expire_time:'30',
+date:'2023/04/13',
+modified_time:'10:15',
+},
+{
+title:'体外循环在心脏手术中的应用',
+expire_time:'30',
+date:'2023/02/22',
+modified_time:'11:50',
+},
+{
+title:'药物治疗肿瘤的新进展',
+expire_time:'30',
+date:'2023/04/07',
+modified_time:'13:25',
+},
+{
+title:'妇科肿瘤的综合治疗',
+expire_time:'30',
+date:'2023/01/28',
+modified_time:'08:30',
+},
+{
+title:'临床医学中的统计学方法',
+expire_time:'30',
+date:'2023/2/20',
+modified_time:'16:15',
+},
+{
+title:'免疫治疗在肿瘤治疗中的应用',
+expire_time:'30',
+date:'2023/03/12',
+modified_time:'09:05',
+},
+{
+title:'风湿性疾病的诊断和治疗',
+expire_time:'30',
+date:'2023/04/01',
+modified_time:'15:40',
+},
+{
+title:'新型冠状病毒肺炎的诊断和治疗',
+expire_time:'30',
+date:'2023/03/10',
+modified_time:'12:20',
+},
+{
+title:'老年人营养不良的防治',
+expire_time:'30',
+date:'2023/4/11',
+modified_time:'10:35',
+},
+{
+title:'肝移植术后并发症的处理',
+expire_time:'30',
+date:'2023/04/07',
+modified_time:'13:55',
+},
+{
+title:'心律失常的诊断和治疗',
+expire_time:'30',
+date:'2023/04/01',
+modified_time:'09:45',
+},
+{
+title:'口腔颌面部肿瘤的治疗进展',
+expire_time:'30',
+date:'2023/02/15',
+modified_time:'16:30',
+},
+{
+title:'微创手术在神经外科中的应用',
+expire_time:'30',
+date:'2023/03/25',
+modified_time:'14:05',
+}
 ])
 
 let delete_trash_list=ref([])
@@ -1483,45 +1684,42 @@ function trash_all_clear(){
 
 .nomal_item{
   position: relative;
-  left: -6vw+4px;
-  width: 20vw;
+  left: 0;
+  top: 0;
+  width: 282px;
   max-width: 100%;
-  height: 7vh;
+  height: 113px;
   cursor: pointer;
-  margin-top: 20px;
-}
-
-.active_item{
-  position: relative;
-  left: -6vw+4px;
-  width: 20vw;
-  max-width: 100%;
-  height: 7vh;
-  background: #EBF5FF;
-  cursor: pointer;
-  margin-top: 20px;
+  text-align: center;
 
 }
-
 
 .active_item div,.nomal_item div{
-  position: relative;
-  top: 0;
-  left: 1vw;
+  text-align: center;
+  line-height: 113px;
   font-family: 'Microsoft YaHei';
   font-style: normal;
   font-weight: 400;
   font-size: 26px;
   color: #000000;
   height: 100%;
-  line-height: 7vh;
-  margin-left: 5vw;
+  
 }
 @media (max-width:400px) {
   .active_item div,.nomal_item div{
     font-size: 50px;
   }
 }
+
+.active_item div{
+
+  background: #EBF5FF;
+  cursor: pointer;
+  color: #1559DD;
+}
+
+
+
 /*搜索框 */
 .search_box{
   position: absolute;
@@ -1954,7 +2152,7 @@ function trash_all_clear(){
   position: absolute;
   width: 300px;
   height: 34px;
-  left: 234px;
+  left: 262px;
   top: 70px;
 
   font-family: 'Microsoft YaHei';
@@ -1973,7 +2171,7 @@ function trash_all_clear(){
   height: 21px;
   left: 322px;
   top: 114px;
-
+  text-align: center;
   font-family: 'Microsoft YaHei';
   font-style: normal;
   font-weight: 400;
@@ -2833,16 +3031,18 @@ function trash_all_clear(){
 
     /* //这里设置原有的缩略图视图影藏 */
 	}
-
-  ::v-deep .el-progress__text {
-    padding: 0;
-    margin: 0;
-    // position: absolute;
-    // top: 50px;
-    // left:500px ;
-    margin-top: -30px;
-    color: #808080;
-    margin-left: 15px;
+::v-deep .el-upload-list__item-info svg{
+  display: none;
+}
+::v-deep .el-progress__text {
+  padding: 0;
+  margin: 0;
+  // position: absolute;
+  // top: 50px;
+  // left:500px ;
+  margin-top: -30px;
+  color: #808080;
+  margin-left: 15px;
 }
 ::v-deep .el-progress {
     margin-left: 0;
@@ -2920,7 +3120,7 @@ function trash_all_clear(){
   height: 990px;
   /* top: 100px; */
   left: 0px;
-  overflow: hidden;
+  overflow: scroll;
 
 }
 .content_box2_page2 .line{
@@ -2951,6 +3151,13 @@ function trash_all_clear(){
   line-height: 26px;
 
   color: #9B9595;
+  overflow:hidden; /*溢出的部分隐藏*/
+  white-space: nowrap; /*文本不换行*/
+  text-overflow:ellipsis;/*ellipsis:文本溢出显示省略号（...）；clip：不显示省略标记（...），而是简单的裁切*/
+}
+
+.content_box2_page2 .head_title{
+  width: 500px;
 }
 
 .content_box2_page2 .head_modify_time{
@@ -3087,7 +3294,7 @@ function trash_all_clear(){
   line-height: 48px;
   /* identical to box height */
   color: #000000;
-}
+   }
 
 .content_box2 .page2_right_box .button_box{
   position: absolute;
@@ -3149,7 +3356,7 @@ function trash_all_clear(){
   height: 61px;
   background: #ffffff;
   border-bottom: 1px solid #F4F4F4;
-
+ 
 }
 
 .page2_right_box  .item_box .each_item_inner{
@@ -3179,6 +3386,7 @@ function trash_all_clear(){
   position: absolute;
   top: 15px;
   left: 215px;
+  width: 600px;
   font-family: 'Microsoft YaHei';
   font-style: normal;
   font-weight: 400;
@@ -3187,6 +3395,9 @@ function trash_all_clear(){
   letter-spacing: 0.045em;
 
   color: #3C3C3C;
+  overflow:hidden; /*溢出的部分隐藏*/
+  white-space: nowrap; /*文本不换行*/
+  text-overflow:ellipsis;/*ellipsis:文本溢出显示省略号（...）；clip：不显示省略标记（...），而是简单的裁切*/
 
 }
 
@@ -3664,6 +3875,7 @@ cursor: pointer;
   border-radius: 6px;
   margin-bottom: 18px;
   margin-right: 88px;
+ 
 }
 
 .data_item_box5 .each_inner{
@@ -3709,6 +3921,9 @@ cursor: pointer;
   font-weight: 400;
   font-size: 18px;
   /* identical to box height */
+  overflow:hidden; /*溢出的部分隐藏*/
+  white-space: nowrap; /*文本不换行*/
+  text-overflow:ellipsis;/*ellipsis:文本溢出显示省略号（...）；clip：不显示省略标记（...），而是简单的裁切*/
 
 
   color: #000000;
@@ -3718,7 +3933,7 @@ cursor: pointer;
   position: absolute;
   top: 71px;
   left: 134px;
-  width: 153px;
+  width: 320px;
   height: 24px;
   font-family: 'Microsoft YaHei';
   font-style: normal;
@@ -3727,6 +3942,9 @@ cursor: pointer;
   line-height: 24px;
   /* identical to box height */
   color: #000000;
+  overflow:hidden; /*溢出的部分隐藏*/
+  white-space: nowrap; /*文本不换行*/
+  text-overflow:ellipsis;/*ellipsis:文本溢出显示省略号（...）；clip：不显示省略标记（...），而是简单的裁切*/
 }
 
 .data_item_box5 .cancel_notice{
@@ -3952,8 +4170,7 @@ cursor: pointer;
   line-height: 21px;
 
   color: #9B9595;
-
-}
+  }
 
 .data_item_box7 .notice_name{
   position: absolute;
@@ -3989,6 +4206,9 @@ color: #000000;
   line-height: 24px;
 
   color: #9B9595;
+ overflow:hidden; /*溢出的部分隐藏*/
+  white-space:wrap; /*文本不换行*/
+  text-overflow:ellipsis;/*ellipsis:文本溢出显示省略号（...）；clip：不显示省略标记（...），而是简单的裁切*/
 
 }
 
@@ -4021,46 +4241,99 @@ color: #000000;
 
 }
 
-.data_item_box7 .notice_users_box .image1{
+.data_item_box7 .notice_users_box .image1,
+.data_item_box7 .notice_users_box .image5,
+.data_item_box7 .notice_users_box .image9,
+.data_item_box7 .notice_users_box .image13,
+.data_item_box7 .notice_users_box .image17,
+.data_item_box7 .notice_users_box .image21,
+.data_item_box7 .notice_users_box .image25
+{
   position: absolute;
   top: 0px;
   left: 0px;
   width: 27px;
   height: 27px;
   border-radius: 50%;
-  background-color: pink;
+  // background-color: pink;
+  background-size: contain;
 }
 
-.data_item_box7 .notice_users_box .image2{
+.data_item_box7 .notice_users_box .image2,
+.data_item_box7 .notice_users_box .image6,
+.data_item_box7 .notice_users_box .image10,
+.data_item_box7 .notice_users_box .image14,
+.data_item_box7 .notice_users_box .image18,
+.data_item_box7 .notice_users_box .image22
+
+{
   position: absolute;
   top: 0px;
   left: 11px;
   width: 27px;
   height: 27px;
   border-radius: 50%;
-  background-color: rgb(118, 187, 137);
+  background-size: contain;
+  // background-color: rgb(118, 187, 137);
 }
 
-.data_item_box7 .notice_users_box .image3{
+.data_item_box7 .notice_users_box .image3,
+.data_item_box7 .notice_users_box .image7,
+.data_item_box7 .notice_users_box .image11,
+.data_item_box7 .notice_users_box .image15,
+.data_item_box7 .notice_users_box .image19,
+.data_item_box7 .notice_users_box .image23
+{
   position: absolute;
   width: 27px;
   height: 27px;
   top: 0px;
   left: 22px;
   border-radius: 50%;
-  background-color: rgb(158, 170, 124);
+  background-size: contain;
+  // background-color: rgb(158, 170, 124);
 }
 
-.data_item_box7 .notice_users_box .image4{
+.data_item_box7 .notice_users_box .image4,
+.data_item_box7 .notice_users_box .image8,
+.data_item_box7 .notice_users_box .image12,
+.data_item_box7 .notice_users_box .image16,
+.data_item_box7 .notice_users_box .image20,
+.data_item_box7 .notice_users_box .image24
+{
   position: absolute;
   width: 27px;
   height: 27px;
   top: 0px;
   left: 33px;
   border-radius: 50%;
-  background-color: #F3F2F2;
-  background-image: url(../../images/更多.png);
-  background-size: contain;
+  // background-color: #F3F2F2;
+  // background-image: url(../../images/更多.png);
+  // background-size: contain;
+}
+
+//头像部分造假的类
+.data_item_box7 .notice_users_box .image5{
+  background-image: url(https://www.bing.com/ck/a?!&&p=fb03fb1687e1d505JmltdHM9MTY4MTYwMzIwMCZpZ3VpZD0zNmZkYzU2YS0zMzkyLTZhZmMtMzI2ZS1kN2I5MzJkMTZiYjImaW5zaWQ9NTQ4OA&ptn=3&hsh=3&fclid=36fdc56a-3392-6afc-326e-d7b932d16bb2&u=a1L2ltYWdlcy9zZWFyY2g_cT0lRTclOEMlQUIlRTclOEMlQUIlRTUlQTQlQjQlRTUlODMlOEYmRk9STT1JUUZSQkEmaWQ9Q0ZDN0ZBQTQ3MENCQkE4MjZBMkREMTIyRkRDN0I0MTQ5QzA4NUJFRQ&ntb=1);
+
+}
+.data_item_box7 .notice_users_box .image6{
+  background-image: url(https://www.bing.com/ck/a?!&&p=fb03fb1687e1d505JmltdHM9MTY4MTYwMzIwMCZpZ3VpZD0zNmZkYzU2YS0zMzkyLTZhZmMtMzI2ZS1kN2I5MzJkMTZiYjImaW5zaWQ9NTQ4OA&ptn=3&hsh=3&fclid=36fdc56a-3392-6afc-326e-d7b932d16bb2&u=a1L2ltYWdlcy9zZWFyY2g_cT0lRTclOEMlQUIlRTclOEMlQUIlRTUlQTQlQjQlRTUlODMlOEYmRk9STT1JUUZSQkEmaWQ9Q0ZDN0ZBQTQ3MENCQkE4MjZBMkREMTIyRkRDN0I0MTQ5QzA4NUJFRQ&ntb=1);
+}
+.data_item_box7 .notice_users_box .image7{
+  background-image: url(https://www.bing.com/ck/a?!&&p=f47337579080a56cJmltdHM9MTY4MTYwMzIwMCZpZ3VpZD0zNmZkYzU2YS0zMzkyLTZhZmMtMzI2ZS1kN2I5MzJkMTZiYjImaW5zaWQ9NTQ5Nw&ptn=3&hsh=3&fclid=36fdc56a-3392-6afc-326e-d7b932d16bb2&u=a1L2ltYWdlcy9zZWFyY2g_cT0lRTclOEMlQUIlRTclOEMlQUIlRTUlQTQlQjQlRTUlODMlOEYmRk9STT1JUUZSQkEmaWQ9RTc1NTAxQ0VFMzEzNDg3MjAwQTgyREQ1ODc5NkI1OEYwNEE2MkY3Ng&ntb=1);
+}
+.data_item_box7 .notice_users_box .image8,
+.data_item_box7 .notice_users_box .image9,
+.data_item_box7 .notice_users_box .image10,
+.data_item_box7 .notice_users_box .image11,
+.data_item_box7 .notice_users_box .image12,
+.data_item_box7 .notice_users_box .image13,
+.data_item_box7 .notice_users_box .image14,
+.data_item_box7 .notice_users_box .image15
+
+{
+
 }
 .data_item_box7 .notice_member{
   position: absolute;

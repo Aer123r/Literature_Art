@@ -2,7 +2,7 @@
     <div>
         <div class="logo">  
       </div>
-      <div class="title"><h1><span>文</span>易通</h1></div>
+      <div class="title"><h1><span>医</span>识库</h1></div>
     </div>
 </template>
 

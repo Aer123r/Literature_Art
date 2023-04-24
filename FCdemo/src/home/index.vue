@@ -20,10 +20,11 @@
       <div class="home2" v-if="now_home_page==1">
         <div class="title">满足你的个性化需求</div>
           <div class="subhead">
+
             <p>· 海量文献库在线检索，一键添加至个人收藏</p>
             <p>· 支持多种格式文件在线阅读</p>
             <p>· 智慧云端提供个性化存储，不用担心文件丢失</p>
-            <p>· 智能提取文献关键信息，大大降低人力物力消耗</p>
+            <p>· 支持文献下载，满足多方位要求</p>
             <br>
           </div>
 
@@ -38,7 +39,7 @@
           <div class="subhead">
             <p>· 关键词检索，精准查询</p>
             <p>· 智能精准读取文献关键信息，大大降低人力物力消耗</p>
-            <p>· 支持多种格式文件在线阅读</p>
+            <p>· 团队协作，便捷高效</p>
             <p>· 分类归档，条理有序</p>
             <br>
           </div>
@@ -118,7 +119,7 @@ function change_page(){
 /*首页1*/
 .home1 .title{
   position: absolute;
-  width: 720px;
+  width: 750px;
   height: 106px;
   left: 102px;
   top: 201px;
@@ -136,7 +137,7 @@ function change_page(){
 
 .home1 .subhead{
   position: absolute;
-  width: 836px;
+  width: 850px;
   height: 216px;
   left: 102px;
   top: 393px;
@@ -324,7 +325,7 @@ function change_page(){
 
 .home3 .subhead{
   position: absolute;
-  width: 895px;
+  width: 950px;
   height: 299px;
   left: 142px;
   top: 421px;

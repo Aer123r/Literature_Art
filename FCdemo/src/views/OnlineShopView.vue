@@ -1,7 +1,7 @@
 <template>
     <body>
         <div class="backimg">
-        <div class="title">加入文易通VIP，尊享账号等级配置权益</div>
+        <div class="title">加入医识库VIP，尊享账号等级配置权益</div>
         <div class="subhead">-新会员·新服务-</div>
         <div class="under_title">海量论文、智慧分屏、超大容量...</div>
         <div class="left_line"></div>
